@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AssessorJson.Entities" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gyQCAABgAAIAQCgEAAAQBGgAEICBQGBQABA4AAIgwgA=</HashCode>
+      <FileName>AssessorApp.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account" Collapsed="true">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iSQCACAoAAAAQSmAABAQBAkCEADAEPAABJAoEApAZgA=</HashCode>
+      <FileName>account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_fact" Collapsed="true">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAGJIAEAACMhAAAACREAAgkAQBAALxEZYAEQIAAAA=</HashCode>
+      <FileName>account_fact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_neighborhood" Collapsed="true">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAEAABAQAEAAEABAEAAAAAAAQAAAAAA=</HashCode>
+      <FileName>account_neighborhood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_notification" Collapsed="true">
+    <Position X="11.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAEAABAQAAAAEIAIEAAAAIAAQAAAAAA=</HashCode>
+      <FileName>account_notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_owner_address" Collapsed="true">
+    <Position X="13" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAEAAAgAAUAABSQAAAAUAIAFAAGAAAAQAAABAA=</HashCode>
+      <FileName>account_owner_address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_property_address" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAAABICAAAAEYEAABAQAAAAEIAQEAEAgAAAQAAgBAA=</HashCode>
+      <FileName>account_property_address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.account_valuation" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAEAARAQCAAAEAAAFAAAAAAAQIBABAA=</HashCode>
+      <FileName>account_valuation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.appeal_account" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAABAAAEAAAAhAQCUAAcABQUAQAABAEBAAAQAAQAAA=</HashCode>
+      <FileName>appeal_account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.azure_building_permit_authority" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAgAAAAAEoAAAQCAAAECAAEgAgAAAAQAgAAAA=</HashCode>
+      <FileName>azure_building_permit_authority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.azure_important_dates" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggEEAAAARAABAEAAAEAAAAAAAAAAACCA=</HashCode>
+      <FileName>azure_important_dates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.azure_important_PPLinks" Collapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAABAAAgAEAAAAQAAAAEAAAEAAAAAgAAAAAAAA=</HashCode>
+      <FileName>azure_important_PPLinks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.data_processing_log" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAIAAAAAQAAAABAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>data_processing_log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.etl_parameter" Collapsed="true">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAQAAAAMAAAEABAAAAAAAAAAAA=</HashCode>
+      <FileName>etl_parameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.improvement" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIgAQAAIAAAAAEABBAQAEAAMAAgEEAIAAAQQAAARQA=</HashCode>
+      <FileName>improvement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.improvement_built_as" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAIiBAIwAQAICECABAwiFACMIAFFAEAEAAgQKBARQA=</HashCode>
+      <FileName>improvement_built_as.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.improvement_detail" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAABAAAAAACEEABAQAAAkEAAAEAAAEAAAQAAABQA=</HashCode>
+      <FileName>improvement_detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.improvement_detail_types" Collapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAIAAAgA=</HashCode>
+      <FileName>improvement_detail_types.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.improvement_occupancy" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAEAAqEAABAQACAAMAAAEAAAABAAQAgABQA=</HashCode>
+      <FileName>improvement_occupancy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.land_abstract" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BKAAACAAAAAQACEAABAQwCEAEAAAUAAAAAAAQBgARAA=</HashCode>
+      <FileName>land_abstract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.land_attribute" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAEACBAQAAAQEAAAEAAAAAACQAAABAA=</HashCode>
+      <FileName>land_attribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.pers_prop_acct" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAIEABAEAEAABQAAAAAABAAUAIAAIMBEAIAAAAAAgA=</HashCode>
+      <FileName>pers_prop_acct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.pers_prop_detail" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAAEAAIEAAAABAAAgAAAAIAEAABAAABEAIAACEAIAA=</HashCode>
+      <FileName>pers_prop_detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.pers_prop_type" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAFAAAAAAAAAAAAAAAEAAAAAABEAIAAAEAAAA=</HashCode>
+      <FileName>pers_prop_type.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.real_account" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAKAAAAEAQBAQAQQAMAABEgAAAAABQgAABAA=</HashCode>
+      <FileName>real_account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.realnov" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAyIAkB8DQojVBABpSIAAEeIeHFYDoIYB4T2qgTBQ=</HashCode>
+      <FileName>realnov.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.sale" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAKAAgAAAAAAEAEAAQQQAlMAAAEIAABBCAAAgABgA=</HashCode>
+      <FileName>sale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.sale_account" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAEAABAQAAABEAAAEAAAAAAAQAAABAA=</HashCode>
+      <FileName>sale_account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.sale_inventory" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ItAAiTCBgAUPECOEABCwIUADFAAhEgAIUAFoQgBAhAA=</HashCode>
+      <FileName>sale_inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.sale_inventory_detail" Collapsed="true">
+    <Position X="4.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAEAAAAEAABAQAAABkAAAEABAAAAAQIAABAA=</HashCode>
+      <FileName>sale_inventory_detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.sub_filing" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAIASAAEAGIAAEAABAAAAAAAABAE=</HashCode>
+      <FileName>sub_filing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.tax_authority" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEAAIBEAAIAAAFAAQAQAAAAEAAAEAAAAAAQCAAwFAA=</HashCode>
+      <FileName>tax_authority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.tax_authority_fund" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQEAAAgAkAAAAQCCAAEAAAEAAAAAAACAAABAA=</HashCode>
+      <FileName>tax_authority_fund.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.tax_district" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAIAAQEAAAAQAAAAEIAAECAAAAAAAAAAAAA=</HashCode>
+      <FileName>tax_district.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.tax_district_authority" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAQEAAAAQACAAEAAAEAAAAAAACAAAAAA=</HashCode>
+      <FileName>tax_district_authority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.v_freeze_parameters" Collapsed="true">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>v_freeze_parameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.v_nov_tax_years" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>v_nov_tax_years.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.v_residential_account_valuation" Collapsed="true">
+    <Position X="7.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAEAARAQCAAAEAAAFAAAAAAAAIBABAA=</HashCode>
+      <FileName>v_residential_account_valuation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.value" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAABAAgAAAAAQEAABAQAAAAEAAAFAAAwAAAQABABAA=</HashCode>
+      <FileName>value.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.value_from_tsgvacctabstvalue" Collapsed="true">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAABAAgAAQAAQEAABAQAAAAAQAABAAAwAAAQIBAAAA=</HashCode>
+      <FileName>value_from_tsgvacctabstvalue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.FullPropertyDetailsConverter" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgFMAECCBFQQCAEAkACDgRgMwLCEaMBAEEABBYEIgw=</HashCode>
+      <FileName>FullPropertyDetailsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.MetaHelper" Collapsed="true">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>FullPropertyDetailsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.DbHelper" Collapsed="true">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABBEAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FullPropertyDetailsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.Appeal" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgAAAAAAAAABAAAAAAAAAAAAAAEAAAAEAAA=</HashCode>
+      <FileName>FullPropertyDetailsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.JsonConverterConfig" Collapsed="true">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAAAACggAAACABAAAEBAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>FullPropertyDetailsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.t" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>t.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssessorJson.WindowsIdentity" Collapsed="true">
+    <Position X="13" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowsIdentity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
