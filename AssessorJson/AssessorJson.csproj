@@ -262,7 +262,6 @@
     </None>
     <None Include="AssessorJson_TemporaryKey.pfx" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="dcit.pfx" />
     <None Include="EF.Reverse.POCO.Core.ttinclude" />
     <None Include="EF.Reverse.POCO.ttinclude" />
