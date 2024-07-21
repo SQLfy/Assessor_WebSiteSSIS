@@ -1,0 +1,36 @@
+DECLARE @var sql_variant = N'assessor_app'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'assessor_app_database', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'DVDCETL-SQL01'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'assessor_app_server', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'etl_user@dvetl.douglas.co.us'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_email_from_line', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'Failed - ETL for Oracle Posse Load'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_email_subject_failure', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'Success - ETL for Oracle Posse Load'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_email_subject_success', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'ktotten@douglas.co.us'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_email_to_line', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'DVPOSSE'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'Oracle_POSSE_Host', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'poq_e3d584a'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'Oracle_POSSE_Password', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'ODS'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'Oracle_POSSE_UserName', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'ktotten@douglas.co.us'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'public_works_email_to_line', @sensitive=False, @description=N'public works personnel - jay carner', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'SSISLOGGING'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'ssislogging_database', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
+DECLARE @var sql_variant = N'DVDCETL-MST01'
+EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'ssislogging_server', @sensitive=False, @description=N'', @environment_name=N'assessor_posse', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
+GO
