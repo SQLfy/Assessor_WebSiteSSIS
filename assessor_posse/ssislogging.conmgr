@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ssislogging"
+  DTS:DTSID="{74FE15C1-28BC-442F-A56F-C2DEF69AD25A}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Data Source="+ @[$Project::ssislogging_server]   +";Initial Catalog=SSISLOGGING;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ORACLE_load_posse;Auto Translate=False;"</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=UADCETL-MST01;Initial Catalog=SSISLOGGING;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ORACLE_load_posse;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

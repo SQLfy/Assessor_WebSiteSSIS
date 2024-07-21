@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/20/2024 7:59:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DVDCETL-MST01"
+  DTS:CreatorName="DCGOV\t1-ktotten"
+  DTS:DTSID="{5ECB4FE9-12D6-4CD7-AFB9-DB86DDDADCC4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{97265AB7-B781-494A-BC16-EF541836FFBB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

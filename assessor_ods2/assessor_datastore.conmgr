@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="assessor_datastore"
+  DTS:DTSID="{B706685C-CD53-476B-80EB-B5720E832541}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Data Source="+ @[$Project::asr_ods2_servername] +";"+"Initial Catalog=assessor_datastore"+";"+"Provider=SQLOLEDB.1"+";"+"Integrated Security=SSPI"+";"+"Auto Translate=False"+";"</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=UADCETL-SQL01;Initial Catalog=assessor_datastore;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="assessor_staging"
+  DTS:DTSID="{6492E7C5-49EB-4770-A611-263CEA9F38AD}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Data Source="+ @[$Project::assessor_staging_server]     +";Initial Catalog=assessor_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ORACLE_load_posse ;Auto Translate=False;"</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=UADCETL-SQL01;Initial Catalog=assessor_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ORACLE_load_posse ;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

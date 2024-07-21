@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="FTP_to_Spatialest"
+  DTS:DTSID="{DA5D3361-FE85-4DB3-AA74-6516B56E0641}"
+  DTS:CreationName="FTP">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::spatialest_ftp_server]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerPassword">@[$Project::spatialest_password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerUserName">@[$Project::spatialest_user_name]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="ftp.spatialest.com:21">
+      <DTS:FtpConnection
+        DTS:ServerName="ftp.spatialest.com"
+        DTS:ServerUserName="douglas-co"
+        DTS:UsePassiveMode="True">
+        <DTS:Property
+          DTS:Name="ServerPassword"
+          Sensitive="1"></DTS:Property>
+      </DTS:FtpConnection>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

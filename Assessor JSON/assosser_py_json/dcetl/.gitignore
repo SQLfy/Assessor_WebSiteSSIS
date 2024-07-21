@@ -1,0 +1,12 @@
+**/__pycache__
+.vs/
+.vscode/
+.idea/
+sandbox.py
+config.py
+/assessor/raw_tables.txt
+/assessor/assessor_datastore/
+
+*.csv
+
+*.zip

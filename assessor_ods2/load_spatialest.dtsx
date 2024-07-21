@@ -1,0 +1,1377 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/28/2016 2:36:24 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DV-DG-DBSQL14"
+  DTS:CreatorName="DCGD\dguillen"
+  DTS:DTSID="{61068A56-5A62-4476-AF63-FD129E2B2FB5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="load_spatialest"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{8BFDAC97-21EB-44D4-A00B-ABFE29A8E890}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC42751A-3B88-4620-A66E-97301AE0FBB1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BATCH_ERRORS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BB7B89DB-3A70-4F7F-81A1-5A29ED94F2B3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BATCH_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F30FCA50-942C-4B65-9A2A-2C6D6D96B083}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BATCH_NAME">
+      <DTS:VariableValue
+        DTS:DataType="8">ETL for Spatialest (ODS2)</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4F89E1AA-66CC-4018-B440-90103D259798}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ssislogging_servername]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ssislogging_servername">
+      <DTS:VariableValue
+        DTS:DataType="8">DVDCETL-MST01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{67E6E043-BC35-4700-AF26-BF4886F3EC91}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::staging_servername]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_staging_servername">
+      <DTS:VariableValue
+        DTS:DataType="8">DVDCETL-SQL01</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load and FTP SPATIALEST tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6CE2E728-9850-4C28-A899-64E7AA1E93A6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load and FTP SPATIALEST tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_account"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D594B051-D7BA-444F-9DAD-C2A6E8A14740}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_account"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_account_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_account_neighborhood"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{05626651-DC4E-4C0D-857B-71E8CEBD43A5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_account_neighborhood"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute [asr_spatialest].[sp_account_neighboorhood_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_account_owner_address"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E8853A85-6F76-4E23-BDC8-6FEC14EB5E92}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_account_owner_address"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute [asr_spatialest].[sp_account_owner_address_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_account_property_address"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9737F5FA-3315-4C4E-9718-7B36E7165155}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_account_property_address"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_account_property_address_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{75A387A1-D5AC-4505-BC72-1891F4D1D478}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_improvement"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_improvement_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement_built_as"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7AFB0E87-D2D5-423C-99B2-5FA46CB4622A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_improvement_built_as"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_improvement_built_as" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_land_abstract"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{68023D4F-4568-4BC9-B125-A2B76F2003E8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_land_abstract"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_land_abstract_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_sale"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{613EBA53-CC89-4917-B788-BDEB2E030AB2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_sale"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_sale_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_account"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2C14A58F-7941-45C1-AB14-75EDD312EDAE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_sale_account"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_sale_account_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_inventory"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FAFB1DB9-D14D-4134-BEB4-6F2C986F9F60}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_sale_inventory"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_sale_inventory_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F5B1B408-D47D-4BF8-AFC9-DB114E157176}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_tax_authority"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_tax_authority_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority_fund"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BD3A6F3A-0B5D-41EF-995C-24ABB3C296CF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_tax_authority_fund"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_tax_authority_fund_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_district_authority"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7DC10087-0BAF-43C8-8EF0-908C7CA20A94}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_tax_district_authority"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_tax_district_authority_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\load_spatialest_value"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1BC4D429-9D84-4A2E-B9EF-5ED83E29C02F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load_spatialest_value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+              SQLTask:SqlStatementSource="execute asr_spatialest.sp_value_insert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load and FTP SPATIALEST tables\RUN SPATIALEST FTP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{E76CF0EB-075F-4B08-A05F-917B6DBFA859}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RUN SPATIALEST FTP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SpatialestFTP.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>BATCH_ID</ParameterName>
+                <BindedVariableOrParameterName>User::BATCH_ID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E3FD7927-95B7-49D8-AB1B-5B3E53758C11}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_account"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_account_property_address" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{BC1D0D22-7B42-492A-B693-717FFCB5FF15}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_account_property_address"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 10]"
+          DTS:CreationName=""
+          DTS:DTSID="{E7C729BD-35AC-4D18-9152-15AC8FC41EA3}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority_fund"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 10"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 11]"
+          DTS:CreationName=""
+          DTS:DTSID="{3535D6D7-9E59-4433-934C-EFC5D9B5E4E6}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 11"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_account_neighborhood" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 12]"
+          DTS:CreationName=""
+          DTS:DTSID="{7FCA1190-84BD-497A-92B9-9AD283DB3670}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_account_neighborhood"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 12"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_account_owner_address" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 13]"
+          DTS:CreationName=""
+          DTS:DTSID="{4388A050-4804-4FD7-8766-CA704B1A0FA1}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_account_owner_address"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 13"
+          DTS:To="Package\Load and FTP SPATIALEST tables\RUN SPATIALEST FTP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{ECB1DD25-6387-40F5-9609-009C09224221}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement_built_as" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{7DD04FD5-C152-4E2C-B454-2B0FF1F6D248}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement_built_as"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_land_abstract" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{A39B1905-DE1F-4AB6-BD14-AC724BFD1319}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_land_abstract"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_sale" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{885C511B-EB9A-4DAE-B691-CDAB2C1A65C3}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_sale"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_account" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{0A8ACDDA-68FE-421E-8F92-24CD7F53ACF3}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_account"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_inventory" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{8F9F4E39-071D-4DEB-8F34-6DCB60C2A314}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_inventory"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{59D63B85-61E6-4082-B518-C5216C1C47ED}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_district_authority" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{945E8BF4-A999-419E-B3DE-64CAE4988E22}"
+          DTS:From="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_district_authority"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority_fund" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Spatialest Failed"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1583D984-907F-4A48-AE1F-D9884F2CBE59}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Spatialest Failed">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Spatialest Failed\LOG ETL FAILURE DURING LOAD SPATIALEST"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4AEF01D2-2556-4A9C-97B3-98BB69D47794}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOG ETL FAILURE DURING LOAD SPATIALEST"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"insert into ssislogging 
+(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) 
+values 
+(
+'PostExecute',
+'" + @[System::PackageName]  +"'"+",
+'"  +  @[System::TaskName] + "'"+",
+12345,
+''"  +",
+"+(DT_STR, 6, 1252)DATEDIFF("ss", @[System::StartTime], GETDATE()) + ",
+"+(DT_STR, 6, 1252)DATEDIFF("ss", @[System::ContainerStartTime], GETDATE()) +  ""+ ",
+getdate()"+",
+" + (DT_STR, 50, 1252) @[User::BATCH_ID] + "
+)"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'load_spatialest',&#xA;'LOG ETL FAILURE DURING LOAD SPATIALEST',&#xA;12345,&#xA;'',&#xA;0,&#xA;0,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOG_BATCH_END"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{13052F7A-C4A0-4DF0-B033-29323C5217B6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOG_BATCH_END"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
+          SQLTask:SqlStatementSource="UPDATE dbo.SSIS_BATCH_LOG &#xA;SET BATCH_END_TIME = GETDATE()&#xA;WHERE BATCH_ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BATCH_ID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOG_BATCH_START"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{10949E5E-5DCB-4890-B11A-1D7D30112426}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOG_BATCH_START"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
+          SQLTask:SqlStatementSource="Execute dbo.log_batch ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BATCH_ID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BATCH_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SET BATCH_ERRORS"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{75897DD6-3CE3-428B-A478-45FA16F2C054}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SET BATCH_ERRORS"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::BATCH_ERRORS]=0" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3BD5182-A5F5-478F-9E6B-B1034B4731A5}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::BATCH_ERRORS]==0"
+      DTS:From="Package\Load and FTP SPATIALEST tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\LOG_BATCH_END" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6BD5BE68-9A4D-4E78-A48D-88D9DE4BD2FF}"
+      DTS:From="Package\SET BATCH_ERRORS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load and FTP SPATIALEST tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFE18EAC-DB61-43F3-AB82-4E3B4F9E97C8}"
+      DTS:From="Package\LOG_BATCH_START"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SET BATCH_ERRORS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{09092B0A-CDB1-412B-BF7F-E4BDA69F0527}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::BATCH_ERRORS]&gt;0"
+      DTS:From="Package\Load and FTP SPATIALEST tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load Spatialest Failed" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{23F36C3F-B38E-4CED-BF5C-D6DADAAB741E}"
+      DTS:EventID="854421624"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{C351DF92-54AC-49B5-AEFE-8BC7198FB915}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Failure Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{065764c8-cfeb-4d66-bde4-881d0960bcfd}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Failure Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Project::email_from_line]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[$Project::email_subject_failure] + "-  for SPATIALEST DATA"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Project::email_to_line]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{6FA042DD-8F45-425A-B706-8125CBD4F211}"
+              SendMailTask:From="etl_user@dvdcetl-mst01.douglas.co.us"
+              SendMailTask:To="rgreenfield@douglas.co.us"
+              SendMailTask:Subject="ETL for ASR_ODS2 Failed on DVDCETL-MST01-  for SPATIALEST DATA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Log Post Execute"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d994cb24-a98b-4ba9-a486-91eff22e5049}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Post Execute"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"insert into ssislogging 
+(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) 
+values 
+(
+'PostExecute',
+'" + @[System::PackageName]  +"'"+",
+'"  +  @[System::SourceName] + "'"+",
+0,
+''"  +",
+"+(DT_STR, 6, 1252)DATEDIFF("ss", @[System::StartTime], GETDATE()) + ",
+"+(DT_STR, 6, 1252)DATEDIFF("ss", @[System::ContainerStartTime], GETDATE()) +  ""+ ",
+getdate()"+",
+" + (DT_STR, 50, 1252) @[User::BATCH_ID] + "
+)"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'load_spatialest',&#xA;'',&#xA;0,&#xA;'',&#xA;0,&#xA;0,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Success Send Mail Task"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{c434320e-642f-42a1-89af-20bd7b3f75b6}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Success Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Project::email_from_line]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[$Project::email_subject_success] + " - for SPATIALEST DATA"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Project::email_to_line]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{6FA042DD-8F45-425A-B706-8125CBD4F211}"
+              SendMailTask:From="etl_user@dvdcetl-mst01.douglas.co.us"
+              SendMailTask:To="rgreenfield@douglas.co.us"
+              SendMailTask:Subject="ETL for ASR_ODS2 Completed Successfully on DVDCETL-MST01 - for SPATIALEST DATA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{290cb89c-f134-4bcf-9999-14b393851a48}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName] &amp;&amp; @[User::BATCH_ERRORS]&gt;0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Log Post Execute"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Failure Send Mail Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{024a61d4-5d18-4397-84cd-923d4a122d57}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName] &amp;&amp; @[User::BATCH_ERRORS]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Log Post Execute"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Success Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_account"
+          TopLeft="38.5,5.5" />
+        <NodeLayout
+          Size="262,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_account_neighborhood"
+          TopLeft="14.0000000000002,1229.5" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_account_owner_address"
+          TopLeft="11.0000000000002,1331.5" />
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_account_property_address"
+          TopLeft="5.50000000000003,107.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement"
+          TopLeft="36.5,209.5" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_improvement_built_as"
+          TopLeft="15.5000000000001,311.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_land_abstract"
+          TopLeft="36.0000000000001,413.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_sale"
+          TopLeft="58.5000000000001,515.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_account"
+          TopLeft="37.0000000000001,617.5" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_sale_inventory"
+          TopLeft="33.5000000000001,719.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority"
+          TopLeft="36.5000000000001,821.5" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_authority_fund"
+          TopLeft="23.0000000000001,1025.5" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_tax_district_authority"
+          TopLeft="18.0000000000001,923.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load and FTP SPATIALEST tables\load_spatialest_value"
+          TopLeft="55.0000000000001,1127.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Load and FTP SPATIALEST tables\RUN SPATIALEST FTP"
+          TopLeft="40.0000000000002,1433.5" />
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint]"
+          TopLeft="145,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="145,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 10]"
+          TopLeft="145,1067.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 11]"
+          TopLeft="145,1169.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 12]"
+          TopLeft="145,1271.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 13]"
+          TopLeft="145,1373.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 2]"
+          TopLeft="145,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 3]"
+          TopLeft="145,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 4]"
+          TopLeft="145,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 5]"
+          TopLeft="145,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 6]"
+          TopLeft="145,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 7]"
+          TopLeft="145,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 8]"
+          TopLeft="145,863.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load and FTP SPATIALEST tables.PrecedenceConstraints[Constraint 9]"
+          TopLeft="145,965.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="290,1531"
+          Size="290,1574"
+          Id="Package\Load and FTP SPATIALEST tables"
+          TopLeft="312,209.5" />
+        <NodeLayout
+          Size="298,42"
+          Id="Package\Load Spatialest Failed\LOG ETL FAILURE DURING LOAD SPATIALEST"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="309,103"
+          Size="309,146"
+          Id="Package\Load Spatialest Failed"
+          TopLeft="555.5,1859.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\LOG_BATCH_END"
+          TopLeft="244.5,1902.5" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\LOG_BATCH_START"
+          TopLeft="337.5,5.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SET BATCH_ERRORS"
+          TopLeft="351.5,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="410,1783.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-69.4999999999999,119"
+              Start="0,0"
+              End="-69.4999999999999,111.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.9917695473251" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.9917695473251"
+                    Point2="0,47.9917695473251"
+                    Point3="-4,47.9917695473251" />
+                  <mssgle:LineSegment
+                    End="-65.4999999999999,47.9917695473251" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-65.4999999999999,47.9917695473251"
+                    Point2="-69.4999999999999,47.9917695473251"
+                    Point3="-69.4999999999999,51.9917695473251" />
+                  <mssgle:LineSegment
+                    End="-69.4999999999999,111.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.7499999999999,52.9917695473251,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="448.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,60"
+              Start="0,0"
+              End="8.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="4.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,30"
+                    Point2="8.5,30"
+                    Point3="8.5,34" />
+                  <mssgle:LineSegment
+                    End="8.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="457,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,60"
+              Start="0,0"
+              End="-8.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-4.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,30"
+                    Point2="-8.5,30"
+                    Point3="-8.5,34" />
+                  <mssgle:LineSegment
+                    End="-8.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="504,1783.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="206,76"
+              Start="0,0"
+              End="206,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.6502057613169" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.6502057613169"
+                    Point2="0,30.6502057613169"
+                    Point3="4,30.6502057613169" />
+                  <mssgle:LineSegment
+                    End="202,30.6502057613169" />
+                  <mssgle:CubicBezierSegment
+                    Point1="202,30.6502057613169"
+                    Point2="206,30.6502057613169"
+                    Point3="206,34.6502057613169" />
+                  <mssgle:LineSegment
+                    End="206,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="95.0000000000001,35.6502057613169,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="184,42"
+          Id="Package.EventHandlers[OnPostExecute]\Failure Send Mail Task"
+          TopLeft="1002.5,282.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package.EventHandlers[OnPostExecute]\Log Post Execute"
+          TopLeft="698,214" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package.EventHandlers[OnPostExecute]\Success Send Mail Task"
+          TopLeft="768.5,384.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="803.333333333333,256">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="291.166666666667,26.5"
+              Start="0,0"
+              End="291.166666666667,19">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.75742574257426" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.75742574257426"
+                    Point2="0,10.7574257425743"
+                    Point3="4,10.7574257425743" />
+                  <mssgle:LineSegment
+                    End="287.166666666667,10.7574257425743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="287.166666666667,10.7574257425743"
+                    Point2="291.166666666667,10.7574257425743"
+                    Point3="291.166666666667,14.7574257425743" />
+                  <mssgle:LineSegment
+                    End="291.166666666667,19" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="137.583333333334,15.7574257425743,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="778,256">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="85.5,128.5"
+              Start="0,0"
+              End="85.5,121">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.25"
+                    Point2="0,64.25"
+                    Point3="4,64.25" />
+                  <mssgle:LineSegment
+                    End="81.5,64.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81.5,64.25"
+                    Point2="85.5,64.25"
+                    Point3="85.5,68.25" />
+                  <mssgle:LineSegment
+                    End="85.5,121" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="34.75,69.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

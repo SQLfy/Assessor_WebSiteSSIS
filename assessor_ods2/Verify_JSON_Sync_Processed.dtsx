@@ -1,0 +1,136 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/1/2016 3:08:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DV-TG-DBSQL14"
+  DTS:CreatorName="DCGD\agolden"
+  DTS:DTSID="{682ECA46-2BBE-4508-BE33-E9146666F4AA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Verify_JSON_Sync_Processed"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{CE79D76C-FAE5-45DA-8BB1-C2145DA59DE4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F38C96DB-1547-4502-AB1C-C42737F3FCF5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="query_result">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check ODS2 processing log(2)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0632A5EF-11A9-4DC3-AFD5-4024C83FE979}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check ODS2 processing log(2)"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{d4a48193-dffd-4014-afa4-ef392bcb8881}"
+          SQLTask:SqlStatementSource="  SELECT ISNULL(MAX(data_processing_log_id),0) query_result&#xA;  FROM [assessor_app].[asr_ods2].[data_processing_log]&#xA;  WHERE convert(date,getdate() ) = convert(date,process_end_time)&#xA;  and PROCESS_NAME = 'ETL FROM ASR_ODS2 TO ELASTICSEARCH_SS'&#xA;and PROCESS_STATUS = 'SUCCEEDED'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="query_result"
+            SQLTask:DtsVariableName="User::query_result" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send JSON sync FAILURE Mail Task"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{A8144B98-A75A-416F-B820-DC3B242A0F6B}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send JSON sync FAILURE Mail Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[$Project::ssislogging_servername] + "-JSON SYNC FAILURE-Simple Search and Prop Details are out of sync. Check Wildfly &amp; ETL"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[$Project::email_to_line]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{E4401D61-3331-43E4-8713-D163D6227BE0}"
+          SendMailTask:From="ETL_JSON_SYNC@douglas.co.us"
+          SendMailTask:To="rgreenfield@douglas.co.us"
+          SendMailTask:Subject="PRDCETL-MST01-JSON SYNC FAILURE-Simple Search and Prop Details are out of sync. Check Wildfly &amp; ETL"
+          SendMailTask:MessageSource="The processes that populate the JSON documents for SIMPLE SEARCH and PROPERTY DETAILS are out of sync.  Please review the Wildfly logs and SSIS logs to ensure the JSON files are being correctly generated." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DB4D72A-C12C-4011-BB76-2E24BCBFF0A8}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::query_result] == 0"
+      DTS:From="Package\Check ODS2 processing log(2)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Send JSON sync FAILURE Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="262,42"
+          Id="Package\Send JSON sync FAILURE Mail Task"
+          TopLeft="230,302" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Check ODS2 processing log(2)"
+          TopLeft="243,147" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="359.5,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,113"
+              Start="0,0"
+              End="0,105.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,105.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,44.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

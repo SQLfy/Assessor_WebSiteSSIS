@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SourceRWDatabasePRRW"
+  DTS:DTSID="{BFCFF27F-BEC2-4758-ADCD-A05B9F22C410}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Data Source="+ @[$Project::realware_servername] +";"+"Initial Catalog="+ @[$Project::realware_databasename] +";"+"Provider=SQLOLEDB.1"+";"+"Integrated Security=SSPI"+";"+"Auto Translate=False"+";"</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=UARW2-SQL01;Initial Catalog=PRRW_Upgrade;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

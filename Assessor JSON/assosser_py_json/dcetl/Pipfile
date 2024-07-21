@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyodbc = "*"
+SQLAlchemy = "*"
+flask-restful = "*"
+elasticsearch = "6.2"
+
+[dev-packages]
+pylint = "*"
+rope = "*"
+"autopep8" = "*"
+
+[requires]
+python_version = "3.6"

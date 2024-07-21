@@ -1,0 +1,1469 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2017 3:50:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DV-DG-DBSQL14"
+  DTS:CreatorName="DCGD\dguillen"
+  DTS:DTSID="{D744B265-AA96-4A81-A595-6F024C9DB06A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="trn_simple"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{EA7C00A7-BA65-4A99-ADB6-DF279F5010A4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\trn_built_as_code"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0BF16EEB-F70B-4DC3-8FA9-79CE19D7CB44}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_built_as_code"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute [trn].[sp_built_as_code_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\trn_heat_type"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{308A586A-1A3C-488D-828B-675CEB55D59B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_heat_type"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute [trn].[sp_heat_type_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\trn_land"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{199BD650-EE6A-47DF-9249-E319E69EB145}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_land"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute [trn].[sp_land]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\trn_occupancy_code"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{99D0FFAB-4C5D-455E-A710-196251F57D16}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_occupancy_code"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute [trn].[sp_occupancy_code_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\trn_od_propertylocation"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{13BF1689-5A6E-4795-AEEB-6D4BEBE2B169}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_od_propertylocation"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\trn_od_propertylocation\PropertyLocation"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PropertyLocation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[asr_datastore].[PropertyLocation]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\trn_od_propertylocation\PropertyLocation.Connections[OleDbConnection]"
+                  connectionManagerID="{B706685C-CD53-476B-80EB-B5720E832541}:invalid"
+                  connectionManagerRefId="{B706685C-CD53-476B-80EB-B5720E832541}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[ACCOUNT_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ACCOUNT_NO"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_NO]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_NO]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[ACCOUNT_TYPE_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ACCOUNT_TYPE_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_TYPE_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_TYPE_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[STATE_PARCEL_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="STATE_PARCEL_NO"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STATE_PARCEL_NO]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STATE_PARCEL_NO]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[ADDRESS_NUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ADDRESS_NUMBER"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_NUMBER]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ADDRESS_NUMBER]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[PRE_DIRECTION_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="PRE_DIRECTION_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[PRE_DIRECTION_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[PRE_DIRECTION_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[STREET_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="STREET_NAME"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STREET_NAME]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_NAME]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[STREET_TYPE_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="STREET_TYPE_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STREET_TYPE_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_TYPE_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[UNIT_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="UNIT_NO"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[UNIT_NO]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[UNIT_NO]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[LOCATION_ZIP_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="LOCATION_ZIP_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ZIP_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LOCATION_ZIP_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[CITY_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CITY_NAME"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[CITY_NAME]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[LEGAL_DESCR]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="LEGAL_DESCR"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LEGAL_DESCR]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LEGAL_DESCR]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[SECTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="SECTION"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[SECTION]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[SECTION]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[TOWNSHIP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="TOWNSHIP"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TOWNSHIP]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOWNSHIP]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[RANGE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="RANGE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[RANGE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[RANGE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[QUARTER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="QUARTER"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[QUARTER]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[QUARTER]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[LAND_ECONOMIC_AREA_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="LAND_ECONOMIC_AREA_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LAND_ECONOMIC_AREA_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LAND_ECONOMIC_AREA_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[VACANT_FLAG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="VACANT_FLAG"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[VACANT_FLAG]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[VACANT_FLAG]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[TOTAL_NET_ACRES]"
+                      cachedDataType="numeric"
+                      cachedName="TOTAL_NET_ACRES"
+                      cachedPrecision="20"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NET_ACRES]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOTAL_NET_ACRES]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[TAX_DISTRICT_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="TAX_DISTRICT_NO"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TAX_DISTRICT_NO]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TAX_DISTRICT_NO]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[NEIGHBORHOOD_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="NEIGHBORHOOD_CODE"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[NEIGHBORHOOD_CODE]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_CODE]" />
+                    <inputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].Columns[NEIGHBORHOOD_EXTENSION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="NEIGHBORHOOD_EXTENSION"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[NEIGHBORHOOD_EXTENSION]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_EXTENSION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ACCOUNT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ACCOUNT_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ACCOUNT_TYPE_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STATE_PARCEL_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="STATE_PARCEL_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ADDRESS_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[PRE_DIRECTION_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="PRE_DIRECTION_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STREET_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STREET_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[STREET_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="STREET_TYPE_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[UNIT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="UNIT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ZIP_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="LOCATION_ZIP_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LEGAL_DESCR]"
+                      codePage="1252"
+                      dataType="text"
+                      name="LEGAL_DESCR" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[SECTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="SECTION" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TOWNSHIP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="TOWNSHIP" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[RANGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="RANGE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[QUARTER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="QUARTER" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[LAND_ECONOMIC_AREA_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="LAND_ECONOMIC_AREA_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[VACANT_FLAG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="VACANT_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_NET_ACRES]"
+                      dataType="numeric"
+                      name="TOTAL_NET_ACRES"
+                      precision="20"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[TAX_DISTRICT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TAX_DISTRICT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[NEIGHBORHOOD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="NEIGHBORHOOD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[NEIGHBORHOOD_EXTENSION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="NEIGHBORHOOD_EXTENSION" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[Location]"
+                      dataType="wstr"
+                      length="32"
+                      name="Location" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[create_dtm]"
+                      dataType="dbTimeStamp"
+                      name="create_dtm" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[create_user_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="create_user_id" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[update_dtm]"
+                      dataType="dbTimeStamp"
+                      name="update_dtm" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input].ExternalColumns[update_user_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="update_user_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\trn_od_propertylocation\PropertyLocation.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\trn_od_propertylocation\PropertyLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\PropertyLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\trn_od_propertylocation\PropertyLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\trn_od_propertylocation\v_od_propertylocation"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="v_od_propertylocation"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[OPEN_DATA].[V_OD_PROPERTYLOCATION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\trn_od_propertylocation\v_od_propertylocation.Connections[OleDbConnection]"
+                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
+                  connectionManagerRefId="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_NO]"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_NO]"
+                      name="ACCOUNT_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_TYPE_CODE]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ACCOUNT_TYPE_CODE]"
+                      name="ACCOUNT_TYPE_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STATE_PARCEL_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STATE_PARCEL_NO]"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STATE_PARCEL_NO]"
+                      name="STATE_PARCEL_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ADDRESS_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ADDRESS_NUMBER]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[ADDRESS_NUMBER]"
+                      name="ADDRESS_NUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[PRE_DIRECTION_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[PRE_DIRECTION_CODE]"
+                      length="2"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[PRE_DIRECTION_CODE]"
+                      name="PRE_DIRECTION_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STREET_NAME]"
+                      length="50"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_NAME]"
+                      name="STREET_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STREET_TYPE_CODE]"
+                      length="4"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[STREET_TYPE_CODE]"
+                      name="STREET_TYPE_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[UNIT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[UNIT_NO]"
+                      length="6"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[UNIT_NO]"
+                      name="UNIT_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LOCATION_ZIP_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ZIP_CODE]"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LOCATION_ZIP_CODE]"
+                      name="LOCATION_ZIP_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[CITY_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[CITY_NAME]"
+                      length="50"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[CITY_NAME]"
+                      name="CITY_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LEGAL_DESCR]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LEGAL_DESCR]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LEGAL_DESCR]"
+                      name="LEGAL_DESCR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[SECTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[SECTION]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[SECTION]"
+                      name="SECTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOWNSHIP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TOWNSHIP]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOWNSHIP]"
+                      name="TOWNSHIP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[RANGE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[RANGE]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[RANGE]"
+                      name="RANGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[QUARTER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[QUARTER]"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[QUARTER]"
+                      name="QUARTER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LAND_ECONOMIC_AREA_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LAND_ECONOMIC_AREA_CODE]"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[LAND_ECONOMIC_AREA_CODE]"
+                      name="LAND_ECONOMIC_AREA_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[VACANT_FLAG]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[VACANT_FLAG]"
+                      length="1"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[VACANT_FLAG]"
+                      name="VACANT_FLAG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOTAL_NET_ACRES]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_NET_ACRES]"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TOTAL_NET_ACRES]"
+                      name="TOTAL_NET_ACRES"
+                      precision="20"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TAX_DISTRICT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TAX_DISTRICT_NO]"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[TAX_DISTRICT_NO]"
+                      name="TAX_DISTRICT_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[NEIGHBORHOOD_CODE]"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_CODE]"
+                      name="NEIGHBORHOOD_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_EXTENSION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[NEIGHBORHOOD_EXTENSION]"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].Columns[NEIGHBORHOOD_EXTENSION]"
+                      name="NEIGHBORHOOD_EXTENSION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ACCOUNT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ACCOUNT_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ACCOUNT_TYPE_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STATE_PARCEL_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="STATE_PARCEL_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[ADDRESS_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ADDRESS_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[PRE_DIRECTION_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="PRE_DIRECTION_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STREET_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STREET_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[STREET_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="STREET_TYPE_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[UNIT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="UNIT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ZIP_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="LOCATION_ZIP_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[CITY_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LEGAL_DESCR]"
+                      codePage="1252"
+                      dataType="text"
+                      name="LEGAL_DESCR" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[SECTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="SECTION" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TOWNSHIP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="TOWNSHIP" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[RANGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="RANGE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[QUARTER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="QUARTER" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[LAND_ECONOMIC_AREA_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="LAND_ECONOMIC_AREA_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[VACANT_FLAG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="VACANT_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_NET_ACRES]"
+                      dataType="numeric"
+                      name="TOTAL_NET_ACRES"
+                      precision="20"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[TAX_DISTRICT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TAX_DISTRICT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[NEIGHBORHOOD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="NEIGHBORHOOD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output].ExternalColumns[NEIGHBORHOOD_EXTENSION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="NEIGHBORHOOD_EXTENSION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_NO]"
+                      name="ACCOUNT_NO" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ACCOUNT_TYPE_CODE]"
+                      name="ACCOUNT_TYPE_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STATE_PARCEL_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STATE_PARCEL_NO]"
+                      name="STATE_PARCEL_NO" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ADDRESS_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ADDRESS_NUMBER]"
+                      name="ADDRESS_NUMBER" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[PRE_DIRECTION_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[PRE_DIRECTION_CODE]"
+                      name="PRE_DIRECTION_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STREET_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STREET_NAME]"
+                      name="STREET_NAME" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STREET_TYPE_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[STREET_TYPE_CODE]"
+                      name="STREET_TYPE_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[UNIT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[UNIT_NO]"
+                      name="UNIT_NO" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LOCATION_ZIP_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LOCATION_ZIP_CODE]"
+                      name="LOCATION_ZIP_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[CITY_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[CITY_NAME]"
+                      name="CITY_NAME" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LEGAL_DESCR]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LEGAL_DESCR]"
+                      name="LEGAL_DESCR" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[SECTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[SECTION]"
+                      name="SECTION" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TOWNSHIP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TOWNSHIP]"
+                      name="TOWNSHIP" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[RANGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[RANGE]"
+                      name="RANGE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[QUARTER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[QUARTER]"
+                      name="QUARTER" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LAND_ECONOMIC_AREA_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[LAND_ECONOMIC_AREA_CODE]"
+                      name="LAND_ECONOMIC_AREA_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[VACANT_FLAG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[VACANT_FLAG]"
+                      name="VACANT_FLAG" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TOTAL_NET_ACRES]"
+                      dataType="numeric"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TOTAL_NET_ACRES]"
+                      name="TOTAL_NET_ACRES"
+                      precision="20"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TAX_DISTRICT_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[TAX_DISTRICT_NO]"
+                      name="TAX_DISTRICT_NO" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[NEIGHBORHOOD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[NEIGHBORHOOD_CODE]"
+                      name="NEIGHBORHOOD_CODE" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[NEIGHBORHOOD_EXTENSION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[NEIGHBORHOOD_EXTENSION]"
+                      name="NEIGHBORHOOD_EXTENSION" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\trn_od_propertylocation.Paths[OLE DB Source Output]"
+              endId="Package\trn_od_propertylocation\PropertyLocation.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\trn_od_propertylocation\v_od_propertylocation.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\trn_subdivision"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{91721DCD-7D7C-48B4-B632-2BE2A734D43E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="trn_subdivision"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute [trn].[sp_subdivision_insert]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate_trn_simple_tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{90FAF137-BF37-4B07-B002-A80B64A041F0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate_trn_simple_tables"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
+          SQLTask:SqlStatementSource="execute trn.trunc_trn_simple_tables" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{46720B5D-F9FD-46B7-8902-E3633B0D7007}"
+      DTS:From="Package\truncate_trn_simple_tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\trn_subdivision" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5DA3CC8-1A43-4E50-85E0-163743D19B25}"
+      DTS:From="Package\trn_land"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\trn_od_propertylocation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{543FE086-0CDA-4B22-B31E-79C45487FFDE}"
+      DTS:From="Package\trn_subdivision"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\trn_heat_type" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{C234E763-FFE3-4F90-8958-D609B6CA372F}"
+      DTS:From="Package\trn_heat_type"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\trn_occupancy_code" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{5F48B016-6B4A-4039-A009-48BBCCF7E57D}"
+      DTS:From="Package\trn_occupancy_code"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\trn_built_as_code" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{B729EA4C-5BFB-46A7-BAD6-302C5B003033}"
+      DTS:From="Package\trn_built_as_code"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\trn_land" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\trn_built_as_code"
+          TopLeft="27.5000000000001,515.5" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\trn_heat_type"
+          TopLeft="36.5,311.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\trn_land"
+          TopLeft="50.0000000000001,617.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\trn_occupancy_code"
+          TopLeft="21.5000000000001,413.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\trn_od_propertylocation"
+          TopLeft="238,633.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\trn_subdivision"
+          TopLeft="34,209.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\truncate_trn_simple_tables"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="109,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,162"
+              Start="0,0"
+              End="0,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="168,638.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69.9999999999999,16"
+              Start="0,0"
+              End="62.4999999999999,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.9999999999999,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.9999999999999,0"
+                    Point2="34.9999999999999,0"
+                    Point3="34.9999999999999,4" />
+                  <mssgle:LineSegment
+                    End="34.9999999999999,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.9999999999999,12"
+                    Point2="34.9999999999999,16"
+                    Point3="38.9999999999999,16" />
+                  <mssgle:LineSegment
+                    End="62.4999999999999,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="109,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="109,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="109,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="109,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\trn_od_propertylocation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="184,42"
+          Id="Package\trn_od_propertylocation\v_od_propertylocation"
+          TopLeft="172,92" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\trn_od_propertylocation\PropertyLocation"
+          TopLeft="318,248" />
+        <EdgeLayout
+          Id="Package\trn_od_propertylocation.Paths[OLE DB Source Output]"
+          TopLeft="264,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="133,114"
+              Start="0,0"
+              End="133,106.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53"
+                    Point2="0,57"
+                    Point3="4,57" />
+                  <mssgle:LineSegment
+                    End="129,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="129,57"
+                    Point2="133,57"
+                    Point3="133,61" />
+                  <mssgle:LineSegment
+                    End="133,106.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\trn_od_propertylocation\PropertyLocation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\trn_od_propertylocation\v_od_propertylocation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
