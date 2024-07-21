@@ -16,7 +16,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">ETL for ASR_ODS2 Completed Successfully on xxASSRETL </SSIS:Property>
+        SSIS:Name="Value">ETL for ASR_ODS2 Completed Successfully on xxDCETL-MST01</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -37,7 +37,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">ETL for ASR_ODS2 Failed on xxASSRETL</SSIS:Property>
+        SSIS:Name="Value">ETL for ASR_ODS2 Failed on xxDCETL-MST01</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -58,7 +58,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">rgreenfield@douglas.co.us</SSIS:Property>
+        SSIS:Name="Value">ktotten@douglas.co.us</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -100,7 +100,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">xxDCETL-SQL01</SSIS:Property>
+        SSIS:Name="Value">DVDCETL-SQL01</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -121,7 +121,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">xxDCETL-MST01</SSIS:Property>
+        SSIS:Name="Value">DVDCETL-MST01</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -142,7 +142,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">xxDCETL-SQL01</SSIS:Property>
+        SSIS:Name="Value">DVDCETL-SQL01</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -184,7 +184,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">\\xxRealware-App.dcgd.douglas.co.us\Photos\DATA</SSIS:Property>
+        SSIS:Name="Value">\\dvrw2-app01\E:\Photos\DATA</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -205,7 +205,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">2024</SSIS:Property>
+        SSIS:Name="Value">2023</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -226,7 +226,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">2024</SSIS:Property>
+        SSIS:Name="Value">2023</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -268,7 +268,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">2024</SSIS:Property>
+        SSIS:Name="Value">2023</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>

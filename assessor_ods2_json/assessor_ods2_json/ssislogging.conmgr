@@ -9,6 +9,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=xxDCETL-MST01;Initial Catalog=ssislogging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=DVDCETL-MST01;Initial Catalog=ssislogging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-{F1E65DEB-4930-48B1-B308-76E24C45832E}ssislogging;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
