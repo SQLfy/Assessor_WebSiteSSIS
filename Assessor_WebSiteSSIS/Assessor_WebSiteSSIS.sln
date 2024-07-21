@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessorJson", "..\Assessor
 EndProject
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_ods2_json", "..\assessor_ods2_json\assessor_ods2_json\assessor_ods2_json.dtproj", "{244973A3-757E-4DE0-A59C-A524F25D4140}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Env_Variables", "Env_Variables", "{F33DC99D-57AC-4FA8-B4EF-B45D94F46765}"
+	ProjectSection(SolutionItems) = preProject
+		..\Env_Variables\assessor_ods2_sql = ..\Env_Variables\assessor_ods2_sql
+		..\Env_Variables\assessor_posse = ..\Env_Variables\assessor_posse
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
