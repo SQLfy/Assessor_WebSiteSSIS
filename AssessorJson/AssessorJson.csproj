@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\uadcetl-mst01\C%24\Windows\Microsoft.NET\assembly\GAC_MSIL\AssessorJson\</InstallUrl>
-    <ApplicationRevision>1</ApplicationRevision>
+    <InstallUrl>\\dvdcetl-mst01\C%24\Windows\Microsoft.NET\assembly\GAC_MSIL\AssessorJson\</InstallUrl>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
