@@ -1,0 +1,9 @@
+﻿CREATE TABLE [asr_staging].[s_tlkpleatype] (
+    [LEA]            VARCHAR (30) NULL,
+    [LEADESCRIPTION] VARCHAR (50) NULL,
+    [SORTORDER]      NUMERIC (9)  NULL,
+    [ACTIVEFLAG]     NUMERIC (1)  NULL,
+    [JURISDICTIONID] NUMERIC (15) NULL,
+    [LASTUPDATED]    VARCHAR (22) NULL
+);
+

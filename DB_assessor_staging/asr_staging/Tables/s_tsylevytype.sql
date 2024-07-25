@@ -1,0 +1,9 @@
+﻿CREATE TABLE [asr_staging].[s_tsylevytype] (
+    [LEVYTYPEID]     NUMERIC (4)  NULL,
+    [JURISDICTIONID] NUMERIC (15) NULL,
+    [LEVYTYPE]       VARCHAR (50) NULL,
+    [SORTORDER]      NUMERIC (9)  NULL,
+    [ACTIVEFLAG]     NUMERIC (1)  NULL,
+    [LASTUPDATED]    VARCHAR (22) NULL
+);
+

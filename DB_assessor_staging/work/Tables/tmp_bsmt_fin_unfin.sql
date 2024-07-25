@@ -1,0 +1,9 @@
+﻿CREATE TABLE [work].[tmp_bsmt_fin_unfin] (
+    [ACCOUNTNO]                  VARCHAR (30)    NULL,
+    [RECEPTIONNO]                VARCHAR (30)    NULL,
+    [INVENTORYDETAILTYPE]        VARCHAR (100)   NULL,
+    [INVENTORYDETAILDESCRIPTION] VARCHAR (100)   NULL,
+    [INVENTORYUNITCOUNT]         NUMERIC (15, 4) NULL,
+    [FIN_OR_UNFIN_BSMT]          VARCHAR (19)    NOT NULL
+);
+

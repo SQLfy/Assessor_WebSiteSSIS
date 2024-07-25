@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DB_assessor_app</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{aa4b21fc-e76e-4387-9b84-c13a73a00f8f}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DB_assessor_app</RootNamespace>
+    <AssemblyName>DB_assessor_app</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="asr_app\" />
+    <Folder Include="asr_app\Tables\" />
+    <Folder Include="asr_api_test\" />
+    <Folder Include="asr_api_test\Tables\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="asr_spatialest\" />
+    <Folder Include="asr_spatialest\Tables\" />
+    <Folder Include="asr_ods2\" />
+    <Folder Include="asr_ods2\Tables\" />
+    <Folder Include="asr_posse\" />
+    <Folder Include="asr_posse\Tables\" />
+    <Folder Include="cboe\" />
+    <Folder Include="cboe\Tables\" />
+    <Folder Include="asr_opendata\" />
+    <Folder Include="asr_opendata\Tables\" />
+    <Folder Include="asr_app\Views\" />
+    <Folder Include="asr_Business_Asset\" />
+    <Folder Include="asr_Business_Asset\Views\" />
+    <Folder Include="asr_ods2\Views\" />
+    <Folder Include="asr_api_test\Views\" />
+    <Folder Include="drcog\" />
+    <Folder Include="drcog\Views\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="asr_api_test\Functions\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="asr_app\Stored Procedures\" />
+    <Folder Include="asr_api_test\Stored Procedures\" />
+    <Folder Include="asr_posse\Stored Procedures\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="asr_spatialest\Stored Procedures\" />
+    <Folder Include="asr_ods2\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="asr_app\Tables\tax_district.sql" />
+    <Build Include="asr_api_test\Tables\AccountValueByAbstractCodeData.sql" />
+    <Build Include="dbo\Tables\realnov.sql" />
+    <Build Include="asr_app\Tables\account.sql" />
+    <Build Include="asr_api_test\Tables\AccountAppealData.sql" />
+    <Build Include="asr_spatialest\Tables\account.sql" />
+    <Build Include="asr_spatialest\Tables\account_property_address.sql" />
+    <Build Include="asr_app\Tables\nod_table_1.sql" />
+    <Build Include="asr_spatialest\Tables\improvement.sql" />
+    <Build Include="asr_spatialest\Tables\improvement_built_as.sql" />
+    <Build Include="asr_app\Tables\nod_table_2.sql" />
+    <Build Include="asr_api_test\Tables\LookupAbstractCode.sql" />
+    <Build Include="asr_spatialest\Tables\land_abstract.sql" />
+    <Build Include="asr_app\Tables\account_neighborhood.sql" />
+    <Build Include="asr_spatialest\Tables\sale.sql" />
+    <Build Include="asr_ods2\Tables\tax_district.sql" />
+    <Build Include="asr_app\Tables\account_platted_lot.sql" />
+    <Build Include="asr_app\Tables\sale_inventory.sql" />
+    <Build Include="asr_api_test\Tables\SearchAccounts.sql" />
+    <Build Include="asr_spatialest\Tables\sale_account.sql" />
+    <Build Include="asr_ods2\Tables\sub_filing.sql" />
+    <Build Include="asr_app\Tables\improvement_fact.sql" />
+    <Build Include="asr_ods2\Tables\account.sql" />
+    <Build Include="asr_spatialest\Tables\sale_inventory.sql" />
+    <Build Include="asr_posse\Tables\account_fact.sql" />
+    <Build Include="asr_api_test\Tables\AccountImprovementData.sql" />
+    <Build Include="asr_spatialest\Tables\tax_authority.sql" />
+    <Build Include="asr_ods2\Tables\account_neighborhood.sql" />
+    <Build Include="asr_spatialest\Tables\tax_authority_fund.sql" />
+    <Build Include="cboe\Tables\account_fact.sql" />
+    <Build Include="asr_ods2\Tables\etl_parameter.sql" />
+    <Build Include="asr_spatialest\Tables\tax_district_authority.sql" />
+    <Build Include="asr_app\Tables\tax_district_authority.sql" />
+    <Build Include="asr_ods2\Tables\account_property_address.sql" />
+    <Build Include="asr_spatialest\Tables\value.sql" />
+    <Build Include="asr_ods2\Tables\account_owner_address.sql" />
+    <Build Include="asr_app\Tables\etl_parameter.sql" />
+    <Build Include="asr_api_test\Tables\LookupAccountType.sql" />
+    <Build Include="asr_app\Tables\data_processing_log.sql" />
+    <Build Include="asr_ods2\Tables\tax_authority.sql" />
+    <Build Include="asr_api_test\Tables\LookupSPN.sql" />
+    <Build Include="asr_app\Tables\realnov_2017_Testing.sql" />
+    <Build Include="asr_app\Tables\improvement_fact_new.sql" />
+    <Build Include="asr_api_test\Tables\LookupQuality.sql" />
+    <Build Include="asr_app\Tables\land_abstract.sql" />
+    <Build Include="asr_app\Tables\account_valuation.sql" />
+    <Build Include="asr_app\Tables\pers_prop_type.sql" />
+    <Build Include="asr_app\Tables\sale.sql" />
+    <Build Include="asr_api_test\Tables\LookupLandAbstract.sql" />
+    <Build Include="asr_app\Tables\sale_account.sql" />
+    <Build Include="asr_app\Tables\azure_building_permit_authority.sql" />
+    <Build Include="asr_app\Tables\land_attribute.sql" />
+    <Build Include="asr_api_test\Tables\AccountLevelData_Old.sql" />
+    <Build Include="asr_app\Tables\value_from_tsgvacctabstvalue_BKUP.sql" />
+    <Build Include="asr_ods2\Tables\data_processing_log.sql" />
+    <Build Include="asr_app\Tables\tax_authority_fund.sql" />
+    <Build Include="asr_app\Tables\s_ppnov.sql" />
+    <Build Include="asr_app\Tables\pers_prop_detail.sql" />
+    <Build Include="asr_app\Tables\ppnov.sql" />
+    <Build Include="asr_app\Tables\value_from_tsgvacctabstvalue.sql" />
+    <Build Include="asr_api_test\Tables\TaxDistrictAuthorityData.sql" />
+    <Build Include="asr_app\Tables\pers_prop_acct.sql" />
+    <Build Include="cboe\Tables\appeal_bkup62717.sql" />
+    <Build Include="asr_api_test\Tables\LookupSubdivision.sql" />
+    <Build Include="asr_api_test\Tables\TaxAuthorityFundData.sql" />
+    <Build Include="asr_spatialest\Tables\account_neighborhood.sql" />
+    <Build Include="asr_opendata\Tables\platted_lot.sql" />
+    <Build Include="asr_api_test\Tables\LookupTaxAuthority.sql" />
+    <Build Include="asr_app\Tables\azure_important_PPLinks.sql" />
+    <Build Include="asr_opendata\Tables\account_platted_lot.sql" />
+    <Build Include="asr_app\Tables\realnov_old.sql" />
+    <Build Include="asr_api_test\Tables\LookupTaxDistrict.sql" />
+    <Build Include="asr_app\Tables\appeal_account.sql" />
+    <Build Include="dbo\Tables\clin_search.sql" />
+    <Build Include="cboe\Tables\appeal_account.sql" />
+    <Build Include="asr_api_test\Tables\AccountLevelData.sql" />
+    <Build Include="asr_ods2\Tables\tax_district_authority.sql" />
+    <Build Include="asr_api_test\Tables\SearchSubdivision.sql" />
+    <Build Include="asr_spatialest\Tables\improvement_detail.sql" />
+    <Build Include="asr_app\Tables\improvement_occupancy.sql" />
+    <Build Include="asr_api_test\Tables\AccountPlattedLotData.sql" />
+    <Build Include="asr_api_test\Tables\SearchSales.sql" />
+    <Build Include="asr_api_test\Tables\AccountLandData.sql" />
+    <Build Include="asr_api_test\Tables\SearchRangeSection.sql" />
+    <Build Include="asr_api_test\Tables\SearchQuality.sql" />
+    <Build Include="asr_app\Tables\account_owner_address.sql" />
+    <Build Include="asr_api_test\Tables\SearchPropAddress.sql" />
+    <Build Include="asr_api_test\Tables\SearchParcelValue.sql" />
+    <Build Include="asr_app\Tables\real_account.sql" />
+    <Build Include="asr_app\Tables\appeal.sql" />
+    <Build Include="cboe\Tables\appeal.sql" />
+    <Build Include="asr_app\Tables\azure_important_dates_old.sql" />
+    <Build Include="asr_api_test\Tables\SearchLotTractBlock.sql" />
+    <Build Include="asr_app\Tables\improvement.sql" />
+    <Build Include="asr_api_test\Tables\SearchLand.sql" />
+    <Build Include="asr_spatialest\Tables\account_owner_address.sql" />
+    <Build Include="asr_api_test\Tables\SearchImprovement.sql" />
+    <Build Include="asr_app\Tables\account_property_address.sql" />
+    <Build Include="asr_api_test\Tables\SearchAddress.sql" />
+    <Build Include="asr_app\Tables\improvement_detail_types.sql" />
+    <Build Include="asr_app\Tables\improvement_built_as.sql" />
+    <Build Include="asr_api_test\Tables\SearchTaxInfo.sql" />
+    <Build Include="asr_app\Tables\realnov_orig.sql" />
+    <Build Include="asr_app\Tables\sale_inventory_detail.sql" />
+    <Build Include="asr_app\Tables\improvement_detail.sql" />
+    <Build Include="asr_app\Tables\realnov.sql" />
+    <Build Include="asr_posse\Tables\land_parent.sql" />
+    <Build Include="asr_app\Tables\realnov_2017_Revised.sql" />
+    <Build Include="asr_app\Tables\azure_important_dates.sql" />
+    <Build Include="dbo\Tables\s_tblappealacct.sql" />
+    <Build Include="asr_posse\Tables\tax_district.sql" />
+    <Build Include="asr_posse\Tables\tax_district_authority.sql" />
+    <Build Include="asr_app\Tables\tax_authority.sql" />
+    <Build Include="asr_api_test\Tables\LookupTypeCode.sql" />
+    <Build Include="asr_api_test\Tables\AccountNeighborhoodData.sql" />
+    <Build Include="asr_app\Tables\value.sql" />
+    <Build Include="asr_posse\Tables\tax_authority.sql" />
+    <Build Include="asr_app\Tables\account_fact.sql" />
+    <Build Include="asr_api_test\Tables\SearchAbstractCode.sql" />
+    <Build Include="asr_api_test\Tables\AccountNonPrimaryOwnerAddressData.sql" />
+    <Build Include="asr_api_test\Tables\AccountNonPrimaryPropertyAddressData.sql" />
+    <Build Include="asr_app\Tables\sub_filing.sql" />
+    <Build Include="asr_api_test\Tables\AccountSalesData.sql" />
+    <Build Include="asr_app\Views\v_realnov.sql" />
+    <Build Include="asr_app\Views\v_nov_tax_years.sql" />
+    <Build Include="asr_Business_Asset\Views\v_pp_year_prop_asset_stage.sql" />
+    <Build Include="asr_ods2\Views\tool_show_asr_app_column_dictionary.sql" />
+    <Build Include="asr_ods2\Views\tool_show_column_dictionary.sql" />
+    <Build Include="asr_app\Views\v_residential_account_valuation.sql" />
+    <Build Include="asr_ods2\Views\tool_show_table_dictionary.sql" />
+    <Build Include="asr_app\Views\v_abstract_codes.sql" />
+    <Build Include="asr_api_test\Views\TablesWithColumnsList.sql" />
+    <Build Include="asr_app\Views\account_filter_view.sql" />
+    <Build Include="drcog\Views\v_drcog_land_abstract.sql" />
+    <Build Include="drcog\Views\v_drcog_sale_data_by_account.sql" />
+    <Build Include="drcog\Views\v_drcog_value.sql" />
+    <Build Include="drcog\Views\v_drcog_improvement_detail.sql" />
+    <Build Include="drcog\Views\v_drcog_improvement_built_as.sql" />
+    <Build Include="drcog\Views\v_drcog_account.sql" />
+    <Build Include="drcog\Views\v_drcog_land_abstract_value.sql" />
+    <Build Include="drcog\Views\v_drcog_account_all_details.sql" />
+    <Build Include="dbo\Views\agolden_imp_acct_fact.sql" />
+    <Build Include="asr_app\Views\v_freeze_parameters.sql" />
+    <Build Include="Security\assessor_app_user.sql" />
+    <Build Include="Security\DCGD_database_development.sql" />
+    <Build Include="Security\devdba.sql" />
+    <Build Include="Security\DCGD_dbrooks.sql" />
+    <Build Include="Security\DCGD_cstanton.sql" />
+    <Build Include="Security\DCGD_jlongach.sql" />
+    <Build Include="Security\DCGD_tdamisch.sql" />
+    <Build Include="Security\DCGD_tobrien.sql" />
+    <Build Include="Security\DCGD_Redwards.sql" />
+    <Build Include="Security\DCGD_jkay.sql" />
+    <Build Include="Security\DCGD_cogburn.sql" />
+    <Build Include="Security\DCGD_jhanson.sql" />
+    <Build Include="Security\DCGD_meffen.sql" />
+    <Build Include="Security\DCGD_sa_sqlsvcs.sql" />
+    <Build Include="Security\DCGD_marvidso.sql" />
+    <Build Include="Security\DCGD_mdronamr.sql" />
+    <Build Include="Security\DCGD_rlieou.sql" />
+    <Build Include="Security\DCGD_dkochhei.sql" />
+    <Build Include="Security\DCGD_rdamphouss.sql" />
+    <Build Include="Security\DCGD_LA_mdronamr.sql" />
+    <Build Include="Security\robert.sql" />
+    <Build Include="Security\cboe_web_user.sql" />
+    <Build Include="Security\DCGD_dscott.sql" />
+    <Build Include="Security\rpt_svcs.sql" />
+    <Build Include="Security\NT AUTHORITY_ANONYMOUS LOGON.sql" />
+    <Build Include="Security\DCGD_ggilman.sql" />
+    <Build Include="Security\AssessorReportsRO.sql" />
+    <Build Include="Security\DCGD_smandrekar.sql" />
+    <Build Include="Security\pypy.sql" />
+    <Build Include="Security\dg.sql" />
+    <Build Include="Security\DCGD_SQL_PRASSRRPT_R.sql" />
+    <Build Include="Security\DCGD_dparkison.sql" />
+    <Build Include="Security\DCGOV_SQL_PRASSRRPT_PROPENDATA_ETL.sql" />
+    <Build Include="Security\DCGOV_thall.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="asr_api_test\Functions\GetColsStringByTableId.sql" />
+    <Build Include="dbo\Functions\fn_CSVClean.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_fact_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_nod_table_1_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_nod_table_2_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_neighboorhood_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_owner_address_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_platted_lot_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_property_address_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountImprovementData_ORIGINAL.sql" />
+    <Build Include="asr_api_test\Stored Procedures\accountTypesLookup.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_appeal_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_etl_parameter_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\qualityLookup.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_sub_filing_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\impOccKVP.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_tax_authority_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\landAbstKVP.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_tax_district_authority_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_fact_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_tax_district_insert.sql" />
+    <Build Include="asr_posse\Stored Procedures\sp_account_fact_insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_OLEWriteFile.sql" />
+    <Build Include="dbo\Stored Procedures\sp_HexToChar.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_sale_insert.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DisplayOAErrorInfo.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_insert.sql" />
+    <Build Include="dbo\Stored Procedures\spSaveTextToFile.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_built_as_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_detail_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_account_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_occupancy_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_account_property_address_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_land_abstract_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_improvement_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_land_attribute_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_improvement_built_as.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_real_account_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_land_abstract_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_sale_account_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_sale_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_sale_inventory_detail_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_sale_account_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_sale_inventory_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_improvement_fact_insert_new.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_sale_inventory_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_tsgn_value_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_tax_district_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_tax_authority_fund_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_tax_authority_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_tax_authority_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_tax_district_authority_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_tax_district_authority_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_account_insert.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_value_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_sub_filing_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_account_neighboorhood_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_account_owner_address_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_account_property_address_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_valuation_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_etl_azure_bldg_permit_auth_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_pers_prop_acct_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_pers_prop_detail_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_pers_prop_type_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_tax_authority_fund_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_ppnov_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_associate_acct_to_tax_authority.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_value_from_tsgvacctabstvalue_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\subdivisionKVP.sql" />
+    <Build Include="asr_api_test\Stored Procedures\taxAuthKVP.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_realnov_insert_old.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_account_neighboorhood_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\taxDistrictLookup.sql" />
+    <Build Include="asr_spatialest\Stored Procedures\sp_account_owner_address_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_etl_azure_important_PPLinks_insert.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_truncate_ods2_tables_DV.sql" />
+    <Build Include="asr_api_test\Stored Procedures\builtAsKVP.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_data_processing_log.sql" />
+    <Build Include="asr_ods2\Stored Procedures\sp_etl_parameter_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountAppealData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountImprovementData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountLandData.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_etl_azure_important_dates_insert_old.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountLevelData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountNeighborhoodData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountNonPrimaryOwnerAddressData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountNonPrimaryPropertyAddressData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountPlattedLotData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountSalesData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_AccountValueByAbstractCodeData.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_realnov_insert.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_TaxDistrictAuthorityData.sql" />
+    <Build Include="asr_api_test\Stored Procedures\sp_TaxAuthorityFundData.sql" />
+    <Build Include="asr_posse\Stored Procedures\sp_tax_district_insert.sql" />
+    <Build Include="asr_posse\Stored Procedures\sp_tax_district_authority_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_etl_azure_important_dates_insert.sql" />
+    <Build Include="asr_posse\Stored Procedures\sp_tax_authority_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_appeal_account_insert.sql" />
+    <Build Include="asr_posse\Stored Procedures\sp_land_parent_insert.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_data_processing_log.sql" />
+    <Build Include="Security\adv.sql" />
+    <Build Include="Security\asr_api_test.sql" />
+    <Build Include="Security\asr_app.sql" />
+    <Build Include="Security\asr_Business_Asset.sql" />
+    <Build Include="Security\asr_ods2.sql" />
+    <Build Include="Security\asr_opendata.sql" />
+    <Build Include="Security\asr_posse.sql" />
+    <Build Include="Security\asr_spatialest.sql" />
+    <Build Include="Security\asr_spatialist.sql" />
+    <Build Include="Security\cboe.sql" />
+    <Build Include="Security\drcog.sql" />
+    <Build Include="asr_app\Tables\account_notification_1.sql" />
+    <Build Include="asr_app\Stored Procedures\sp_account_notification_merge_1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="assessor_datastore">
+      <DefaultValue>assessor_datastore</DefaultValue>
+      <Value>$(SqlCmdVar__2)</Value>
+    </SqlCmdVariable>
+    <SqlCmdVariable Include="DB_assessor_datastore">
+      <DefaultValue>assessor_datastore</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB_assessor_datastore\DB_assessor_datastore.sqlproj">
+      <Name>DB_assessor_datastore</Name>
+      <Project>{ce1e05e9-0181-43eb-8aa8-8e44336f4e97}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseSqlCmdVariable>assessor_datastore</DatabaseSqlCmdVariable>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

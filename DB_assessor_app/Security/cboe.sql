@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [cboe]
+    AUTHORIZATION [dbo];
+

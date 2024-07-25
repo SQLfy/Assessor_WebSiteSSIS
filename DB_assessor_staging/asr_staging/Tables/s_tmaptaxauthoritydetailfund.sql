@@ -1,0 +1,26 @@
+﻿CREATE TABLE [asr_staging].[s_tmaptaxauthoritydetailfund] (
+    [TAXAUTHORITY]           VARCHAR (10)    NULL,
+    [TAXYEAR]                NUMERIC (4)     NULL,
+    [FUNDCODE]               VARCHAR (20)    NULL,
+    [PARENTFUNDCODE]         VARCHAR (20)    NULL,
+    [ASSESSEDMILLLEVY]       NUMERIC (11, 6) NULL,
+    [ALTERNATEMILLLEVY]      NUMERIC (11, 6) NULL,
+    [REALFLAG]               NUMERIC (1)     NULL,
+    [PPFLAG]                 NUMERIC (1)     NULL,
+    [MAXLEVYINCLUDEFLAG]     NUMERIC (1)     NULL,
+    [SORTORDER]              NUMERIC (9)     NULL,
+    [JURISDICTIONID]         NUMERIC (15)    NULL,
+    [LASTUPDATED]            VARCHAR (22)    NULL,
+    [LEVYTYPEID]             NUMERIC (4)     NULL,
+    [TAXDISTRICTID]          NUMERIC (15)    NULL,
+    [EXCLUDEREDUCEDRATEFLAG] NUMERIC (1)     NULL,
+    [INCLUDEONTAXBILLFLAG]   NUMERIC (1)     NULL,
+    [PERMANENTRATE]          NUMERIC (11, 6) NULL,
+    [BILLINGRATE]            NUMERIC (11, 6) NULL,
+    [URDOTADJUSTMENTRATE]    NUMERIC (11, 6) NULL,
+    [BUDGETEDTAXVALUE]       NUMERIC (15, 2) NULL,
+    [BUDGETEDTAXRATE]        NUMERIC (11, 6) NULL,
+    [TRUNCATIONLOSSVALUE]    NUMERIC (15, 2) NULL,
+    [FUNDCATEGORYTYPEID]     NUMERIC (3)     NULL
+);
+

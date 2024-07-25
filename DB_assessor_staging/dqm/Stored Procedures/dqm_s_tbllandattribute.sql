@@ -1,0 +1,200 @@
+﻿
+
+-- ==============================================================
+-- Author:		David Guillen
+-- Create date: 4/6/2016
+-- Description:	DQM stored procedure for S_TBLLANDATTRIBUTE table
+-- ==============================================================
+-- Modified 4/26/2016 by Richard Edwards to add detailid cannot be null
+-- Modified 4/27/2016 by Richard Edwards to add accountno must be in table s_tblacct
+-- Modified 3/10/2021 by Marc Beacom to remove the first rule as per Mark L's request - SVRQ0032735
+/*
+DQM RULES FOR:
+TABLE:  S_TBLLANDATTRIBUTE
+
+--1.		ACCOUNTNO must be in table s_tbllandabstract - FK Check | Removed 3/10/2021
+
+2.		ATTRIBUTETYPE must be in table s_tlkplandattributetype - FK Check
+
+3.      DETAILID must not be null
+
+4.      ACCOUNTNO must be in table s_tblacct - FK Check
+
+*/
+
+CREATE PROCEDURE [dqm].[dqm_s_tbllandattribute]
+	
+
+AS
+BEGIN
+
+    DECLARE @lv_RUNTIME  DATETIME=GETDATE()
+
+	  BEGIN
+	
+
+     --Begin DQM checks for the table for each row.
+
+----------------------------------------------------------------------------------
+
+
+--	-- 1. ACCOUNTNO must be in table s_tbllandabstract - FK Check -- DQM check
+
+--INSERT INTO [dqm].[s_tbllandattribute_err]
+--	(COLUMN_NAME, DQM_RULE, ERROR_DESCRIPTION, DQM_RUN_DATE, VERSTART, VEREND, ACCOUNTNO, DETAILID, ATTRIBUTETYPE, ATTRIBUTESUBTYPE, ATTRIBUTEADJUSTMENT, FILTERTYPE, LANDATTRIBUTEOT0, LANDATTRIBUTEOT1, LANDATTRIBUTEON0, LANDATTRIBUTEON1, LANDATTRIBUTEON2, LANDATTRIBUTEOD0, LANDATTRIBUTEOD1, LANDATTRIBUTEOM0, LANDATTRIBUTEOM1, JURISDICTIONID, WRITEDATE, SEQID)
+--	    SELECT 
+--				'ACCOUNTNO',
+--				'FK CHECK',
+--				'ACCOUNTNO MUST EXIST IN TABLE S_TBLLANDABSTRACT - FK CHECK',
+--				@lv_RUNTIME,
+--				VERSTART, 
+--				VEREND, 
+--				ACCOUNTNO, 
+--				DETAILID,
+--				ATTRIBUTETYPE, 
+--				ATTRIBUTESUBTYPE, 
+--				ATTRIBUTEADJUSTMENT, 
+--				FILTERTYPE, 
+--				LANDATTRIBUTEOT0, 
+--				LANDATTRIBUTEOT1, 
+--				LANDATTRIBUTEON0, 
+--				LANDATTRIBUTEON1, 
+--				LANDATTRIBUTEON2, 
+--				LANDATTRIBUTEOD0, 
+--				LANDATTRIBUTEOD1, 
+--				LANDATTRIBUTEOM0, 
+--				LANDATTRIBUTEOM1, 
+--				JURISDICTIONID, 
+--				WRITEDATE, 
+--				SEQID
+--			FROM [asr_staging].[s_tbllandattribute] la
+--			WHERE NOT EXISTS
+--				(SELECT 1 FROM asr_staging.s_tbllandabstract a
+--				WHERE la.ACCOUNTNO = a.ACCOUNTNO);
+
+
+----------------------------------------------------------------------------------
+
+
+	-- 2. ATTRIBUTETYPE must be in table s_tlkplandattributetype - FK Check -- DQM check
+
+INSERT INTO [dqm].[s_tbllandattribute_err]
+	(COLUMN_NAME, DQM_RULE, ERROR_DESCRIPTION, DQM_RUN_DATE, VERSTART, VEREND, ACCOUNTNO, DETAILID, ATTRIBUTETYPE, ATTRIBUTESUBTYPE, ATTRIBUTEADJUSTMENT, FILTERTYPE, LANDATTRIBUTEOT0, LANDATTRIBUTEOT1, LANDATTRIBUTEON0, LANDATTRIBUTEON1, LANDATTRIBUTEON2, LANDATTRIBUTEOD0, LANDATTRIBUTEOD1, LANDATTRIBUTEOM0, LANDATTRIBUTEOM1, JURISDICTIONID, WRITEDATE, SEQID)
+	    SELECT 
+				'ATTRIBUTETYPE',
+				'FK CHECK',
+				'ATTRIBUTETYPE MUST EXIST IN TABLE S_TLKPLANDATTRIBUTETYPE - FK CHECK',
+				@lv_RUNTIME,
+				VERSTART, 
+				VEREND, 
+				ACCOUNTNO, 
+				DETAILID,
+				ATTRIBUTETYPE, 
+				ATTRIBUTESUBTYPE, 
+				ATTRIBUTEADJUSTMENT, 
+				FILTERTYPE, 
+				LANDATTRIBUTEOT0, 
+				LANDATTRIBUTEOT1, 
+				LANDATTRIBUTEON0, 
+				LANDATTRIBUTEON1, 
+				LANDATTRIBUTEON2, 
+				LANDATTRIBUTEOD0, 
+				LANDATTRIBUTEOD1, 
+				LANDATTRIBUTEOM0, 
+				LANDATTRIBUTEOM1, 
+				JURISDICTIONID, 
+				WRITEDATE, 
+				SEQID
+			FROM [asr_staging].[s_tbllandattribute] la
+			WHERE NOT EXISTS
+				(SELECT 1 FROM asr_staging.s_tlkplandattributetype lat
+				WHERE la.ATTRIBUTETYPE = lat.ATTRIBUTETYPE);
+--------------------------------------------------------------------------------
+
+	-- 3. DETAILID must not be null
+
+INSERT INTO [dqm].[s_tbllandattribute_err]
+	(COLUMN_NAME, DQM_RULE, ERROR_DESCRIPTION, DQM_RUN_DATE, VERSTART, VEREND, ACCOUNTNO, DETAILID, ATTRIBUTETYPE, ATTRIBUTESUBTYPE, ATTRIBUTEADJUSTMENT, FILTERTYPE, LANDATTRIBUTEOT0, LANDATTRIBUTEOT1, LANDATTRIBUTEON0, LANDATTRIBUTEON1, LANDATTRIBUTEON2, LANDATTRIBUTEOD0, LANDATTRIBUTEOD1, LANDATTRIBUTEOM0, LANDATTRIBUTEOM1, JURISDICTIONID, WRITEDATE, SEQID)
+	    SELECT 
+				'DETAILID',
+				'NOT NULL CHECK',
+				'DETAILID CANNOT BE NULL',
+				@lv_RUNTIME,
+				VERSTART, 
+				VEREND, 
+				ACCOUNTNO, 
+				DETAILID,
+				ATTRIBUTETYPE, 
+				ATTRIBUTESUBTYPE, 
+				ATTRIBUTEADJUSTMENT, 
+				FILTERTYPE, 
+				LANDATTRIBUTEOT0, 
+				LANDATTRIBUTEOT1, 
+				LANDATTRIBUTEON0, 
+				LANDATTRIBUTEON1, 
+				LANDATTRIBUTEON2, 
+				LANDATTRIBUTEOD0, 
+				LANDATTRIBUTEOD1, 
+				LANDATTRIBUTEOM0, 
+				LANDATTRIBUTEOM1, 
+				JURISDICTIONID, 
+				WRITEDATE, 
+				SEQID
+			FROM [asr_staging].[s_tbllandattribute]
+			WHERE DETAILID IS NULL
+
+--------------------------------------------------------------------------------------------------
+
+-- 4. ACCOUNTNO must be in table s_tblacct - FK Check -- DQM check
+
+INSERT INTO [dqm].[s_tbllandattribute_err]
+	(COLUMN_NAME, DQM_RULE, ERROR_DESCRIPTION, DQM_RUN_DATE, VERSTART, VEREND, ACCOUNTNO, DETAILID, ATTRIBUTETYPE, ATTRIBUTESUBTYPE, ATTRIBUTEADJUSTMENT, FILTERTYPE, LANDATTRIBUTEOT0, LANDATTRIBUTEOT1, LANDATTRIBUTEON0, LANDATTRIBUTEON1, LANDATTRIBUTEON2, LANDATTRIBUTEOD0, LANDATTRIBUTEOD1, LANDATTRIBUTEOM0, LANDATTRIBUTEOM1, JURISDICTIONID, WRITEDATE, SEQID)
+	    SELECT 
+				'ACCOUNTNO',
+				'FK CHECK',
+				'ACCOUNTNO MUST EXIST IN TABLE S_TBLACCT - FK CHECK',
+				@lv_RUNTIME,
+				VERSTART, 
+				VEREND, 
+				ACCOUNTNO, 
+				DETAILID,
+				ATTRIBUTETYPE, 
+				ATTRIBUTESUBTYPE, 
+				ATTRIBUTEADJUSTMENT, 
+				FILTERTYPE, 
+				LANDATTRIBUTEOT0, 
+				LANDATTRIBUTEOT1, 
+				LANDATTRIBUTEON0, 
+				LANDATTRIBUTEON1, 
+				LANDATTRIBUTEON2, 
+				LANDATTRIBUTEOD0, 
+				LANDATTRIBUTEOD1, 
+				LANDATTRIBUTEOM0, 
+				LANDATTRIBUTEOM1, 
+				JURISDICTIONID, 
+				WRITEDATE, 
+				SEQID
+			FROM [asr_staging].[s_tbllandattribute] la
+			WHERE NOT EXISTS
+				(SELECT 1 FROM asr_staging.s_tblacct a
+				WHERE la.ACCOUNTNO = a.ACCOUNTNO);
+
+-------------------------------------------------------------------------------------------------
+            END
+
+
+
+
+		END
+	
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+﻿CREATE TABLE [asr_staging].[s_tbnsaleinventorydetail] (
+    [RECEPTIONNO]                VARCHAR (30)    NULL,
+    [ACCOUNTNO]                  VARCHAR (30)    NULL,
+    [DETAILTYPE]                 VARCHAR (50)    NULL,
+    [INVENTORYDETAILTYPE]        VARCHAR (100)   NULL,
+    [INVENTORYDETAILDESCRIPTION] VARCHAR (100)   NULL,
+    [INVENTORYUNITCOUNT]         NUMERIC (15, 4) NULL,
+    [SALEINVENTORYDETAILON0]     NUMERIC (20, 6) NULL,
+    [SALEINVENTORYDETAILON1]     NUMERIC (20, 6) NULL,
+    [SALEINVENTORYDETAILON2]     NUMERIC (20, 6) NULL,
+    [SALEINVENTORYDETAILOD0]     VARCHAR (22)    NULL,
+    [SALEINVENTORYDETAILOD1]     VARCHAR (22)    NULL,
+    [SALEINVENTORYDETAILOM0]     VARCHAR (50)    NULL,
+    [SALEINVENTORYDETAILOM1]     VARCHAR (50)    NULL,
+    [SALEINVENTORYDETAILOT0]     VARCHAR (50)    NULL,
+    [SALEINVENTORYDETAILOT1]     VARCHAR (50)    NULL,
+    [YEARBUILT]                  NUMERIC (4)     NULL,
+    [JURISDICTIONID]             NUMERIC (15)    NULL,
+    [LASTUPDATED]                VARCHAR (22)    NULL,
+    [INVENTORYDETAILID]          NUMERIC (15)    NULL
+);
+
+
+GO
+CREATE CLUSTERED INDEX [IX_s_tbnsaleinventorydetail_ClusteredIndex-receptionno]
+    ON [asr_staging].[s_tbnsaleinventorydetail]([RECEPTIONNO] ASC);
+

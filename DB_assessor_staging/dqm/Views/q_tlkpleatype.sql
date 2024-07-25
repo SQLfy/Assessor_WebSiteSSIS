@@ -1,0 +1,12 @@
+﻿
+
+CREATE view [dqm].[q_tlkpleatype]
+WITH SCHEMABINDING
+AS 
+select -- all columns
+LEA, LEADESCRIPTION, SORTORDER, ACTIVEFLAG, JURISDICTIONID, LASTUPDATED
+from [asr_staging].[s_tlkpleatype]
+WHERE LEA NOT IN
+(SELECT LEA FROM [dqm].[S_TLKPLEATYPE_ERR]);
+
+

@@ -1,0 +1,19 @@
+﻿CREATE TABLE [asr_staging].[t_imps_basement] (
+    [RECEPTIONNO]                VARCHAR (30)    NULL,
+    [ACCOUNTNO]                  VARCHAR (30)    NULL,
+    [DETAILTYPE]                 VARCHAR (50)    NULL,
+    [INVENTORYDETAILTYPE]        VARCHAR (100)   NULL,
+    [INVENTORYDETAILDESCRIPTION] VARCHAR (100)   NULL,
+    [INVENTORYUNITCOUNT]         NUMERIC (15, 4) NULL
+);
+
+
+GO
+CREATE CLUSTERED INDEX [IX_T_IMPS_BASEMENT_INVDETDESCR]
+    ON [asr_staging].[t_imps_basement]([INVENTORYDETAILDESCRIPTION] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_T_IMPS_BASEMENT_ACCOUNTNO]
+    ON [asr_staging].[t_imps_basement]([ACCOUNTNO] ASC);
+

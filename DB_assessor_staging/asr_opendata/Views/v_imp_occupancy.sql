@@ -1,0 +1,14 @@
+﻿
+
+create view [asr_opendata].[v_imp_occupancy]
+as
+
+SELECT
+  -- identity imp_occupancy_eid ,
+  OCCUPANCY_CODE.OCCUPANCY_CODE OCCUPANCY_CODE,
+  CAST( Q_TBLIMPSOCC.OCCPERCENT as numeric(7,4)) OCCUPANCY_PERCENT
+FROM
+    dqm.Q_TBLIMPSOCC  Q_TBLIMPSOCC   
+ JOIN [assessor_datastore].[asr_datastore].[improvement] IMPROVEMENT ON ( (( Q_TBLIMPSOCC.ACCOUNTNO = IMPROVEMENT.ACCOUNT_NO )) AND (( IMPROVEMENT.IMPROVEMENT_NO = Q_TBLIMPSOCC.IMPNO )) )
+JOIN  [assessor_datastore].[asr_datastore].OCCUPANCY_CODE  OCCUPANCY_CODE ON ( ( Q_TBLIMPSOCC.OCCCODE = OCCUPANCY_CODE.OCCUPANCY_CODE ) );
+

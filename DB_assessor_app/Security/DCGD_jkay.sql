@@ -1,0 +1,2 @@
+﻿CREATE USER [DCGD\jkay] FOR LOGIN [DCGD\jkay];
+

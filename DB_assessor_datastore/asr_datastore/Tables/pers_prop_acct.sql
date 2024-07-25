@@ -1,0 +1,27 @@
+﻿CREATE TABLE [asr_datastore].[pers_prop_acct] (
+    [account_no]                  VARCHAR (30)     NOT NULL,
+    [business_name]               VARCHAR (100)    NULL,
+    [business_type]               VARCHAR (10)     NOT NULL,
+    [business_type_description]   VARCHAR (50)     NOT NULL,
+    [row_start_dtm]               DATETIME         CONSTRAINT [DF_pers_prop_acct_ROW_START_DATE] DEFAULT (getdate()) NULL,
+    [row_end_dtm]                 DATETIME         NULL,
+    [row_current_flag]            VARCHAR (1)      CONSTRAINT [DF_pers_prop_acct_ROW_CURRENT_FLAG] DEFAULT ('Y') NULL,
+    [create_dtm]                  DATETIME         CONSTRAINT [DF_pers_prop_acct_ROW_CREATE_DTM] DEFAULT (getdate()) NULL,
+    [create_user_id]              VARCHAR (30)     CONSTRAINT [DF_pers_prop_acct_CREATE_USER_ID] DEFAULT ('SSIS_ETL') NULL,
+    [update_dtm]                  DATETIME         NULL,
+    [update_user_id]              VARCHAR (30)     NULL,
+    [late_filing_flag]            VARCHAR (1)      NULL,
+    [new_construction_flag]       VARCHAR (1)      NULL,
+    [new_construction_class_code] VARCHAR (50)     NULL,
+    [new_construction_value]      NUMERIC (15, 2)  NULL,
+    [declaration_sent_date]       DATE             NULL,
+    [declaration_returned_date]   DATE             NULL,
+    [valued_by]                   VARCHAR (30)     NULL,
+    [no_declaration_flag]         VARCHAR (1)      NULL,
+    [best_info_available_flag]    VARCHAR (1)      NULL,
+    [no_change_flag]              VARCHAR (1)      NULL,
+    [rowhash]                     VARBINARY (8000) NULL,
+    [associated_account]          VARCHAR (30)     NULL,
+    CONSTRAINT [PK_pers_prop_acct] PRIMARY KEY CLUSTERED ([account_no] ASC)
+);
+

@@ -1,0 +1,159 @@
+﻿
+
+
+-- =====================================================================================
+-- Author:		Richard Edwards
+-- Create date: 4/18/2016
+-- Description:	DQM stored procedure for S_TBNSALEINVENTORYDETAIL table in Realware_ODS
+-- =====================================================================================
+
+
+/*
+DQM RULES FOR:
+TABLE:  S_TBNSALEINVENTORYDETAIL
+
+1. RECEPTIONNO – Cannot be null and must be 10 or less charaters
+
+2. ACCOUNTNO - Must exist in Account number table
+*/
+
+CREATE PROCEDURE [dqm].[dqm_s_tbnsaleinventorydetail]
+	
+
+AS
+BEGIN
+
+    DECLARE @lv_RUNTIME  DATETIME=GETDATE()
+
+	  BEGIN
+	
+
+     --Begin DQM checks for the table for each row.
+
+----------------------------------------------------------------------------------
+
+-- RECEPTIONNO – must not be null and must be 10 or less characters
+
+		INSERT INTO [dqm].[s_tbnsaleinventorydetail_err]
+	([COLUMN_NAME],
+	[DQM_RULE],
+	[ERROR_DESCRIPTION],
+	[DQM_RUN_DATE],
+	[RECEPTIONNO],
+	[ACCOUNTNO],
+	[DETAILTYPE],
+	[INVENTORYDETAILTYPE],
+	[INVENTORYDETAILDESCRIPTION],
+	[INVENTORYUNITCOUNT],
+	[SALEINVENTORYDETAILON0],
+	[SALEINVENTORYDETAILON1],
+	[SALEINVENTORYDETAILON2],
+	[SALEINVENTORYDETAILOD0],
+	[SALEINVENTORYDETAILOD1],
+	[SALEINVENTORYDETAILOM0],
+	[SALEINVENTORYDETAILOM1],
+	[SALEINVENTORYDETAILOT0],
+	[SALEINVENTORYDETAILOT1],
+	[YEARBUILT],
+	[JURISDICTIONID],
+	[LASTUPDATED],
+	[INVENTORYDETAILID]
+	
+)
+	    SELECT 
+				'RECEPTIONNO',
+				'NOT NULL AND FIELD LENGTH RESTRICTION',
+				'RECEPTIONNO MUST NOT BE NULL AND MUST BE 10 CHARACTERS OR LESS',
+				@lv_RUNTIME,
+	[RECEPTIONNO],
+	[ACCOUNTNO],
+	[DETAILTYPE],
+	[INVENTORYDETAILTYPE],
+	[INVENTORYDETAILDESCRIPTION],
+	[INVENTORYUNITCOUNT],
+	[SALEINVENTORYDETAILON0],
+	[SALEINVENTORYDETAILON1],
+	[SALEINVENTORYDETAILON2],
+	[SALEINVENTORYDETAILOD0],
+	[SALEINVENTORYDETAILOD1],
+	[SALEINVENTORYDETAILOM0],
+	[SALEINVENTORYDETAILOM1],
+	[SALEINVENTORYDETAILOT0],
+	[SALEINVENTORYDETAILOT1],
+	[YEARBUILT],
+	[JURISDICTIONID],
+	[LASTUPDATED],
+	[INVENTORYDETAILID]
+			FROM [asr_staging].[s_tbnsaleinventorydetail]
+			WHERE RECEPTIONNO IS NULL AND LEN(RECEPTIONNO) > 10;
+
+------------------------------------------------------------------------------
+
+   -- ACCOUNTNO - Cannot be null and must be in a specific format
+   --the first character must be one of the following: R M P C
+   --the second through eighth character must be a number >=0 and <=9
+
+INSERT INTO [dqm].[s_tbnsaleinventorydetail_err]
+	([COLUMN_NAME],
+	[DQM_RULE],
+	[ERROR_DESCRIPTION],
+	[DQM_RUN_DATE],
+	[RECEPTIONNO],
+	[ACCOUNTNO],
+	[DETAILTYPE],
+	[INVENTORYDETAILTYPE],
+	[INVENTORYDETAILDESCRIPTION],
+	[INVENTORYUNITCOUNT],
+	[SALEINVENTORYDETAILON0],
+	[SALEINVENTORYDETAILON1],
+	[SALEINVENTORYDETAILON2],
+	[SALEINVENTORYDETAILOD0],
+	[SALEINVENTORYDETAILOD1],
+	[SALEINVENTORYDETAILOM0],
+	[SALEINVENTORYDETAILOM1],
+	[SALEINVENTORYDETAILOT0],
+	[SALEINVENTORYDETAILOT1],
+	[YEARBUILT],
+	[JURISDICTIONID],
+	[LASTUPDATED],
+	[INVENTORYDETAILID]
+	
+)
+	    SELECT 
+				'ACCOUNTNO',
+				'ACCOUNTNO MUST EXIST IN ACCOUNT TABLE - FK CHECK',
+				'ACCOUNTNO MUST EXIST IN TABLE S_TBLACCT',
+				@lv_RUNTIME,
+	[RECEPTIONNO],
+	[ACCOUNTNO],
+	[DETAILTYPE],
+	[INVENTORYDETAILTYPE],
+	[INVENTORYDETAILDESCRIPTION],
+	[INVENTORYUNITCOUNT],
+	[SALEINVENTORYDETAILON0],
+	[SALEINVENTORYDETAILON1],
+	[SALEINVENTORYDETAILON2],
+	[SALEINVENTORYDETAILOD0],
+	[SALEINVENTORYDETAILOD1],
+	[SALEINVENTORYDETAILOM0],
+	[SALEINVENTORYDETAILOM1],
+	[SALEINVENTORYDETAILOT0],
+	[SALEINVENTORYDETAILOT1],
+	[YEARBUILT],
+	[JURISDICTIONID],
+	[LASTUPDATED],
+	[INVENTORYDETAILID]
+			FROM [asr_staging].[s_tbnsaleinventorydetail] sid
+			WHERE NOT EXISTS
+				(SELECT 1 FROM asr_staging.s_tblacct a
+				WHERE sid.ACCOUNTNO = a.ACCOUNTNO);
+------------------------------------------------------------------------------
+
+
+
+            END
+
+
+
+
+		END

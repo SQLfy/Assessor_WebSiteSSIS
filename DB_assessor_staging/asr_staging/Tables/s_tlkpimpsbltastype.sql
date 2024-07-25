@@ -1,0 +1,14 @@
+﻿CREATE TABLE [asr_staging].[s_tlkpimpsbltastype] (
+    [BLTASCODE]            NUMERIC (15)  NULL,
+    [BLTASDESCRIPTION]     VARCHAR (50)  NULL,
+    [MSCOSTTABLE]          VARCHAR (50)  NULL,
+    [PROPERTYTYPE]         VARCHAR (15)  NULL,
+    [SORTORDER]            NUMERIC (9)   NULL,
+    [ACTIVEFLAG]           NUMERIC (1)   NULL,
+    [JURISDICTIONID]       NUMERIC (15)  NULL,
+    [LASTUPDATED]          VARCHAR (22)  NULL,
+    [BLTASTOTALTYPE]       VARCHAR (15)  NULL,
+    [MARSHALLSWIFTCODE]    NUMERIC (15)  NULL,
+    [BLTASCALCULATIONTYPE] VARCHAR (100) NULL
+);
+

@@ -1,0 +1,111 @@
+﻿
+
+
+CREATE VIEW [asr_app_query].[v_improvement_fact_old]
+
+/**************************************Comments***************************************
+**************************************************************************************
+Mod #:  1
+Mod Date:      6/6/2017
+Developer:     Tony Golden
+Comments:      Initial creation
+               Provide a view to access improvement_fact records for consumption by assessor app
+
+*************************************************************************************/
+AS
+
+SELECT distinct
+  IMPROVEMENT.ACCOUNT_NO ACCOUNT_NO,
+  improvement.IMPROVEMENT_NO,
+  --IMPROVEMENT.BUILDING_ID BUILDING_ID,
+  --INGRP2.TOTAL_PORCH_SF TOTAL_PORCH_SF,
+  IMPROVEMENT.ACCOUNT_NO+CAST(improvement.IMPROVEMENT_NO AS VARCHAR) IMPROVEMENT_DETAIL_ID,
+  --INGRP2.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID_1,
+  IMPROVEMENT.PROPERTY_TYPE PROPERTY_TYPE,
+  IMPROVEMENT.CONDITION_TYPE CONDITION_TYPE,
+  IMPROVEMENT.IMPROVEMENT_QUALITY IMPROVEMENT_QUALITY,
+  IMPROVEMENT.IMPROVEMENT_SF IMPROVEMENT_SF,
+  IMPROVEMENT.COMPLETED_PERCENT COMPLETED_PERCENT,
+  IMPROVEMENT.IMPROVEMENT_UNIT_TYPE IMPROVEMENT_UNIT_TYPE,
+  TOTAL_PORCH_SF,
+  WALKOUT_BASEMENT_FLAG,
+  TOTAL_GARAGE_SF,
+  TOTAL_FINISHED_BASEMENT_SF,
+  TOTAL_UNFINISHED_BASEMENT_SF,
+  NO_OF_FIREPLACE
+FROM
+    asr_datastore.IMPROVEMENT  IMPROVEMENT
+ LEFT OUTER JOIN 
+          (SELECT imp_detail.account_no, imp_detail.improvement_no,
+			  SUM(IMP_DETAIL.DETAIL_UNIT_COUNT) TOTAL_PORCH_SF,
+			  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID
+			FROM
+			  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+			  WHERE 
+			  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE ='Porch' ) 
+			GROUP BY
+			imp_detail.account_no, imp_detail.improvement_no, IMP_DETAIL.IMPROVEMENT_DETAIL_ID) P ON P.account_no = IMPROVEMENT.account_no AND P.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no
+ LEFT OUTER JOIN
+         (
+		 SELECT imp_detail.account_no, imp_detail.improvement_no,
+		  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID1,
+		  CASE WHEN COUNT(DISTINCT IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION) = 0 THEN 'N'ELSE 'Y' END  WALKOUT_BASEMENT_FLAG
+		FROM
+		  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+		  WHERE 
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE ='Basement' ) AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION ='Walkout' )
+		GROUP BY
+		imp_detail.account_no, imp_detail.improvement_no,IMP_DETAIL.IMPROVEMENT_DETAIL_ID) WO ON WO.account_no = IMPROVEMENT.account_no AND WO.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no
+ LEFT OUTER JOIN
+		(
+		 SELECT imp_detail.account_no, imp_detail.improvement_no,
+		  SUM(IMP_DETAIL.DETAIL_UNIT_COUNT) TOTAL_GARAGE_SF,
+		  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID2
+		FROM
+		  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+		  WHERE 
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE ='Garage' ) 
+		GROUP BY
+		imp_detail.account_no, imp_detail.improvement_no,IMP_DETAIL.IMPROVEMENT_DETAIL_ID)	GSF	ON GSF.account_no = IMPROVEMENT.account_no AND GSF.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no 
+  LEFT OUTER JOIN
+		(
+		SELECT imp_detail.account_no, imp_detail.improvement_no,
+		  SUM(IMP_DETAIL.DETAIL_UNIT_COUNT) TOTAL_FINISHED_BASEMENT_SF,
+		  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID3
+		FROM
+		  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+		  WHERE 
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE ='Basement' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION ='Finished' ) 
+		GROUP BY
+		imp_detail.account_no, imp_detail.improvement_no,IMP_DETAIL.IMPROVEMENT_DETAIL_ID)	BFSF ON BFSF.account_no = IMPROVEMENT.account_no AND BFSF.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no 
+ LEFT OUTER JOIN
+		 (
+		 SELECT imp_detail.account_no, imp_detail.improvement_no,
+		  SUM(IMP_DETAIL.DETAIL_UNIT_COUNT) TOTAL_UNFINISHED_BASEMENT_SF,
+		  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID4
+		FROM
+		  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+		  WHERE 
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE ='Basement' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION  <> 'Finished' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION <> 'Walkout' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION <> 'Garden Level' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION <> 'Minimal Finish' )  AND
+		  ( IMP_DETAIL.IMPROVEMENT_DETAIL_TYPE_DESCRIPTION <> 'Fair Finish' ) 
+		GROUP BY
+		imp_detail.account_no, imp_detail.improvement_no,IMP_DETAIL.IMPROVEMENT_DETAIL_ID) BUSF ON BUSF.account_no = IMPROVEMENT.account_no AND BUSF.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no 
+  LEFT OUTER JOIN
+			(
+			SELECT imp_detail.account_no, imp_detail.improvement_no,
+			  IMP_DETAIL.IMPROVEMENT_DETAIL_ID IMPROVEMENT_DETAIL_ID5,
+			  SUM(IMP_DETAIL.DETAIL_UNIT_COUNT) NO_OF_FIREPLACE
+			FROM
+			  asr_datastore.IMPROVEMENT_DETAIL  IMP_DETAIL
+			  WHERE 
+			  ( IMP_DETAIL.ADDON_CODE in ('95','285','290') ) 
+			GROUP BY
+			imp_detail.account_no, imp_detail.improvement_no,IMP_DETAIL.IMPROVEMENT_DETAIL_ID) NOFP ON NOFP.account_no = IMPROVEMENT.account_no AND NOFP.IMPROVEMENT_NO =  IMPROVEMENT.improvement_no 
+
+

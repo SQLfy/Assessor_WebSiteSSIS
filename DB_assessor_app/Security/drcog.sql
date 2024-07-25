@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [drcog]
+    AUTHORIZATION [dbo];
+

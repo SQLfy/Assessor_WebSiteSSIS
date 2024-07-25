@@ -1,0 +1,12 @@
+﻿CREATE TABLE [asr_app].[account_platted_lot] (
+    [PLATTED_LOT_EID] INT          IDENTITY (1, 1) NOT NULL,
+    [STATE_PARCEL_NO] VARCHAR (30) NOT NULL,
+    [LOT_NO]          VARCHAR (30) NULL,
+    [BLOCK_NO]        VARCHAR (30) NULL,
+    [TRACT_NO]        VARCHAR (30) NULL,
+    [CREATE_DTM]      DATETIME     NULL,
+    [CREATE_USER_ID]  VARCHAR (30) NULL,
+    [UPDATE_DTM]      DATETIME     NULL,
+    [UPDATE_USER_ID]  VARCHAR (30) NULL
+);
+

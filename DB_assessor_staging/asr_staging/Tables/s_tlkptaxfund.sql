@@ -1,0 +1,9 @@
+﻿CREATE TABLE [asr_staging].[s_tlkptaxfund] (
+    [FUNDCODE]        VARCHAR (20)  NULL,
+    [FUNDDESCRIPTION] VARCHAR (100) NULL,
+    [SORTORDER]       NUMERIC (9)   NULL,
+    [ACTIVEFLAG]      NUMERIC (1)   NULL,
+    [JURISDICTIONID]  NUMERIC (15)  NULL,
+    [LASTUPDATED]     VARCHAR (22)  NULL
+);
+
