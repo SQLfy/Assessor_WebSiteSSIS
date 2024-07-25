@@ -25,7 +25,7 @@ GO
 DECLARE @var sql_variant = N'PRGIS-SQL2'
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_gis_ods_servername', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
-DECLARE @var sql_variant = N'PRRW'
+DECLARE @var sql_variant = N'PRRW_2023'
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'env_realware_databasename', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
 DECLARE @var sql_variant = N'DVRW2-SQL01'
@@ -49,13 +49,13 @@ GO
 DECLARE @var sql_variant = N'Data Source=dvdcetl-mst01.dcgov.douglas.co.us;Initial Catalog=MDS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;'
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'dvdcetl_mst01_MDS', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
-DECLARE @var sql_variant = N'2023'
+DECLARE @var sql_variant = N'2024'
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'AssessorDetailYears', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
-DECLARE @var sql_variant = N'2023'
+DECLARE @var sql_variant = N''
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'AssessorNODYears', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
-DECLARE @var sql_variant = N'2023'
+DECLARE @var sql_variant = N'2024'
 EXEC [SSISDB].[catalog].[create_environment_variable] @variable_name=N'AssessorNOVYears', @sensitive=False, @description=N'', @environment_name=N'assessor_ods2_sql', @folder_name=N'assessor_ods2', @value=@var, @data_type=N'String'
 GO
 DECLARE @var sql_variant = N'true'
