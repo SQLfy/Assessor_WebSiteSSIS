@@ -1,0 +1,42 @@
+﻿
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCT]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLAPPEALACCT_Old]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,TAXYEAR
+      ,APPEALNO
+      ,ACCOUNTNO
+      ,APPEALADJUSTDENYREASONID
+      ,APPEALCOMMENT
+      ,APPEALACCOUNTENDVALUE
+      ,APPEALACCTON0
+      ,APPEALACCTON1
+      ,APPEALACCTON2
+      ,CAST(APPEALACCTOD0 AS VARCHAR(22) ) APPEALACCTOD0
+      ,CAST(APPEALACCTOD1 AS VARCHAR(22) ) APPEALACCTOD1
+      ,APPEALACCTOM0
+      ,APPEALACCTOM1
+      ,APPEALACCTOT0
+      ,APPEALACCTOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) )  WRITEDATE
+      ,BEGINNINGACCOUNTVALUE
+      ,APPEALDECISION
+      ,APPEALACCTREASONDESC
+      ,ADDBOARDAPPEALENDVALUE
+      ,SEQID
+from PRRW.ENCOMPASS.TBLAPPEALACCT T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+

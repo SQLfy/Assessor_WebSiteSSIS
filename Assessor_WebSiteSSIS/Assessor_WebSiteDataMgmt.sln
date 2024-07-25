@@ -25,6 +25,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_datastore", "..
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_staging", "..\DB_assessor_staging\DB_assessor_staging.sqlproj", "{834A5D98-9E15-4019-B3AA-BC0D1728EE61}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_extract", "..\DB_assessor_extract\DB_assessor_extract.sqlproj", "{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,15 @@ Global
 		{834A5D98-9E15-4019-B3AA-BC0D1728EE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{834A5D98-9E15-4019-B3AA-BC0D1728EE61}.Release|Any CPU.Build.0 = Release|Any CPU
 		{834A5D98-9E15-4019-B3AA-BC0D1728EE61}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Development|Any CPU.Deploy.0 = Debug|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

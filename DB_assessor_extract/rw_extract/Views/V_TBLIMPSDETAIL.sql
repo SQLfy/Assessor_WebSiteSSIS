@@ -1,0 +1,44 @@
+﻿
+CREATE VIEW [rw_extract].[V_TBLIMPSDETAIL]
+AS
+SELECT DETAILID
+      ,T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPNO
+      ,IMPDETAILTYPE
+      ,IMPDETAILDESCRIPTION
+      ,DETAILUNITCOUNT
+      ,DETAILYEARBUILT
+      ,ADDONCODE
+      ,JURISDICTIONID
+      ,APEXLINKFLAG
+      ,IMPSDETAILOT0
+      ,IMPSDETAILOT1
+      ,IMPSDETAILOM0
+      ,IMPSDETAILOM1
+      ,CAST(IMPSDETAILOD0 AS VARCHAR(22) ) IMPSDETAILOD0
+      ,CAST(IMPSDETAILOD1 AS VARCHAR(22) ) IMPSDETAILOD1
+      ,IMPSDETAILON0
+      ,IMPSDETAILON1
+      ,IMPSDETAILON2
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE 
+      ,SEQID
+      ,IMPDETAILTYPEID
+  FROM PRRW.ENCOMPASS.TBLIMPSDETAIL T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
