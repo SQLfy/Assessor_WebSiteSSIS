@@ -29,6 +29,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_extract", "..\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "..\ConsoleApplication\ConsoleApplication.csproj", "{29539118-A30F-42EC-B791-E1A89ED73B48}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Build Scripts", "Database Build Scripts", "{BE325306-869C-40D1-AAA6-9C54057BC959}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
