@@ -2,34 +2,77 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.35026.282
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_ods2", "..\assessor_ods2\assessor_ods2.dtproj", "{A47E48B5-648A-471D-AF44-2DEBA4AF64F5}"
+MinimumVisualStudioVersion = 12.0.21005.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_ods2", "assessor_ods2\assessor_ods2.dtproj", "{A47E48B5-648A-471D-AF44-2DEBA4AF64F5}"
 EndProject
-Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_posse", "..\assessor_posse\assessor_posse.dtproj", "{E7A6354E-635E-43A9-98DF-186EE80250C9}"
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_posse", "assessor_posse\assessor_posse.dtproj", "{E7A6354E-635E-43A9-98DF-186EE80250C9}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Assessor JSON", "..\Assessor JSON\Assessor JSON.pyproj", "{2BEBE340-1986-4BC5-930B-CC227210CE1D}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Assessor JSON", "Assessor JSON\Assessor JSON.pyproj", "{2BEBE340-1986-4BC5-930B-CC227210CE1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessorJson", "..\AssessorJson\AssessorJson.csproj", "{3F02457F-E7B9-4CFB-AE6E-67EC5525EE3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessorJson", "AssessorJson\AssessorJson.csproj", "{3F02457F-E7B9-4CFB-AE6E-67EC5525EE3E}"
 EndProject
-Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_ods2_json", "..\assessor_ods2_json\assessor_ods2_json\assessor_ods2_json.dtproj", "{244973A3-757E-4DE0-A59C-A524F25D4140}"
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "assessor_ods2_json", "assessor_ods2_json\assessor_ods2_json\assessor_ods2_json.dtproj", "{244973A3-757E-4DE0-A59C-A524F25D4140}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Env_Variables", "Env_Variables", "{F33DC99D-57AC-4FA8-B4EF-B45D94F46765}"
 	ProjectSection(SolutionItems) = preProject
-		..\Env_Variables\assessor_ods2_sql = ..\Env_Variables\assessor_ods2_sql
-		..\Env_Variables\assessor_posse = ..\Env_Variables\assessor_posse
+		Env_Variables\assessor_ods2_sql = Env_Variables\assessor_ods2_sql
+		Env_Variables\assessor_posse = Env_Variables\assessor_posse
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_app", "..\DB_assessor_app\DB_assessor_app.sqlproj", "{AA4B21FC-E76E-4387-9B84-C13A73A00F8F}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_app", "DB_assessor_app\DB_assessor_app.sqlproj", "{AA4B21FC-E76E-4387-9B84-C13A73A00F8F}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_datastore", "..\DB_assessor_datastore\DB_assessor_datastore.sqlproj", "{CE1E05E9-0181-43EB-8AA8-8E44336F4E97}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_datastore", "DB_assessor_datastore\DB_assessor_datastore.sqlproj", "{CE1E05E9-0181-43EB-8AA8-8E44336F4E97}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_staging", "..\DB_assessor_staging\DB_assessor_staging.sqlproj", "{834A5D98-9E15-4019-B3AA-BC0D1728EE61}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_staging", "DB_assessor_staging\DB_assessor_staging.sqlproj", "{834A5D98-9E15-4019-B3AA-BC0D1728EE61}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_extract", "..\DB_assessor_extract\DB_assessor_extract.sqlproj", "{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_assessor_extract", "DB_assessor_extract\DB_assessor_extract.sqlproj", "{8363F3C2-FEDE-47B7-9782-5B24B1BE385D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "..\ConsoleApplication\ConsoleApplication.csproj", "{29539118-A30F-42EC-B791-E1A89ED73B48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{29539118-A30F-42EC-B791-E1A89ED73B48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Build Scripts", "Database Build Scripts", "{BE325306-869C-40D1-AAA6-9C54057BC959}"
+	ProjectSection(SolutionItems) = preProject
+		Database Build Scripts\assessor_app_DVASSRRPT_01_29_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_01_29_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_01_30_2017.sql = Database Build Scripts\assessor_app_DVASSRRPT_01_30_2017.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_03_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_03_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_04_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_04_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_05_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_05_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_10_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_10_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_16_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_16_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_23_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_23_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_02_23_2017.sql = Database Build Scripts\assessor_app_DVASSRRPT_02_23_2017.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_03_02_2017.sql = Database Build Scripts\assessor_app_DVASSRRPT_03_02_2017.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_04_14_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_04_14_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_12_20_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_12_20_2016.sql
+		Database Build Scripts\assessor_app_DVASSRRPT_1_27_2016.sql = Database Build Scripts\assessor_app_DVASSRRPT_1_27_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_01_29_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_01_29_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_03_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_03_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_04_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_04_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_05_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_05_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_10_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_10_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_16_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_16_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_02_23_2017.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_02_23_2017.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_03_02_2017.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_03_02_2017.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_04_14_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_04_14_2016.sql
+		Database Build Scripts\assessor_datastore_DVASSRRPT_1_27_2016.sql = Database Build Scripts\assessor_datastore_DVASSRRPT_1_27_2016.sql
+		Database Build Scripts\assessor_extract_DVRWSQL_02_16_2016.sql = Database Build Scripts\assessor_extract_DVRWSQL_02_16_2016.sql
+		Database Build Scripts\assessor_extract_PRREALWARE-SQL_03_24_2020.sql = Database Build Scripts\assessor_extract_PRREALWARE-SQL_03_24_2020.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_01_29_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_01_29_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_03_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_03_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_04_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_04_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_05_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_05_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_10_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_10_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_16_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_16_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_02_23_2017.sql = Database Build Scripts\assessor_staging_DVASSRRPT_02_23_2017.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_03_02_2017.sql = Database Build Scripts\assessor_staging_DVASSRRPT_03_02_2017.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_04_14_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_04_14_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_21_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_21_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_22_2016-2.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_22_2016-2.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_22_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_22_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_25_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_25_2016.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016-2.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016-2.sql
+		Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016.sql
+		Database Build Scripts\awr_pp_associated_account_03_15_2017.sql = Database Build Scripts\awr_pp_associated_account_03_15_2017.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
