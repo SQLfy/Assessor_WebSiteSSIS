@@ -1,0 +1,832 @@
+{
+  "Name": "opendata",
+  "Databases": [
+    {
+      "ServerName": "DVDCETL-SQL01",
+      "Name": "opendata",
+      "CompatibilityLevel": "CompatLevel150",
+      "SizeMB": 1120.0,
+      "Status": "Completed",
+      "ServerVersion": "15.0.4360.2",
+      "AssessmentRecommendations": [
+        {
+          "CompatibilityLevel": "CompatLevel150",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Information",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00306",
+          "Title": "Deprecated data types TEXT, IMAGE or NTEXT",
+          "Impact": "These data types are checked as deprecated. In some cases, using TEXT, IMAGE or NTEXT might harm performance.",
+          "Recommendation": "Deprecated data types are marked to be discontinued on next versions of SQL Server, should use new data types such as: (varchar(max), nvarchar(max), varbinary(max) and etc.)",
+          "MoreInfo": "ntext, text, and image (Transact-SQL) (https://go.microsoft.com/fwlink/?LinkId=798558)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.foreclosures_socrata.Accepted_Bid_Final_Sale_Amount",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Accepted_Bid_Final_Sale_Amount uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 35, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Attorney_Address",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Attorney_Address uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 19, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Attorney_File_Number",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Attorney_File_Number uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 17, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Attorney_For_Beneficiary",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Attorney_For_Beneficiary uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 16, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Attorney_Phone_Number",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Attorney_Phone_Number uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 18, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Beneficiary",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Beneficiary uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Bid_From_the_Lender",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Bid_From_the_Lender uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 28, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Certificate_Of_Purchase_Reception_No",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Certificate_Of_Purchase_Reception_No uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 37, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Combined_Notice_Mailed",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Combined_Notice_Mailed uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 23, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Continuances",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Continuances uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 31, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.County_Parcel_Number",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.County_Parcel_Number uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Cure_Intent_Due_By",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Cure_Intent_Due_By uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 24, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Cure_Intent_Filed",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Cure_Intent_Filed uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 25, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Current_Owner",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Current_Owner uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Current_Sale_Date",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Current_Sale_Date uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 27, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Date_Closed",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Date_Closed uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 39, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Date_Sold",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Date_Sold uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 32, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Deed_Of_Trust_Reception_No",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Deed_Of_Trust_Reception_No uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 11, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Deficiency_Or_Overbid",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Deficiency_Or_Overbid uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 36, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Election_And_Demand_Reception_No",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Election_And_Demand_Reception_No uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 22, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Foreclosure_Status",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Foreclosure_Status uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 20, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.geom",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.geom uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 44, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Hold_Issue",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Hold_Issue uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 21, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Intent_to_Redeem_Due_By",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Intent_to_Redeem_Due_By uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 38, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Interest_Rate",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Interest_Rate uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 15, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Legal_Description",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Legal_Description uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 10, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Location",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Location uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 43, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Notice_Of_Sale_Published",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Notice_Of_Sale_Published uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 29, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Notice_Of_Sale_Publisher",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Notice_Of_Sale_Publisher uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 30, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Original_Borrower",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Original_Borrower uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Original_Note_Amount",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Original_Note_Amount uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 13, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Original_Scheduled_Sale_Date",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Original_Scheduled_Sale_Date uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 26, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Outstanding_Balance_As_Of_FC_Filing",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Outstanding_Balance_As_Of_FC_Filing uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 14, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Property_Address",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Property_Address uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.PT_NO",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.PT_NO uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 2, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Purchaser",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Purchaser uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 33, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Reason_Closed",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Reason_Closed uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 40, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.State_Parcel_Number",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.State_Parcel_Number uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.SubDivision",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.SubDivision uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Type_Of_Loan",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Type_Of_Loan uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 12, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Withdrawal_Reception_No",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Withdrawal_Reception_No uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 41, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Withdrawal_Recorded",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Withdrawal_Recorded uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 42, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.foreclosures_socrata.Written_Bid_From_Lender",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.foreclosures_socrata.Written_Bid_From_Lender uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 34, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.REMARK",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.REMARK uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.RESERVED_FLAG",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.RESERVED_FLAG uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.STREET_EID",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.STREET_EID uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 2, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.STREET_NAME",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.STREET_NAME uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.STREET_POST_DIR",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.STREET_POST_DIR uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.STREET_PRE_DIR",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.STREET_PRE_DIR uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "dbo.streets_socrata.STREET_TYPE",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.streets_socrata.STREET_TYPE uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col0",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col0 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 2, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col3",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col3 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col4",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col4 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col5",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col5 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.streets.col6",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.streets.col6 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col0",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col0 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 2, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col10",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col10 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 12, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col11",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col11 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 13, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col12",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col12 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 14, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col13",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col13 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 15, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col14",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col14 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 16, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col15",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col15 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 17, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col16",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col16 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 18, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col17",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col17 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 19, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col18",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col18 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 20, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col19",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col19 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 21, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col3",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col3 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col4",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col4 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col5",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col5 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col6",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col6 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col7",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col7 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col8",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col8 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 10, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.taxes_by_acct_auth.col9",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.taxes_by_acct_auth.col9 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 11, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col0",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col0 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 2, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col10",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col10 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 12, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col11",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col11 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 13, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col12",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col12 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 14, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col13",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col13 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 15, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col14",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col14 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 16, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col15",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col15 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 17, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col16",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col16 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 18, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col17",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col17 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 19, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col18",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col18 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 20, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col19",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col19 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 21, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col20",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col20 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 22, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col21",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col21 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 23, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col22",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col22 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 24, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col23",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col23 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 25, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col24",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col24 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 26, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col25",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col25 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 27, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col26",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col26 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 28, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col27",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col27 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 29, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col28",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col28 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 30, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col29",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col29 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 31, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col3",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col3 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col30",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col30 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 32, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col31",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col31 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 33, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col32",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col32 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 34, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col33",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col33 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 35, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col34",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col34 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 36, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col35",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col35 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 37, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col36",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col36 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 38, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col37",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col37 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 39, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col38",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col38 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 40, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col39",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col39 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 41, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col4",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col4 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col40",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col40 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 42, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col41",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col41 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 43, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col42",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col42 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 44, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col43",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col43 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 45, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col44",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col44 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 46, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col45",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col45 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 47, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col46",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col46 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 48, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col47",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col47 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 49, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col48",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col48 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 50, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col49",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col49 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 51, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col5",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col5 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col50",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col50 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 52, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col51",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col51 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 53, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col6",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col6 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col7",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col7 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col8",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col8 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 10, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "socrata.tax_roll.col9",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object socrata.tax_roll.col9 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 11, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "treasurer.BusinessTaxExemption.account id",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object treasurer.BusinessTaxExemption.account id uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5.",
+              "SuggestedFixes": []
+            },
+            {
+              "Name": "treasurer.BusinessTaxExemption.Location",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object treasurer.BusinessTaxExemption.Location uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 15, Column 5.",
+              "SuggestedFixes": []
+            }
+          ]
+        }
+      ],
+      "ServerEdition": "Enterprise Edition: Core-based Licensing (64-bit)"
+    }
+  ],
+  "ServerInstances": [
+    {
+      "ServerName": "dvdcetl-sql01",
+      "Version": "15.0.4360.2",
+      "Status": "Completed",
+      "AssessmentRecommendations": []
+    }
+  ],
+  "SourcePlatform": "SqlOnPrem",
+  "Status": "Completed",
+  "StartedOn": "2024-07-28T21:06:45.623378+00:00",
+  "EndedOn": "2024-07-28T21:06:57.7696353+00:00",
+  "EvaluateFeatureRecommendations": false,
+  "EvaluateCompatibilityIssues": true,
+  "EvaluateFeatureParity": false,
+  "TargetPlatform": "SqlServerWindows2019",
+  "DmaVersion": {}
+}

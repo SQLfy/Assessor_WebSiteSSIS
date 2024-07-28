@@ -1,0 +1,32 @@
+{
+  "Name": "jde_timesheets",
+  "Databases": [
+    {
+      "ServerName": "DVDCETL-SQL01",
+      "Name": "jde_timesheets",
+      "CompatibilityLevel": "CompatLevel120",
+      "SizeMB": 2332.0625,
+      "Status": "Completed",
+      "ServerVersion": "15.0.4360.2",
+      "AssessmentRecommendations": [],
+      "ServerEdition": "Enterprise Edition: Core-based Licensing (64-bit)"
+    }
+  ],
+  "ServerInstances": [
+    {
+      "ServerName": "dvdcetl-sql01",
+      "Version": "15.0.4360.2",
+      "Status": "Completed",
+      "AssessmentRecommendations": []
+    }
+  ],
+  "SourcePlatform": "SqlOnPrem",
+  "Status": "Completed",
+  "StartedOn": "2024-07-28T21:05:18.9439099+00:00",
+  "EndedOn": "2024-07-28T21:05:24.9165049+00:00",
+  "EvaluateFeatureRecommendations": false,
+  "EvaluateCompatibilityIssues": true,
+  "EvaluateFeatureParity": false,
+  "TargetPlatform": "SqlServerWindows2019",
+  "DmaVersion": {}
+}

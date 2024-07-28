@@ -1,0 +1,233 @@
+{
+  "Name": "assessor_staging",
+  "Databases": [
+    {
+      "ServerName": "DVDCETL-SQL01",
+      "Name": "assessor_staging",
+      "CompatibilityLevel": "CompatLevel120",
+      "SizeMB": 116691.375,
+      "Status": "Completed",
+      "ServerVersion": "15.0.4360.2",
+      "AssessmentRecommendations": [
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.verify_accounts",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 132, Column 3.\n Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 150, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLADDRESSSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.addresscode  = aoa.addresscode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLADDRESSSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.addresscode = aoa.addresscode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                },
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLPERSONSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.personcode  = aoa.personcode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLPERSONSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.personcode = aoa.personcode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                }
+              ]
+            },
+            {
+              "Name": "trn.sp_OD_account_platted_lot",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [trn].[sp_OD_account_platted_lot] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 29, Column 2.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select \n\ta.account_no,\n\tqsa.subno, \n\t(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and   lot_no = isnull(qsa.lot, '')  and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '') ) platted_lot_eid\n\tfrom assessor_datastore.asr_datastore.account a, assessor_staging.dqm.q_tblsubaccount qsa\n\twhere a.account_no = qsa.accountno\n\tand a.state_parcel_no is not null",
+                  "CorrectedStatement": "select a.account_no, qsa.subno,(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and lot_no = isnull(qsa.lot, '') and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '')) platted_lot_eid from assessor_datastore.asr_datastore.account a INNER JOIN assessor_staging.dqm.q_tblsubaccount qsa ON a.account_no = qsa.accountno where a.state_parcel_no is not null"
+                }
+              ]
+            },
+            {
+              "Name": "trn.v_etl_abstract_codes",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [trn].[v_etl_abstract_codes] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 36, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT ac.ABSTRACTCODE\n      ,ac.ABSTRACTDESCRIPTION\n      ,ac.EQUIVALENCEABSTRACTCODE\n      ,ac.CLASSIFICATIONID\n      ,act.ABSTRACTTYPE\n\t  ,CASE act.ABSTRACTTYPE WHEN  'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END  ABSTRACTTYPE_DESC\n      ,act.ACTIVEFLAG\n      ,act.JURISDICTIONID\n      ,act.LASTUPDATED\n      ,act.SORTORDER\n  FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act\n     ,assessor_staging.asr_staging.s_tlkpabstractcode ac\n  WHERE act.abstractcode = ac.abstractcode",
+                  "CorrectedStatement": "SELECT ac.ABSTRACTCODE, ac.ABSTRACTDESCRIPTION, ac.EQUIVALENCEABSTRACTCODE, ac.CLASSIFICATIONID, act.ABSTRACTTYPE, CASE act.ABSTRACTTYPE WHEN 'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END ABSTRACTTYPE_DESC, act.ACTIVEFLAG, act.JURISDICTIONID, act.LASTUPDATED, act.SORTORDER FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act INNER JOIN assessor_staging.asr_staging.s_tlkpabstractcode ac ON act.abstractcode = ac.abstractcode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.verify_accounts",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 132, Column 3.\n Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 150, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLADDRESSSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.addresscode  = aoa.addresscode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLADDRESSSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.addresscode = aoa.addresscode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                },
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLPERSONSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.personcode  = aoa.personcode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLPERSONSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.personcode = aoa.personcode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                }
+              ]
+            },
+            {
+              "Name": "trn.sp_OD_account_platted_lot",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [trn].[sp_OD_account_platted_lot] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 29, Column 2.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select \n\ta.account_no,\n\tqsa.subno, \n\t(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and   lot_no = isnull(qsa.lot, '')  and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '') ) platted_lot_eid\n\tfrom assessor_datastore.asr_datastore.account a, assessor_staging.dqm.q_tblsubaccount qsa\n\twhere a.account_no = qsa.accountno\n\tand a.state_parcel_no is not null",
+                  "CorrectedStatement": "select a.account_no, qsa.subno,(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and lot_no = isnull(qsa.lot, '') and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '')) platted_lot_eid from assessor_datastore.asr_datastore.account a INNER JOIN assessor_staging.dqm.q_tblsubaccount qsa ON a.account_no = qsa.accountno where a.state_parcel_no is not null"
+                }
+              ]
+            },
+            {
+              "Name": "trn.v_etl_abstract_codes",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [trn].[v_etl_abstract_codes] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 36, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT ac.ABSTRACTCODE\n      ,ac.ABSTRACTDESCRIPTION\n      ,ac.EQUIVALENCEABSTRACTCODE\n      ,ac.CLASSIFICATIONID\n      ,act.ABSTRACTTYPE\n\t  ,CASE act.ABSTRACTTYPE WHEN  'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END  ABSTRACTTYPE_DESC\n      ,act.ACTIVEFLAG\n      ,act.JURISDICTIONID\n      ,act.LASTUPDATED\n      ,act.SORTORDER\n  FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act\n     ,assessor_staging.asr_staging.s_tlkpabstractcode ac\n  WHERE act.abstractcode = ac.abstractcode",
+                  "CorrectedStatement": "SELECT ac.ABSTRACTCODE, ac.ABSTRACTDESCRIPTION, ac.EQUIVALENCEABSTRACTCODE, ac.CLASSIFICATIONID, act.ABSTRACTTYPE, CASE act.ABSTRACTTYPE WHEN 'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END ABSTRACTTYPE_DESC, act.ACTIVEFLAG, act.JURISDICTIONID, act.LASTUPDATED, act.SORTORDER FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act INNER JOIN assessor_staging.asr_staging.s_tlkpabstractcode ac ON act.abstractcode = ac.abstractcode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel140",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.verify_accounts",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 132, Column 3.\n Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 150, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLADDRESSSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.addresscode  = aoa.addresscode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLADDRESSSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.addresscode = aoa.addresscode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                },
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLPERSONSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.personcode  = aoa.personcode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLPERSONSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.personcode = aoa.personcode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                }
+              ]
+            },
+            {
+              "Name": "trn.sp_OD_account_platted_lot",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [trn].[sp_OD_account_platted_lot] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 29, Column 2.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select \n\ta.account_no,\n\tqsa.subno, \n\t(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and   lot_no = isnull(qsa.lot, '')  and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '') ) platted_lot_eid\n\tfrom assessor_datastore.asr_datastore.account a, assessor_staging.dqm.q_tblsubaccount qsa\n\twhere a.account_no = qsa.accountno\n\tand a.state_parcel_no is not null",
+                  "CorrectedStatement": "select a.account_no, qsa.subno,(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and lot_no = isnull(qsa.lot, '') and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '')) platted_lot_eid from assessor_datastore.asr_datastore.account a INNER JOIN assessor_staging.dqm.q_tblsubaccount qsa ON a.account_no = qsa.accountno where a.state_parcel_no is not null"
+                }
+              ]
+            },
+            {
+              "Name": "trn.v_etl_abstract_codes",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [trn].[v_etl_abstract_codes] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 36, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT ac.ABSTRACTCODE\n      ,ac.ABSTRACTDESCRIPTION\n      ,ac.EQUIVALENCEABSTRACTCODE\n      ,ac.CLASSIFICATIONID\n      ,act.ABSTRACTTYPE\n\t  ,CASE act.ABSTRACTTYPE WHEN  'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END  ABSTRACTTYPE_DESC\n      ,act.ACTIVEFLAG\n      ,act.JURISDICTIONID\n      ,act.LASTUPDATED\n      ,act.SORTORDER\n  FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act\n     ,assessor_staging.asr_staging.s_tlkpabstractcode ac\n  WHERE act.abstractcode = ac.abstractcode",
+                  "CorrectedStatement": "SELECT ac.ABSTRACTCODE, ac.ABSTRACTDESCRIPTION, ac.EQUIVALENCEABSTRACTCODE, ac.CLASSIFICATIONID, act.ABSTRACTTYPE, CASE act.ABSTRACTTYPE WHEN 'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END ABSTRACTTYPE_DESC, act.ACTIVEFLAG, act.JURISDICTIONID, act.LASTUPDATED, act.SORTORDER FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act INNER JOIN assessor_staging.asr_staging.s_tlkpabstractcode ac ON act.abstractcode = ac.abstractcode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel150",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.verify_accounts",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 132, Column 3.\n Object [dbo].[verify_accounts] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 150, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLADDRESSSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.addresscode  = aoa.addresscode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLADDRESSSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.addresscode = aoa.addresscode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                },
+                {
+                  "OrginalStatement": "SELECT DISTINCT\n\t\t\t\t aoa.accountno,\n\t\t\t\t GETDATE(),\n\t\t\t\t 'ASR_SSIS_DQM'\n\t\tFROM  dqm.S_TBLPERSONSECURE_ERR S,\n\t\t\t asr_staging.S_TBLACCTOWNERADDRESS AOA \n\t\tWHERE\t s.personcode  = aoa.personcode\n\t\t AND\taoa.accountno  NOT IN\n\t\t\t(\n\t\t \tSELECT DISTINCT (account_no)\n\t\t\tFROM  w_defective_account \n\t\t\t)",
+                  "CorrectedStatement": "SELECT DISTINCT aoa.accountno, GETDATE(), 'ASR_SSIS_DQM' FROM dqm.S_TBLPERSONSECURE_ERR S INNER JOIN asr_staging.S_TBLACCTOWNERADDRESS AOA ON s.personcode = aoa.personcode WHERE aoa.accountno NOT IN(SELECT DISTINCT(account_no) FROM w_defective_account)"
+                }
+              ]
+            },
+            {
+              "Name": "trn.sp_OD_account_platted_lot",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [trn].[sp_OD_account_platted_lot] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 29, Column 2.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select \n\ta.account_no,\n\tqsa.subno, \n\t(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and   lot_no = isnull(qsa.lot, '')  and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '') ) platted_lot_eid\n\tfrom assessor_datastore.asr_datastore.account a, assessor_staging.dqm.q_tblsubaccount qsa\n\twhere a.account_no = qsa.accountno\n\tand a.state_parcel_no is not null",
+                  "CorrectedStatement": "select a.account_no, qsa.subno,(select platted_lot_eid from assessor_datastore.asr_datastore.OD_platted_lot where state_parcel_no = a.state_parcel_no and lot_no = isnull(qsa.lot, '') and block_no = isnull(qsa.block, '') and tract_no = isnull(qsa.tract, '')) platted_lot_eid from assessor_datastore.asr_datastore.account a INNER JOIN assessor_staging.dqm.q_tblsubaccount qsa ON a.account_no = qsa.accountno where a.state_parcel_no is not null"
+                }
+              ]
+            },
+            {
+              "Name": "trn.v_etl_abstract_codes",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [trn].[v_etl_abstract_codes] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 36, Column 3.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT ac.ABSTRACTCODE\n      ,ac.ABSTRACTDESCRIPTION\n      ,ac.EQUIVALENCEABSTRACTCODE\n      ,ac.CLASSIFICATIONID\n      ,act.ABSTRACTTYPE\n\t  ,CASE act.ABSTRACTTYPE WHEN  'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END  ABSTRACTTYPE_DESC\n      ,act.ACTIVEFLAG\n      ,act.JURISDICTIONID\n      ,act.LASTUPDATED\n      ,act.SORTORDER\n  FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act\n     ,assessor_staging.asr_staging.s_tlkpabstractcode ac\n  WHERE act.abstractcode = ac.abstractcode",
+                  "CorrectedStatement": "SELECT ac.ABSTRACTCODE, ac.ABSTRACTDESCRIPTION, ac.EQUIVALENCEABSTRACTCODE, ac.CLASSIFICATIONID, act.ABSTRACTTYPE, CASE act.ABSTRACTTYPE WHEN 'L' THEN 'LAND' WHEN 'P' THEN 'PERSONAL' WHEN 'I' THEN 'IMPROVEMENT' END ABSTRACTTYPE_DESC, act.ACTIVEFLAG, act.JURISDICTIONID, act.LASTUPDATED, act.SORTORDER FROM assessor_staging.asr_staging.s_tlkpabstractcodetype act INNER JOIN assessor_staging.asr_staging.s_tlkpabstractcode ac ON act.abstractcode = ac.abstractcode"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "ServerEdition": "Enterprise Edition: Core-based Licensing (64-bit)"
+    }
+  ],
+  "ServerInstances": [
+    {
+      "ServerName": "dvdcetl-sql01",
+      "Version": "15.0.4360.2",
+      "Status": "Completed",
+      "AssessmentRecommendations": []
+    }
+  ],
+  "SourcePlatform": "SqlOnPrem",
+  "Status": "Completed",
+  "StartedOn": "2024-07-28T20:38:43.494773+00:00",
+  "EndedOn": "2024-07-28T20:39:30.2338569+00:00",
+  "EvaluateFeatureRecommendations": false,
+  "EvaluateCompatibilityIssues": true,
+  "EvaluateFeatureParity": false,
+  "TargetPlatform": "SqlServerWindows2019",
+  "DmaVersion": {}
+}

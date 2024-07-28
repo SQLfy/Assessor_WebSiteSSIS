@@ -1,0 +1,197 @@
+{
+  "Name": "assessor_app",
+  "Databases": [
+    {
+      "ServerName": "DVDCETL-SQL01",
+      "Name": "assessor_app",
+      "CompatibilityLevel": "CompatLevel120",
+      "SizeMB": 48933.875,
+      "Status": "Completed",
+      "ServerVersion": "15.0.4360.2",
+      "AssessmentRecommendations": [
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "asr_app.sp_improvement_fact_insert_new",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [asr_app].[sp_improvement_fact_insert_new] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 75, Column 6.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT  I.account_no,I.improvement_no, (SUM(ISNULL(DETAIL_UNIT_COUNT,0))) fire_place_count\n\t\t\t  FROM\n\t\t\t   asr_datastore.IMPROVEMENT_DETAIL IMPD,\n\t\t\t   asr_datastore.IMPROVEMENT I\n\t\t\t  WHERE 1=1\n\t\t\t  AND IMPD.addon_code in ('95','285','290') \n\t\t\t  AND I.improvement_no = IMPD.improvement_no \n\t\t\t  AND I.account_no = IMPD.account_no\n\t\t\t  GROUP BY I.account_no, I.improvement_no",
+                  "CorrectedStatement": "SELECT I.account_no, I.improvement_no,(SUM(ISNULL(DETAIL_UNIT_COUNT, 0))) fire_place_count FROM asr_datastore.IMPROVEMENT I INNER JOIN asr_datastore.IMPROVEMENT_DETAIL IMPD ON I.improvement_no = IMPD.improvement_no AND I.account_no = IMPD.account_no WHERE 1 = 1 AND IMPD.addon_code in('95', '285', '290') GROUP BY I.account_no, I.improvement_no"
+                }
+              ]
+            },
+            {
+              "Name": "dbo.agolden_imp_acct_fact",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[agolden_imp_acct_fact] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select  ifact.ACCOUNT_NO,STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE\n, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE\nfrom asr_app.improvement_fact ifact, asr_app.account_fact afact\nwhere ifact.ACCOUNT_NO = afact.ACCOUNT_NO",
+                  "CorrectedStatement": "select ifact.ACCOUNT_NO, STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE from asr_app.improvement_fact ifact INNER JOIN asr_app.account_fact afact ON ifact.ACCOUNT_NO = afact.ACCOUNT_NO"
+                }
+              ]
+            },
+            {
+              "Name": "drcog.v_drcog_sale_data_by_account",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [drcog].[v_drcog_sale_data_by_account] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1.",
+              "SuggestedFixes": []
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "asr_app.sp_improvement_fact_insert_new",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [asr_app].[sp_improvement_fact_insert_new] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 75, Column 6.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT  I.account_no,I.improvement_no, (SUM(ISNULL(DETAIL_UNIT_COUNT,0))) fire_place_count\n\t\t\t  FROM\n\t\t\t   asr_datastore.IMPROVEMENT_DETAIL IMPD,\n\t\t\t   asr_datastore.IMPROVEMENT I\n\t\t\t  WHERE 1=1\n\t\t\t  AND IMPD.addon_code in ('95','285','290') \n\t\t\t  AND I.improvement_no = IMPD.improvement_no \n\t\t\t  AND I.account_no = IMPD.account_no\n\t\t\t  GROUP BY I.account_no, I.improvement_no",
+                  "CorrectedStatement": "SELECT I.account_no, I.improvement_no,(SUM(ISNULL(DETAIL_UNIT_COUNT, 0))) fire_place_count FROM asr_datastore.IMPROVEMENT I INNER JOIN asr_datastore.IMPROVEMENT_DETAIL IMPD ON I.improvement_no = IMPD.improvement_no AND I.account_no = IMPD.account_no WHERE 1 = 1 AND IMPD.addon_code in('95', '285', '290') GROUP BY I.account_no, I.improvement_no"
+                }
+              ]
+            },
+            {
+              "Name": "dbo.agolden_imp_acct_fact",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[agolden_imp_acct_fact] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select  ifact.ACCOUNT_NO,STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE\n, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE\nfrom asr_app.improvement_fact ifact, asr_app.account_fact afact\nwhere ifact.ACCOUNT_NO = afact.ACCOUNT_NO",
+                  "CorrectedStatement": "select ifact.ACCOUNT_NO, STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE from asr_app.improvement_fact ifact INNER JOIN asr_app.account_fact afact ON ifact.ACCOUNT_NO = afact.ACCOUNT_NO"
+                }
+              ]
+            },
+            {
+              "Name": "drcog.v_drcog_sale_data_by_account",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [drcog].[v_drcog_sale_data_by_account] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1.",
+              "SuggestedFixes": []
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel140",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "asr_app.sp_improvement_fact_insert_new",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [asr_app].[sp_improvement_fact_insert_new] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 75, Column 6.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT  I.account_no,I.improvement_no, (SUM(ISNULL(DETAIL_UNIT_COUNT,0))) fire_place_count\n\t\t\t  FROM\n\t\t\t   asr_datastore.IMPROVEMENT_DETAIL IMPD,\n\t\t\t   asr_datastore.IMPROVEMENT I\n\t\t\t  WHERE 1=1\n\t\t\t  AND IMPD.addon_code in ('95','285','290') \n\t\t\t  AND I.improvement_no = IMPD.improvement_no \n\t\t\t  AND I.account_no = IMPD.account_no\n\t\t\t  GROUP BY I.account_no, I.improvement_no",
+                  "CorrectedStatement": "SELECT I.account_no, I.improvement_no,(SUM(ISNULL(DETAIL_UNIT_COUNT, 0))) fire_place_count FROM asr_datastore.IMPROVEMENT I INNER JOIN asr_datastore.IMPROVEMENT_DETAIL IMPD ON I.improvement_no = IMPD.improvement_no AND I.account_no = IMPD.account_no WHERE 1 = 1 AND IMPD.addon_code in('95', '285', '290') GROUP BY I.account_no, I.improvement_no"
+                }
+              ]
+            },
+            {
+              "Name": "dbo.agolden_imp_acct_fact",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[agolden_imp_acct_fact] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select  ifact.ACCOUNT_NO,STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE\n, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE\nfrom asr_app.improvement_fact ifact, asr_app.account_fact afact\nwhere ifact.ACCOUNT_NO = afact.ACCOUNT_NO",
+                  "CorrectedStatement": "select ifact.ACCOUNT_NO, STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE from asr_app.improvement_fact ifact INNER JOIN asr_app.account_fact afact ON ifact.ACCOUNT_NO = afact.ACCOUNT_NO"
+                }
+              ]
+            },
+            {
+              "Name": "drcog.v_drcog_sale_data_by_account",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [drcog].[v_drcog_sale_data_by_account] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1.",
+              "SuggestedFixes": []
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel150",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "asr_app.sp_improvement_fact_insert_new",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Object [asr_app].[sp_improvement_fact_insert_new] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 75, Column 6.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "SELECT  I.account_no,I.improvement_no, (SUM(ISNULL(DETAIL_UNIT_COUNT,0))) fire_place_count\n\t\t\t  FROM\n\t\t\t   asr_datastore.IMPROVEMENT_DETAIL IMPD,\n\t\t\t   asr_datastore.IMPROVEMENT I\n\t\t\t  WHERE 1=1\n\t\t\t  AND IMPD.addon_code in ('95','285','290') \n\t\t\t  AND I.improvement_no = IMPD.improvement_no \n\t\t\t  AND I.account_no = IMPD.account_no\n\t\t\t  GROUP BY I.account_no, I.improvement_no",
+                  "CorrectedStatement": "SELECT I.account_no, I.improvement_no,(SUM(ISNULL(DETAIL_UNIT_COUNT, 0))) fire_place_count FROM asr_datastore.IMPROVEMENT I INNER JOIN asr_datastore.IMPROVEMENT_DETAIL IMPD ON I.improvement_no = IMPD.improvement_no AND I.account_no = IMPD.account_no WHERE 1 = 1 AND IMPD.addon_code in('95', '285', '290') GROUP BY I.account_no, I.improvement_no"
+                }
+              ]
+            },
+            {
+              "Name": "dbo.agolden_imp_acct_fact",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[agolden_imp_acct_fact] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1.",
+              "SuggestedFixes": [
+                {
+                  "OrginalStatement": "select  ifact.ACCOUNT_NO,STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE\n, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE\nfrom asr_app.improvement_fact ifact, asr_app.account_fact afact\nwhere ifact.ACCOUNT_NO = afact.ACCOUNT_NO",
+                  "CorrectedStatement": "select ifact.ACCOUNT_NO, STATE_PARCEL_NO, IMPROVEMENT_SF, NO_OF_FIREPLACE, TOTAL_GARAGE_SF, WALKOUT_BASEMENT_FLAG, TOTAL_PORCH_SF, TOTAL_FINISHED_BASEMENT_SF, TOTAL_UNFINISHED_BASEMENT_SF, IMPROVEMENT_NO, IMPROVEMENT_DETAIL_ID, PROPERTY_TYPE, CONDITION_TYPE, IMPROVEMENT_QUALITY, COMPLETED_PERCENT, IMPROVEMENT_UNIT_TYPE, ACCOUNT_SUBTYPE_CODE, TAX_DISTRICT_NO, LAND_ECONOMIC_AREA_CODE, ACCOUNT_TYPE_CODE, SUB_FILING_RECORDING_NO, OWNER_NAME, MAILING_ADDRESS_LINE_1, MAILING_ADDRESS_LINE_2, MAILING_ADDRESS_LINE_3, MAILING_CITY_NAME, MAILING_STATE, MAILING_ZIP_CODE, MAILING_COUNTRY, UNIT_NO, UNIT_DESIGNATOR, ADDRESS_NUMBER, ADDRESS_NUMBER_SUFFIX, PRE_DIRECTION_CODE, STREET_NAME, STREET_TYPE_CODE, POST_DIRECTION_CODE, CITY_NAME, LOCATION_STATE_CODE, LOCATION_ZIP_CODE, TOTAL_ACTUAL_VALUE, TOTAL_ASSESSED_VALUE, TOTAL_NET_ACRES, ACCOUNT_STATUS_CODE, FEDERAL_ID_NO, ROW_START_DTM, ROW_END_DTM, ROW_CURRENT_FLAG, CREATE_DTM, CREATE_USER_ID, UPDATE_DTM, UPDATE_USER_ID, LEGAL_DESCR, REDUCED_MILL_LEVY, REDUCED_TAX_RATE from asr_app.improvement_fact ifact INNER JOIN asr_app.account_fact afact ON ifact.ACCOUNT_NO = afact.ACCOUNT_NO"
+                }
+              ]
+            },
+            {
+              "Name": "drcog.v_drcog_sale_data_by_account",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [drcog].[v_drcog_sale_data_by_account] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1.",
+              "SuggestedFixes": []
+            }
+          ]
+        }
+      ],
+      "ServerEdition": "Enterprise Edition: Core-based Licensing (64-bit)"
+    }
+  ],
+  "ServerInstances": [
+    {
+      "ServerName": "dvdcetl-sql01",
+      "Version": "15.0.4360.2",
+      "Status": "Completed",
+      "AssessmentRecommendations": []
+    }
+  ],
+  "SourcePlatform": "SqlOnPrem",
+  "Status": "Completed",
+  "StartedOn": "2024-07-28T21:02:06.202271+00:00",
+  "EndedOn": "2024-07-28T21:02:22.2126256+00:00",
+  "EvaluateFeatureRecommendations": false,
+  "EvaluateCompatibilityIssues": true,
+  "EvaluateFeatureParity": false,
+  "TargetPlatform": "SqlServerWindows2019",
+  "DmaVersion": {}
+}
