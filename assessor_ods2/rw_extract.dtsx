@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/21/2016 7:51:03 AM"
@@ -7,13 +7,13 @@
   DTS:CreatorName="DCGD\dguillen"
   DTS:DTSID="{5FF5E1CF-95B0-460E-9469-30139AF75FD3}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="rw_extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="80"
-  DTS:VersionGUID="{E8B50276-0DFE-4816-9FA7-0E8C649E5A01}">
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{424D1975-7706-4D42-A45F-2693751DA49B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -43,6 +43,7 @@
           DTS:refId="Package\GIS ODS Extracts\ext_gis_ods_location"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{7B86FB1A-F422-441C-9EBF-319809AED85E}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -111,8 +112,8 @@
                   <connections>
                     <connection
                       refId="Package\GIS ODS Extracts\ext_gis_ods_location\accounts_xy.Connections[OleDbConnection]"
-                      connectionManagerID="{3A11B769-670E-4C9B-95FC-F15EFC3BE5C6}:invalid"
-                      connectionManagerRefId="{3A11B769-670E-4C9B-95FC-F15EFC3BE5C6}:invalid"
+                      connectionManagerID="{3A11B769-670E-4C9B-95FC-F15EFC3BE5C6}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[gis_ods]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -321,8 +322,8 @@
                   <connections>
                     <connection
                       refId="Package\GIS ODS Extracts\ext_gis_ods_location\s_account_location.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -453,6 +454,521 @@
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\GIS ODS Extracts\ext_location_data"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D8CE24F2-6E7D-4478-A2CE-6EEEF3EC5EB8}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ext_location_data"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Inputs[Data Conversion Input].Columns[Account_Number]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Account_Number"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Account_Number]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Account_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Account_Number]"
+                          name="Copy of Account_Number"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Account_Number]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="dest_s_account_location"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[asr_staging].[s_account_location]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Connections[OleDbConnection]"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[State_Parcel_number]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="State_Parcel_number"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[State_Parcel_number]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[State_Parcel_number]" />
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[Location]"
+                          cachedDataType="wstr"
+                          cachedLength="32"
+                          cachedName="Location"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[Location]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Location]" />
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[y]"
+                          cachedDataType="numeric"
+                          cachedName="y"
+                          cachedPrecision="30"
+                          cachedScale="8"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[latitude_y]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[y]" />
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[x]"
+                          cachedDataType="numeric"
+                          cachedName="x"
+                          cachedPrecision="30"
+                          cachedScale="8"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[longitude_x]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[x]" />
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[etl_write_date]"
+                          cachedDataType="wstr"
+                          cachedLength="27"
+                          cachedName="etl_write_date"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[etl_write_date]" />
+                        <inputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].Columns[Copy of Account_Number]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Account_Number"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[Account_Number]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Account_Number]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[Account_Number]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Account_Number" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[State_Parcel_number]"
+                          dataType="wstr"
+                          length="15"
+                          name="State_Parcel_number" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[longitude_x]"
+                          dataType="numeric"
+                          name="longitude_x"
+                          precision="30"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[latitude_y]"
+                          dataType="numeric"
+                          name="latitude_y"
+                          precision="30"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[elevation_z]"
+                          dataType="numeric"
+                          name="elevation_z"
+                          precision="30"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[Location]"
+                          dataType="wstr"
+                          length="50"
+                          name="Location" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="src_location_data_xy_opendata"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[location].[location_data]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Connections[OleDbConnection]"
+                      connectionManagerID="{3A11B769-670E-4C9B-95FC-F15EFC3BE5C6}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[gis_ods]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Account_Number]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[Account_Number]"
+                          length="50"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Account_Number]"
+                          name="Account_Number"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[State_Parcel_number]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[State_Parcel_number]"
+                          length="15"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[State_Parcel_number]"
+                          name="State_Parcel_number"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[x]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[x]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[x]"
+                          name="x"
+                          precision="30"
+                          scale="8"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[y]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[y]"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[y]"
+                          name="y"
+                          precision="30"
+                          scale="8"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Location]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[Location]"
+                          length="32"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[Location]"
+                          name="Location"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[etl_write_date]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[etl_write_date]"
+                          length="27"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].Columns[etl_write_date]"
+                          name="etl_write_date"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[Account_Number]"
+                          dataType="wstr"
+                          length="50"
+                          name="Account_Number" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[State_Parcel_number]"
+                          dataType="wstr"
+                          length="15"
+                          name="State_Parcel_number" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[x]"
+                          dataType="numeric"
+                          name="x"
+                          precision="30"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[y]"
+                          dataType="numeric"
+                          name="y"
+                          precision="30"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[Location]"
+                          dataType="wstr"
+                          length="32"
+                          name="Location" />
+                        <externalMetadataColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output].ExternalColumns[etl_write_date]"
+                          dataType="wstr"
+                          length="27"
+                          name="etl_write_date" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[Account_Number]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[Account_Number]"
+                          name="Account_Number" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[State_Parcel_number]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[State_Parcel_number]"
+                          name="State_Parcel_number" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[x]"
+                          dataType="numeric"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[x]"
+                          name="x"
+                          precision="30"
+                          scale="8" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[y]"
+                          dataType="numeric"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[y]"
+                          name="y"
+                          precision="30"
+                          scale="8" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[Location]"
+                          dataType="wstr"
+                          length="32"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[Location]"
+                          name="Location" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[etl_write_date]"
+                          dataType="wstr"
+                          length="27"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[etl_write_date]"
+                          name="etl_write_date" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\GIS ODS Extracts\ext_location_data.Paths[Data Conversion Output]"
+                  endId="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\GIS ODS Extracts\ext_location_data.Paths[OLE DB Source Output]"
+                  endId="Package\GIS ODS Extracts\ext_location_data\Data Conversion.Inputs[Data Conversion Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
@@ -538,8 +1054,8 @@
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacct\s_tblacct.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1206,9 +1722,9 @@
                           name="DETAILEDREVIEWDATE" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblacct\s_tblacct.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1308,8 +1824,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCT  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacct\v_tblacct.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2536,8 +3052,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCT  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctlegal\s_tblacctlegal.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2784,9 +3300,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCT  AS T1 INNER JOIN
                           name="SHORTDESCRIPTION" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblacctlegal\s_tblacctlegal.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -2883,8 +3399,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctlegal\v_tblacctlegal.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -3400,8 +3916,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctnbhd\s_tblacctnbhd.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -3676,9 +4192,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           precision="15" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblacctnbhd\s_tblacctnbhd.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -3758,8 +4274,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctnbhd\v_tblacctnbhd.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4323,8 +4839,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctowneraddress\s_tblacctowneraddress.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4607,9 +5123,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="OWNERSHIPTYPE" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblacctowneraddress\s_tblacctowneraddress.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -4689,8 +5205,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctowneraddress\v_tblacctowneraddress.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -5269,8 +5785,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctpropertyaddress\s_tblacctpropertyaddress.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -5665,9 +6181,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           precision="15" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblacctpropertyaddress\s_tblacctpropertyaddress.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -5747,8 +6263,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblacctpropertyaddress\v_tblacctpropertyaddress.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -6519,8 +7035,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblsubaccount\s_tblsubaccount.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -6837,9 +7353,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="PRIORFILINGNO" />
                         <externalMetadataColumn
                           refId="Package\RW Account Extracts\ext_tblsubaccount\s_tblsubaccount.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -6919,8 +7435,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW Account Extracts\ext_tblsubaccount\v_tblsubaccount.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -7615,8 +8131,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tbladdresssecure\s_tbladdresssecure.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -7969,9 +8485,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           precision="15" />
                         <externalMetadataColumn
                           refId="Package\RW TBL Extracts\ext_tbladdresssecure\s_tbladdresssecure.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -8051,8 +8567,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tbladdresssecure\v_tbladdresssecure.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -8751,8 +9267,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblappeal\s_tblappeal.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -9694,8 +10210,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblappeal\v_appeal.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -11273,8 +11789,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblappealacct\s_tblappealacct.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -11704,8 +12220,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblappealacct\v_tblappealacct.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -12404,8 +12920,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblpersonsecure\s_tblpersonsecure.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -12772,9 +13288,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           precision="15" />
                         <externalMetadataColumn
                           refId="Package\RW TBL Extracts\ext_tblpersonsecure\s_tblpersonsecure.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -12854,8 +13370,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBL Extracts\ext_tblpersonsecure\v_tblpersonsecure.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -13617,8 +14133,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBN Extracts\ext_tbnsubdivision\s_tbnsubdivision.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -13903,8 +14419,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBN Extracts\ext_tbnsubdivision\v_tbnsubdivision.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -14333,8 +14849,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBN Extracts\ext_tbnsubfiling\s_tbnsubfiling.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -15057,8 +15573,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TBN Extracts\ext_tbnsubfiling\v_tbnsubfiling.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -16275,8 +16791,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkpaccttype\s_tlkpaccttype.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -16395,9 +16911,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="LASTUPDATED" />
                         <externalMetadataColumn
                           refId="Package\RW TLKP Extracts\ext_tlkpaccttype\s_tlkpaccttype.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -16477,8 +16993,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkpaccttype\v_tlkpaccttype.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -16775,8 +17291,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkpstatusacct\s_tlkpstatusacct.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -16871,9 +17387,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="LASTUPDATED" />
                         <externalMetadataColumn
                           refId="Package\RW TLKP Extracts\ext_tlkpstatusacct\s_tlkpstatusacct.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -16953,8 +17469,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkpstatusacct\v_tlkpstatusacct.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -17209,8 +17725,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxauthority\s_tlkptaxauthority.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -17499,9 +18015,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           precision="1" />
                         <externalMetadataColumn
                           refId="Package\RW TLKP Extracts\ext_tlkptaxauthority\s_tlkptaxauthority.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -17581,8 +18097,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxauthority\v_tlkptaxauthority.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -18170,8 +18686,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail\s_tlkptaxauthoritydetail.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -18572,9 +19088,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="LASTUPDATED" />
                         <externalMetadataColumn
                           refId="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail\s_tlkptaxauthoritydetail.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -18654,8 +19170,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail\v_tlkptaxauthoritydetail.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -19435,8 +19951,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxdistrict\s_tlkptaxdistrict.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -19625,9 +20141,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           name="REPORTINGTAXDISTRICT" />
                         <externalMetadataColumn
                           refId="Package\RW TLKP Extracts\ext_tlkptaxdistrict\s_tlkptaxdistrict.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -19707,8 +20223,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TLKP Extracts\ext_tlkptaxdistrict\v_tlkptaxdistrict.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -20175,8 +20691,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority\s_tmaptaxdistrictauthority.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -20327,9 +20843,9 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                           scale="2" />
                         <externalMetadataColumn
                           refId="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority\s_tmaptaxdistrictauthority.Inputs[OLE DB Destination Input].ExternalColumns[ETL_RUN_TIME]"
-                          dataType="dbTimeStamp2"
-                          name="ETL_RUN_TIME"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="ETL_RUN_TIME" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -20409,8 +20925,8 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
                   <connections>
                     <connection
                       refId="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority\v_tmaptaxdistrictauthority.Connections[OleDbConnection]"
-                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
-                      connectionManagerRefId="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:invalid"
+                      connectionManagerID="{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[rw_extract]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -20693,15 +21209,6 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{DE105472-E001-42EF-8BE3-08067ED576CA}"
-      DTS:From="Package\RW TBL Extracts"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\RW TBN Extracts"
-      DTS:Value="2" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{1B28CDAC-3079-4D4B-9F45-DC61416D853D}"
@@ -20709,33 +21216,6 @@ FROM            PRRW_Upgrade.ENCOMPASS.TBLACCTLEGAL  AS T1 INNER JOIN
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\RW TLKP Extracts"
-      DTS:Value="2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{239D189D-D988-44B2-85D2-5524B0123557}"
-      DTS:From="Package\RW TLKP Extracts"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\RW TMAP Extracts"
-      DTS:Value="2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{B81EDC0B-8ED5-40BD-9519-4D98B93D91E7}"
-      DTS:From="Package\RW TMAP Extracts"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 3"
-      DTS:To="Package\GIS ODS Extracts"
-      DTS:Value="2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
-      DTS:CreationName=""
-      DTS:DTSID="{0D6CDD2B-8428-48A6-AEFA-D487635F1BE8}"
-      DTS:From="Package\RW Account Extracts"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 9"
-      DTS:To="Package\RW TBL Extracts"
       DTS:Value="2" />
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
@@ -20787,7 +21267,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;1,&#xA;0,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;4486,&#xA;4486,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -20798,7 +21278,7 @@ getdate()"+",
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -20806,16 +21286,20 @@ getdate()"+",
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="177,41"
+          Size="219,41"
           Id="Package\GIS ODS Extracts\ext_gis_ods_location"
-          TopLeft="5.5,5.49999999999995" />
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\GIS ODS Extracts\ext_location_data"
+          TopLeft="37,69" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="188,103"
-          Size="188,145"
+          PanelSize="266,166"
+          Size="266,209"
           Id="Package\GIS ODS Extracts"
-          TopLeft="27.5000000000003,2354.3" />
+          TopLeft="363.5,2134.3" />
         <NodeLayout
           Size="132,42"
           Id="Package\RW Account Extracts\ext_tblacct"
@@ -20968,9 +21452,9 @@ getdate()"+",
           Id="Package\RW Account Extracts"
           TopLeft="12.7000000000001,5.50000000000017" />
         <NodeLayout
-          Size="177,41"
+          Size="203,41"
           Id="Package\RW TBL Extracts\ext_tbladdresssecure"
-          TopLeft="5.5,5.49999999999995" />
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="143,41"
           Id="Package\RW TBL Extracts\ext_tblappeal"
@@ -20980,47 +21464,59 @@ getdate()"+",
           Id="Package\RW TBL Extracts\ext_tblappealacct"
           TopLeft="13.9,208.7" />
         <NodeLayout
-          Size="175,41"
+          Size="200,41"
           Id="Package\RW TBL Extracts\ext_tblpersonsecure"
           TopLeft="7.10000000000001,107.1" />
         <EdgeLayout
           Id="Package\RW TBL Extracts.PrecedenceConstraints[Constraint]"
-          TopLeft="94.3,47.1">
+          TopLeft="107.05,46.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60.6"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,53.1">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,53.1" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              BoundingBox="-25.304453125,20.7453125,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\RW TBL Extracts.PrecedenceConstraints[Constraint 1]"
-          TopLeft="94.3,148.7">
+          TopLeft="107.1,148.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="-12.7,60.6"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="-12.7,53.1">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,26.3" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.3"
+                    Point2="0,30.3"
+                    Point3="-4,30.3" />
+                  <mssgle:LineSegment
+                    End="-8.7,30.3" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.7,30.3"
+                    Point2="-12.7,30.3"
+                    Point3="-12.7,34.3" />
+                  <mssgle:LineSegment
+                    End="-12.7,53.1" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -21054,8 +21550,8 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="189,408"
-          Size="189,451"
+          PanelSize="259,408"
+          Size="259,451"
           Id="Package\RW TBL Extracts"
           TopLeft="27.1000000000001,719.1" />
         <NodeLayout
@@ -21098,259 +21594,182 @@ getdate()"+",
           Id="Package\RW TBN Extracts"
           TopLeft="32.7000000000002,1229.5" />
         <NodeLayout
-          Size="156,41"
+          Size="193,41"
           Id="Package\RW TLKP Extracts\ext_tlkpaccttype"
-          TopLeft="27.1,5.49999999999995" />
+          TopLeft="25.1,19.5" />
         <NodeLayout
-          Size="164,41"
+          Size="196,41"
           Id="Package\RW TLKP Extracts\ext_tlkpstatusacct"
           TopLeft="23.1,107.1" />
         <NodeLayout
-          Size="173,41"
+          Size="198,41"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthority"
           TopLeft="18.7,208.7" />
         <NodeLayout
-          Size="199,41"
+          Size="219,41"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail"
           TopLeft="5.50000000000004,310.3" />
         <NodeLayout
-          Size="161,41"
+          Size="187,41"
           Id="Package\RW TLKP Extracts\ext_tlkptaxdistrict"
           TopLeft="24.3,411.9" />
         <EdgeLayout
           Id="Package\RW TLKP Extracts.PrecedenceConstraints[Constraint]"
-          TopLeft="105.1,47.1">
+          TopLeft="121.35,60.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,46.5999999999999"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,39.0999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,39.0999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              BoundingBox="-25.304453125,13.7453125,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\RW TLKP Extracts.PrecedenceConstraints[Constraint 1]"
-          TopLeft="105.1,148.7">
+          TopLeft="119.4,148.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60.6000000000001"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,53.1000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,53.1000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453124999999,50.60890625,11.609375"
+              BoundingBox="-25.304453125,20.7453125000001,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\RW TLKP Extracts.PrecedenceConstraints[Constraint 2]"
-          TopLeft="105.1,250.3">
+          TopLeft="116.35,249.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60.5999999999999"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,53.0999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,53.0999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              BoundingBox="-25.304453125,20.7453125,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\RW TLKP Extracts.PrecedenceConstraints[Constraint 3]"
-          TopLeft="105.1,351.9">
+          TopLeft="116.4,351.3">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60.6000000000001"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,53.1000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,53.1000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453124999999,50.60890625,11.609375"
+              BoundingBox="-25.304453125,20.7453125000001,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="211,509"
-          Size="211,552"
+          PanelSize="269,509"
+          Size="269,552"
           Id="Package\RW TLKP Extracts"
           TopLeft="16.3000000000002,1536.7" />
         <NodeLayout
-          Size="211,41"
+          Size="224,41"
           Id="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority"
-          TopLeft="5.5,5.50000000000007" />
+          TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="223,103"
-          Size="223,145"
+          PanelSize="261,102"
+          Size="261,145"
           Id="Package\RW TMAP Extracts"
           TopLeft="10.3000000000003,2148.7" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="121.5,1169.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="121.5,1476.7">
+          TopLeft="121.2,1476.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999998"
+              EndConnector="29.6,60.2"
               Start="0,0"
-              End="0,52.4999999999998">
+              End="29.6,52.7">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999998" />
+                    End="0,26.1" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.1"
+                    Point2="0,30.1"
+                    Point3="4,30.1" />
+                  <mssgle:LineSegment
+                    End="25.6,30.1" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.6,30.1"
+                    Point2="29.6,30.1"
+                    Point3="29.6,34.1" />
+                  <mssgle:LineSegment
+                    End="29.6,52.7" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453124999999,50.60890625,11.609375"
+              BoundingBox="-10.504453125,35.1,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="121.5,2088.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="121.5,2294.3">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999995"
-              Start="0,0"
-              End="0,52.4999999999995">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999995" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453124999998,50.60890625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="121.5,659.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <AnnotationLayout
+          Text="INC0086311 gisods db and server retirement"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="266,60"
+          Id="0ebb6dab-c439-467b-bf1f-fdd0da7c0228"
+          TopLeft="678,2166" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -21370,13 +21789,13 @@ getdate()"+",
     design-time-name="Package\GIS ODS Extracts\ext_gis_ods_location">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="168.8,41.6"
+          Size="169,42"
           Id="Package\GIS ODS Extracts\ext_gis_ods_location\s_account_location"
           TopLeft="194.5,112.5" />
         <NodeLayout
-          Size="136.8,41.6"
+          Size="137,42"
           Id="Package\GIS ODS Extracts\ext_gis_ods_location\accounts_xy"
           TopLeft="5.5,5.5" />
         <EdgeLayout
@@ -21410,9 +21829,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21449,7 +21866,7 @@ getdate()"+",
           Id="Package\RW Account Extracts\ext_tblacct\v_tblacct"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="120,42"
+          Size="150,42"
           Id="Package\RW Account Extracts\ext_tblacct\s_tblacct"
           TopLeft="155.5,92.5" />
         <EdgeLayout
@@ -21458,9 +21875,9 @@ getdate()"+",
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="149,45"
+              EndConnector="164,45"
               Start="0,0"
-              End="149,37.5">
+              End="164,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -21471,13 +21888,13 @@ getdate()"+",
                     Point2="0,22.5"
                     Point3="4,22.5" />
                   <mssgle:LineSegment
-                    End="145,22.5" />
+                    End="160,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="145,22.5"
-                    Point2="149,22.5"
-                    Point3="149,26.5" />
+                    Point1="160,22.5"
+                    Point2="164,22.5"
+                    Point3="164,26.5" />
                   <mssgle:LineSegment
-                    End="149,37.5" />
+                    End="164,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -21519,7 +21936,7 @@ getdate()"+",
     design-time-name="Package\RW Account Extracts\ext_tblacctlegal">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="143,42"
           Id="Package\RW Account Extracts\ext_tblacctlegal\v_tblacctlegal"
@@ -21559,9 +21976,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21597,7 +22012,7 @@ getdate()"+",
     design-time-name="Package\RW Account Extracts\ext_tblacctnbhd">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="145,42"
           Id="Package\RW Account Extracts\ext_tblacctnbhd\v_tblacctnbhd"
@@ -21637,9 +22052,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21675,7 +22088,7 @@ getdate()"+",
     design-time-name="Package\RW Account Extracts\ext_tblacctowneraddress">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="187,42"
           Id="Package\RW Account Extracts\ext_tblacctowneraddress\v_tblacctowneraddress"
@@ -21715,9 +22128,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21753,13 +22164,13 @@ getdate()"+",
     design-time-name="Package\RW Account Extracts\ext_tblacctpropertyaddress">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\RW Account Extracts\ext_tblacctpropertyaddress\v_tblacctpropertyaddress"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\RW Account Extracts\ext_tblacctpropertyaddress\s_tblacctpropertyaddress"
           TopLeft="223.5,146.5" />
         <EdgeLayout
@@ -21793,9 +22204,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21831,13 +22240,13 @@ getdate()"+",
     design-time-name="Package\RW Account Extracts\ext_tblsubaccount">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="155.2,41.6"
+          Size="155,42"
           Id="Package\RW Account Extracts\ext_tblsubaccount\s_tblsubaccount"
           TopLeft="146.5,84.5" />
         <NodeLayout
-          Size="155.2,41.6"
+          Size="155,42"
           Id="Package\RW Account Extracts\ext_tblsubaccount\v_tblsubaccount"
           TopLeft="5.5,5.5" />
         <EdgeLayout
@@ -21871,9 +22280,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -21909,7 +22316,7 @@ getdate()"+",
     design-time-name="Package\RW TBL Extracts\ext_tbladdresssecure">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="169,42"
           Id="Package\RW TBL Extracts\ext_tbladdresssecure\s_tbladdresssecure"
@@ -21949,9 +22356,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22119,13 +22524,13 @@ getdate()"+",
     design-time-name="Package\RW TBL Extracts\ext_tblpersonsecure">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="164.8,41.6"
+          Size="165,42"
           Id="Package\RW TBL Extracts\ext_tblpersonsecure\v_tblpersonsecure"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="164,41.6"
+          Size="164,42"
           Id="Package\RW TBL Extracts\ext_tblpersonsecure\s_tblpersonsecure"
           TopLeft="244.5,109.5" />
         <EdgeLayout
@@ -22159,9 +22564,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22353,49 +22756,47 @@ getdate()"+",
     design-time-name="Package\RW TLKP Extracts\ext_tlkpaccttype">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="146,42"
+          Size="149,42"
           Id="Package\RW TLKP Extracts\ext_tlkpaccttype\s_tlkpaccttype"
-          TopLeft="102.5,102.5" />
+          TopLeft="144.5,190.5" />
         <NodeLayout
-          Size="147,42"
+          Size="175,42"
           Id="Package\RW TLKP Extracts\ext_tlkpaccttype\v_tlkpaccttype"
-          TopLeft="5.5,5.5" />
+          TopLeft="49.5,35.5" />
         <EdgeLayout
           Id="Package\RW TLKP Extracts\ext_tlkpaccttype.Paths[OLE DB Source Output]"
-          TopLeft="79,47.5">
+          TopLeft="137,77.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="96.5,55"
+              EndConnector="82,113"
               Start="0,0"
-              End="96.5,47.5">
+              End="82,105.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
+                    End="0,52.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,23.5"
-                    Point2="0,27.5"
-                    Point3="4,27.5" />
+                    Point1="0,52.5"
+                    Point2="0,56.5"
+                    Point3="4,56.5" />
                   <mssgle:LineSegment
-                    End="92.5,27.5" />
+                    End="78,56.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="92.5,27.5"
-                    Point2="96.5,27.5"
-                    Point3="96.5,31.5" />
+                    Point1="78,56.5"
+                    Point2="82,56.5"
+                    Point3="82,60.5" />
                   <mssgle:LineSegment
-                    End="96.5,47.5" />
+                    End="82,105.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22431,49 +22832,47 @@ getdate()"+",
     design-time-name="Package\RW TLKP Extracts\ext_tlkpstatusacct">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="155,42"
           Id="Package\RW TLKP Extracts\ext_tlkpstatusacct\v_tlkpstatusacct"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="154,42"
+          Size="204,42"
           Id="Package\RW TLKP Extracts\ext_tlkpstatusacct\s_tlkpstatusacct"
-          TopLeft="182.5,130.5" />
+          TopLeft="187.5,161.5" />
         <EdgeLayout
           Id="Package\RW TLKP Extracts\ext_tlkpstatusacct.Paths[OLE DB Source Output]"
           TopLeft="83,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="176.5,83"
+              EndConnector="206.5,114"
               Start="0,0"
-              End="176.5,75.5">
+              End="206.5,106.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,53" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.5"
-                    Point2="0,41.5"
-                    Point3="4,41.5" />
+                    Point1="0,53"
+                    Point2="0,57"
+                    Point3="4,57" />
                   <mssgle:LineSegment
-                    End="172.5,41.5" />
+                    End="202.5,57" />
                   <mssgle:CubicBezierSegment
-                    Point1="172.5,41.5"
-                    Point2="176.5,41.5"
-                    Point3="176.5,45.5" />
+                    Point1="202.5,57"
+                    Point2="206.5,57"
+                    Point3="206.5,61" />
                   <mssgle:LineSegment
-                    End="176.5,75.5" />
+                    End="206.5,106.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22509,7 +22908,7 @@ getdate()"+",
     design-time-name="Package\RW TLKP Extracts\ext_tlkptaxauthority">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="164,42"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthority\v_tlkptaxauthority"
@@ -22549,9 +22948,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22587,7 +22984,7 @@ getdate()"+",
     design-time-name="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="189,42"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail\v_tlkptaxauthoritydetail"
@@ -22627,9 +23024,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22665,7 +23060,7 @@ getdate()"+",
     design-time-name="Package\RW TLKP Extracts\ext_tlkptaxdistrict">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\RW TLKP Extracts\ext_tlkptaxdistrict\v_tlkptaxdistrict"
@@ -22705,9 +23100,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22743,13 +23136,13 @@ getdate()"+",
     design-time-name="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="201.6,41.6"
+          Size="202,42"
           Id="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority\v_tmaptaxdistrictauthority"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="200.8,41.6"
+          Size="201,42"
           Id="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority\s_tmaptaxdistrictauthority"
           TopLeft="116.5,95.5" />
         <EdgeLayout
@@ -22783,9 +23176,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -22814,6 +23205,96 @@ getdate()"+",
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\GIS ODS Extracts\ext_location_data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="234,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata"
+          TopLeft="361,73" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location"
+          TopLeft="385,251" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\Data Conversion"
+          TopLeft="399,161" />
+        <EdgeLayout
+          Id="Package\GIS ODS Extracts\ext_location_data.Paths[OLE DB Source Output]"
+          TopLeft="478.75,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GIS ODS Extracts\ext_location_data.Paths[Data Conversion Output]"
+          TopLeft="482.25,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
