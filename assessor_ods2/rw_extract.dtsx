@@ -12,8 +12,8 @@
   DTS:ObjectName="rw_extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="86"
-  DTS:VersionGUID="{424D1975-7706-4D42-A45F-2693751DA49B}">
+  DTS:VersionBuild="87"
+  DTS:VersionGUID="{7F116710-38FB-4E5D-8316-B9772B37F943}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -21267,7 +21267,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;4486,&#xA;4486,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;122,&#xA;121,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -21299,7 +21299,7 @@ getdate()"+",
           PanelSize="266,166"
           Size="266,209"
           Id="Package\GIS ODS Extracts"
-          TopLeft="363.5,2134.3" />
+          TopLeft="703.5,1250.3" />
         <NodeLayout
           Size="132,42"
           Id="Package\RW Account Extracts\ext_tblacct"
@@ -21726,7 +21726,7 @@ getdate()"+",
           PanelSize="261,102"
           Size="261,145"
           Id="Package\RW TMAP Extracts"
-          TopLeft="10.3000000000003,2148.7" />
+          TopLeft="369.3,1257.7" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="121.2,1476.5">
@@ -21764,12 +21764,12 @@ getdate()"+",
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="INC0086311 gisods db and server retirement"
+          Text="INC0086311 8/24 gisods db and server retirement"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="266,60"
+          Size="293,40"
           Id="0ebb6dab-c439-467b-bf1f-fdd0da7c0228"
-          TopLeft="678,2166" />
+          TopLeft="997,1295" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -21845,6 +21845,96 @@ getdate()"+",
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\GIS ODS Extracts\ext_gis_ods_location\s_account_location">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\GIS ODS Extracts\ext_location_data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="234,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata"
+          TopLeft="361,73" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location"
+          TopLeft="385,251" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\GIS ODS Extracts\ext_location_data\Data Conversion"
+          TopLeft="399,161" />
+        <EdgeLayout
+          Id="Package\GIS ODS Extracts\ext_location_data.Paths[OLE DB Source Output]"
+          TopLeft="478.75,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GIS ODS Extracts\ext_location_data.Paths[Data Conversion Output]"
+          TopLeft="482.25,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -23205,96 +23295,6 @@ getdate()"+",
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">View</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\GIS ODS Extracts\ext_location_data">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="234,42"
-          Id="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata"
-          TopLeft="361,73" />
-        <NodeLayout
-          Size="200,42"
-          Id="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location"
-          TopLeft="385,251" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\GIS ODS Extracts\ext_location_data\Data Conversion"
-          TopLeft="399,161" />
-        <EdgeLayout
-          Id="Package\GIS ODS Extracts\ext_location_data.Paths[OLE DB Source Output]"
-          TopLeft="478.75,115">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,46"
-              Start="0,0"
-              End="0,38.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,38.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\GIS ODS Extracts\ext_location_data.Paths[Data Conversion Output]"
-          TopLeft="482.25,203">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\GIS ODS Extracts\ext_location_data\src_location_data_xy_opendata">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\GIS ODS Extracts\ext_location_data\dest_s_account_location">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

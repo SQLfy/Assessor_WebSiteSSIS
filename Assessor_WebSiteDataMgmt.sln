@@ -72,6 +72,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Build Scripts", "D
 		Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016-2.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016-2.sql
 		Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016.sql = Database Build Scripts\assessor_staging_DVASSRRPT_1_27_2016.sql
 		Database Build Scripts\awr_pp_associated_account_03_15_2017.sql = Database Build Scripts\awr_pp_associated_account_03_15_2017.sql
+		Database Build Scripts\assessor_staging_trn_v_etl_account.sql = Database Build Scripts\assessor_staging_trn_v_etl_account.sql
 	EndProjectSection
 EndProject
 Global
