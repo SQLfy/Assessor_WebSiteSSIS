@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/25/2016 3:53:07 PM"
@@ -7,13 +7,13 @@
   DTS:CreatorName="DCGD\dguillen"
   DTS:DTSID="{AEFC39F6-4934-4863-BB48-FE1D184835A0}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="transformations"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="119"
-  DTS:VersionGUID="{0D9A31F6-5E47-4C68-8575-B6DD7E0AA51B}">
+  DTS:VersionBuild="120"
+  DTS:VersionGUID="{BFEE21C6-68E8-431D-9B8B-E6F0D2C54A01}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -265,7 +265,7 @@ getdate()"+",
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-                  SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;1,&#xA;1,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;44396,&#xA;44396,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -338,7 +338,7 @@ getdate()"+",
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-                  SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;1,&#xA;1,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;44396,&#xA;44396,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -773,8 +773,8 @@ getdate()"+",
                   <connections>
                     <connection
                       refId="Package\Load Code Table for Freeze Process\trn_valuation_class_code\query with join and substring.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1247,8 +1247,8 @@ getdate()"+",
                   <connections>
                     <connection
                       refId="Package\Load Code Table for Freeze Process\trn_valuation_class_code\valuation_class_code.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4033,7 +4033,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;1,&#xA;0,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'transformations',&#xA;'',&#xA;0,&#xA;'',&#xA;44396,&#xA;44394,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -4044,7 +4044,7 @@ getdate()"+",
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -4052,162 +4052,162 @@ getdate()"+",
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="332.666666666667,41.3333333333334"
+          Size="333,41"
           Id="Package\Execute asr_adv_search_query load_account_number"
           TopLeft="1191.28570729636,1349.02387202183" />
         <NodeLayout
-          Size="182.666666666667,42.6666666666667"
+          Size="183,43"
           Id="Package\Execute legacy_pp_npp_freeze"
           TopLeft="1175.28570729636,542.357205355168" />
         <NodeLayout
-          Size="257.333333333334,42.6666666666667"
+          Size="257,43"
           Id="Package\Execute legacy_pp_npp_freeze_for_tsgvacctabstvalue"
           TopLeft="1153.78570729636,736.357205355168" />
         <NodeLayout
-          Size="276.666666666667,41.3333333333334"
+          Size="277,41"
           Id="Package\Execute trn - sp_account_valuation_insert"
           TopLeft="1160.61904062969,638.357205355169" />
         <NodeLayout
-          Size="318.666666666667,41.3333333333334"
+          Size="319,41"
           Id="Package\Execute trn - sp_etl_azure_important_dates_insert"
           TopLeft="1192.78570729636,1248.35720535517" />
         <NodeLayout
-          Size="328,41.3333333333334"
+          Size="328,41"
           Id="Package\Execute trn - sp_etl_azure_important_PPLinks_insert"
           TopLeft="1173.78570729636,1150.35720535517" />
         <NodeLayout
-          Size="257.333333333334,41.3333333333334"
+          Size="257,41"
           Id="Package\Execute trn - sp_etl_parameter_insert"
           TopLeft="1170.11904062969,1041.6905386885" />
         <NodeLayout
-          Size="256,42.6666666666667"
+          Size="256,43"
           Id="Package\Execute trn - sp_value_from_tsgvacctabstvalue_insert"
           TopLeft="1160.61904062969,844.357205355167" />
         <NodeLayout
-          Size="350.666666666667,41.3333333333334"
+          Size="351,41"
           Id="Package\Execute trn - sp_value_from_tsgvacctabstvalue_sa_insert"
           TopLeft="1128.11904062969,943.690538688503" />
         <NodeLayout
-          Size="196.666666666667,41.3333333333334"
+          Size="197,41"
           Id="Package\Load Code Table for Freeze Process\trn_valuation_class_code"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="208,102.666666666667"
-          Size="208,145.333333333334"
+          PanelSize="208,103"
+          Size="208,145"
           Id="Package\Load Code Table for Freeze Process"
           TopLeft="1190.45237396302,347.690538688502" />
         <NodeLayout
-          Size="200,41.3333333333334"
+          Size="200,41"
           Id="Package\Process Account Tables\Execute publish_accounts"
           TopLeft="67.5,209.5" />
         <NodeLayout
-          Size="220.666666666667,41.3333333333334"
+          Size="221,41"
           Id="Package\Process Account Tables\Execute trn - sp_account_insert"
           TopLeft="57,107.5" />
         <NodeLayout
-          Size="296,41.3333333333334"
+          Size="296,41"
           Id="Package\Process Account Tables\Execute trn - sp_account_neighborhood insert"
           TopLeft="19.5000000000001,311.5" />
         <NodeLayout
-          Size="303.333333333334,41.3333333333334"
+          Size="303,41"
           Id="Package\Process Account Tables\Execute trn - sp_account_owner_address insert"
           TopLeft="16.0000000000001,413.5" />
         <NodeLayout
-          Size="284,41.3333333333334"
+          Size="284,41"
           Id="Package\Process Account Tables\Execute trn - sp_account_platted_lot_insert"
           TopLeft="25.5000000000001,617.5" />
         <NodeLayout
-          Size="313.333333333334,41.3333333333334"
+          Size="313,41"
           Id="Package\Process Account Tables\Execute trn - sp_account_property_address insert"
           TopLeft="10.5000000000001,515.5" />
         <NodeLayout
-          Size="283.333333333334,41.3333333333334"
+          Size="283,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_appeal_account_insert"
           TopLeft="26.0000000000003,2453.5" />
         <NodeLayout
-          Size="240,41.3333333333334"
+          Size="240,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_appeal_insert"
           TopLeft="47.5000000000003,2351.5" />
         <NodeLayout
-          Size="324,41.3333333333334"
+          Size="324,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_azure_bldg_permit_auth_insert"
           TopLeft="5.50000000000026,2045.5" />
         <NodeLayout
-          Size="267.333333333334,41.3333333333334"
+          Size="267,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_nod_table_1_insert"
           TopLeft="34.0000000000003,2555.5" />
         <NodeLayout
-          Size="267.333333333334,41.3333333333334"
+          Size="267,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_nod_table_2_insert"
           TopLeft="34.0000000000003,2657.5" />
         <NodeLayout
-          Size="238.666666666667,41.3333333333334"
+          Size="239,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_ppnov_insert"
           TopLeft="48.5000000000003,2249.5" />
         <NodeLayout
-          Size="244,41.3333333333334"
+          Size="244,41"
           Id="Package\Process Account Tables\Execute trn - sp_etl_realnov_insert"
           TopLeft="45.5000000000003,2147.5" />
         <NodeLayout
-          Size="296,41.3333333333334"
+          Size="296,41"
           Id="Package\Process Account Tables\Execute trn - sp_improvement_built_as_insert"
           TopLeft="19.5000000000001,821.5" />
         <NodeLayout
-          Size="284.666666666667,41.3333333333334"
+          Size="285,41"
           Id="Package\Process Account Tables\Execute trn - sp_improvement_detail_insert"
           TopLeft="25.0000000000001,923.5" />
         <NodeLayout
-          Size="299.333333333334,41.3333333333334"
+          Size="299,41"
           Id="Package\Process Account Tables\Execute trn - sp_improvement_insert"
           TopLeft="18.0000000000001,719.5" />
         <NodeLayout
-          Size="308.666666666667,41.3333333333334"
+          Size="309,41"
           Id="Package\Process Account Tables\Execute trn - sp_improvement_occupancy_insert"
           TopLeft="13.0000000000001,1025.5" />
         <NodeLayout
-          Size="255.333333333334,41.3333333333334"
+          Size="255,41"
           Id="Package\Process Account Tables\Execute trn - sp_land_abstract_insert"
           TopLeft="40.0000000000001,1127.5" />
         <NodeLayout
-          Size="256.666666666667,41.3333333333334"
+          Size="257,41"
           Id="Package\Process Account Tables\Execute trn - sp_land_attribute_insert"
           TopLeft="39.0000000000002,1739.5" />
         <NodeLayout
-          Size="248,41.3333333333334"
+          Size="248,41"
           Id="Package\Process Account Tables\Execute trn - sp_land_parent_insert"
           TopLeft="43.5000000000003,1943.5" />
         <NodeLayout
-          Size="252,41.3333333333334"
+          Size="252,41"
           Id="Package\Process Account Tables\Execute trn - sp_real_account_insert"
           TopLeft="41.5000000000002,1229.5" />
         <NodeLayout
-          Size="252.666666666667,41.3333333333334"
+          Size="253,41"
           Id="Package\Process Account Tables\Execute trn - sp_sale_account_insert"
           TopLeft="41.0000000000002,1433.5" />
         <NodeLayout
-          Size="209.333333333334,41.3333333333334"
+          Size="209,41"
           Id="Package\Process Account Tables\Execute trn - sp_sale_insert"
           TopLeft="62.5000000000002,1331.5" />
         <NodeLayout
-          Size="291.333333333334,41.3333333333334"
+          Size="291,41"
           Id="Package\Process Account Tables\Execute trn - sp_sale_inventory_detail_insert"
           TopLeft="22.0000000000002,1637.5" />
         <NodeLayout
-          Size="260,41.3333333333334"
+          Size="260,41"
           Id="Package\Process Account Tables\Execute trn - sp_sale_inventory_insert"
           TopLeft="37.5000000000002,1535.5" />
         <NodeLayout
-          Size="243.333333333334,41.3333333333334"
+          Size="243,41"
           Id="Package\Process Account Tables\Execute trn - sp_tsgn_value_insert"
           TopLeft="46.0000000000002,1841.5" />
         <NodeLayout
-          Size="282.666666666667,42.6666666666667"
+          Size="283,43"
           Id="Package\Process Account Tables\Execute trn sp_account_notification_merge"
           TopLeft="32.9583234147478,2749.16665314535" />
         <NodeLayout
-          Size="196.666666666667,41.3333333333334"
+          Size="197,41"
           Id="Package\Process Account Tables\Execute verify_acccounts"
           TopLeft="69,5.5" />
         <EdgeLayout
@@ -4807,24 +4807,24 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="464.666666666667,2844.66666666667"
-          Size="464.666666666667,2887.33333333334"
+          PanelSize="465,2845"
+          Size="465,2887"
           Id="Package\Process Account Tables"
           TopLeft="632.809516376683,39.2619173035735" />
         <NodeLayout
-          Size="280.666666666667,41.3333333333334"
+          Size="281,41"
           Id="Package\Process Tax Tables\Execute trn - sp_tax_authority_fund_insert"
           TopLeft="17.6666708886622,220.023809335629" />
         <NodeLayout
-          Size="254.666666666667,41.3333333333334"
+          Size="255,41"
           Id="Package\Process Tax Tables\Execute trn - sp_tax_authority_insert"
           TopLeft="5.49999999999999,5.5" />
         <NodeLayout
-          Size="291.333333333334,41.3333333333334"
+          Size="291,41"
           Id="Package\Process Tax Tables\Execute trn - sp_tax_district_authority_insert"
           TopLeft="12.6666708886622,118.023809335629" />
         <NodeLayout
-          Size="243.333333333334,41.3333333333334"
+          Size="243,41"
           Id="Package\Process Tax Tables\Execute trn - sp_tax_district_insert"
           TopLeft="269.40476265869,7.35714282393455" />
         <EdgeLayout
@@ -4926,43 +4926,43 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="581.333333333334,316.666666666667"
-          Size="581.333333333334,359.333333333334"
+          PanelSize="581,317"
+          Size="581,359"
           Id="Package\Process Tax Tables"
           TopLeft="1.92857148178979,51.7380947178318" />
         <NodeLayout
-          Size="294.666666666667,41.3333333333334"
+          Size="295,41"
           Id="Package\Restore value history from ASSESSOR APP PR"
           TopLeft="1210.64682392297,1451.19053663512" />
         <NodeLayout
-          Size="280.666666666667,41.3333333333334"
+          Size="281,41"
           Id="Package\Restore value history from DATASTORE PR"
           TopLeft="1199.86905158826,1543.1349798527" />
         <NodeLayout
-          Size="318.666666666667,42.6666666666667"
+          Size="319,43"
           Id="Package\SEQC Assessor Public Data for PBI Report\Execute trn - sp_RESMODELANALYSISDATA_insert"
           TopLeft="23.0952386451619,12.3333341856794" />
         <NodeLayout
-          Size="274.666666666667,42.6666666666667"
+          Size="275,43"
           Id="Package\SEQC Assessor Public Data for PBI Report\Execute trn - sp_RESMODELSALES_insert"
           TopLeft="25.4761909906353,85.1904775520165" />
         <NodeLayout
-          Size="273.333333333334,42.6666666666667"
+          Size="273,43"
           Id="Package\SEQC Assessor Public Data for PBI Report\Execute trn - sp_TBLMLSHISTORY_insert"
           TopLeft="31.428571854319,163.000001782179" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="346.666666666667,260"
-          Size="346.666666666667,302.666666666667"
+          PanelSize="347,260"
+          Size="347,303"
           Id="Package\SEQC Assessor Public Data for PBI Report"
           TopLeft="63.6904752414142,753.761891334682" />
         <NodeLayout
-          Size="236.666666666667,41.3333333333334"
+          Size="237,41"
           Id="Package\Sequence Container\Execute trn - sp_sub_filing_insert"
           TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="211.333333333334,41.3333333333334"
+          Size="211,41"
           Id="Package\Sequence Container\Execute trn - sp_subdivision"
           TopLeft="18.5,5.5" />
         <EdgeLayout
@@ -4990,16 +4990,16 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248,205.333333333334"
+          PanelSize="248,205"
           Size="248,248"
           Id="Package\Sequence Container"
           TopLeft="90.0000013038515,452.452380598159" />
         <NodeLayout
-          Size="232,41.3333333333334"
+          Size="232,41"
           Id="Package\TRN pers prop datastore tables\Execute trn - sp_pers_prop_acct"
           TopLeft="8.50000000000001,5.5" />
         <NodeLayout
-          Size="238.666666666667,41.3333333333334"
+          Size="239,41"
           Id="Package\TRN pers prop datastore tables\Execute trn - sp_pers_prop_detail"
           TopLeft="5.50000000000001,107.5" />
         <EdgeLayout
@@ -5027,8 +5027,8 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248.666666666667,205.333333333334"
-          Size="248.666666666667,248"
+          PanelSize="249,205"
+          Size="249,248"
           Id="Package\TRN pers prop datastore tables"
           TopLeft="1158.61904062969,33.6905386885001" />
         <EdgeLayout
@@ -5441,7 +5441,7 @@ getdate()"+",
           Text="This is the code that implents the freeze flag functionality&#xA;legacy_pp_npp_freeze_for_tsgvacctabstvalue.dtsx"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="331.333333333334,56"
+          Size="331,56"
           Id="860d822a-3b0c-429a-aa99-10c5eada14ec"
           TopLeft="1491.71428702579,656.888581962413" />
       </GraphLayout>
