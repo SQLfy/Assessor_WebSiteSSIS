@@ -12,8 +12,8 @@
   DTS:ObjectName="GenerateJSON"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{BBD560D4-012F-4F3B-9271-A271BD9D9787}">
+  DTS:VersionBuild="77"
+  DTS:VersionGUID="{809ED48A-E06E-42AA-87BF-0E2DEF8775C7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -828,7 +828,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{F1E65DEB-4930-48B1-B308-76E24C45832E}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'GenerateJSON',&#xA;'',&#xA;0,&#xA;'',&#xA;199,&#xA;199,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'GenerateJSON',&#xA;'',&#xA;0,&#xA;'',&#xA;634,&#xA;634,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -897,10 +897,10 @@ getdate()"+",
           Id="Package\Generate JSON"
           TopLeft="186,118" />
         <AnnotationLayout
-          Text="Generate JSON Uses the following parameters:&#xD;&#xA;* Connection for asr_app&#xA;* Json Should Run&#xA;* Json Data Folder&#xA;* NOV Years - Notice of Valuation&#xA;* NOD Years - Notice of Determination&#xA;* Assessor Run Details&#xA;* Assessor Detail Years&#xA;&#xA;These parameters also exist int the assessor_ods2 package, but are not believed to be used there.&#xA;Source references in that package are controlled by the ETL parameters table."
+          Text="Generate JSON Uses the following parameters:&#xD;&#xA;* Connection for asr_app&#xA;* Json Should Run&#xA;* Json Data Folder&#xA;* NOV Years - Notice of Valuation&#xA;* NOD Years - Notice of Determination&#xA;* Assessor Run Details&#xA;* Assessor Detail Years&#xD;&#xA;&#xD;&#xA;And logging w/email notification found in Event Handlers&#xD;&#xA;DC e-mail&#xD;&#xA;ssislogging&#xA;&#xA;These parameters also exist int the assessor_ods2 package, but are not believed to be used there.&#xA;Source references in that package are controlled by the ETL parameters table."
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="543,200"
+          Size="543,263"
           Id="bd985273-fe9c-497e-8526-9343265a9299"
           TopLeft="414,106" />
       </GraphLayout>
