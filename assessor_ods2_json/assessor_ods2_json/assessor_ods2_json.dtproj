@@ -402,10 +402,10 @@
                 <SSIS:Property SSIS:Name="Name">GenerateJSON</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">76</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">77</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BBD560D4-012F-4F3B-9271-A271BD9D9787}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{809ED48A-E06E-42AA-87BF-0E2DEF8775C7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
