@@ -1,5 +1,6 @@
 # This script is used to move files from one directory to another using robocopy
 # The script also creates a log file to track the movement of the files
+# Be sure to run vs code as ADMIN
 # To run in Production change the $destinationDirectory to the appropriate server 
 # Original script by: Rick Greenfield
 # Modified by: Kate Totten 2024 February -- added multi-threading to improve performance
