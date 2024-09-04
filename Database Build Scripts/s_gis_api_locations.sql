@@ -11,7 +11,7 @@ GO
 CREATE TABLE [asr_staging].[s_gis_api_locations](
 	[Account_Number] [varchar](50) NULL,
 	[State_Parcel_number] [varchar](15) NULL,
-    [numeric](30, 8) NULL,
+   	[x] [numeric](30, 8) NULL,
 	[y] [numeric](30, 8) NULL,
 	[Location] [varchar](32) NULL,
 	[etl_write_date] [datetime] NULL
