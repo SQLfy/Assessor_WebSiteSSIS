@@ -9,6 +9,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=UADCETL-SQL01;Initial Catalog=assessor_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=PRDCETL-SQL01;Initial Catalog=assessor_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
