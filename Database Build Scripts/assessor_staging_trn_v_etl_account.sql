@@ -1,12 +1,14 @@
-﻿USE [assessor_staging]
+USE [assessor_staging]
 GO
 
-/****** Object:  View [trn].[v_etl_account]    Script Date: 8/1/2024 10:38:15 PM ******/
+/****** Object:  View [trn].[v_etl_account]    Script Date: 9/5/2024 12:11:47 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+
 
 ALTER VIEW [trn].[v_etl_account]
 --WITH SCHEMABINDING
@@ -28,17 +30,10 @@ Mod Date:      10/31/2016
 Developer:     Richard Edwards
 Comments:      Added columns qtr, section, township and range 
 
-Mod #:  4
-Mod Date:      08/01/2024
-Developer:     Kate Totten
-Comments:      INC0086311 w/ complication of gis bad data
+Developer: 	Kate Totten 09/05/2024 - Reverted back to this original with new Staging database solution.  
                
 *************************************************************************************/
 AS
-WITH CTE_gis (Account_Number, State_Parcel_number, [Location])
-AS (	SELECT Account_Number, MAX(State_Parcel_number) State_Parcel_number, Max([Location]) [Location]
-		FROM [asr_staging].[s_account_location] 
-		GROUP BY Account_Number) 
 
 SELECT 
 	a.ACCOUNTNO AS account_no
@@ -52,7 +47,7 @@ SELECT
    ,al.LEGAL AS legal_description
    ,gis.longitude_x AS longitude_x
    ,gis.latitude_y AS latitude_y
-   ,NUll AS elevation_z --gis.elevation_z AS elevation_z
+   ,gis.elevation_z AS elevation_z
    ,gis.location AS location
    ,bpa.bldg_permit_auth_id as bldg_permit_auth_id
    ,GETDATE() AS create_datetime
@@ -73,7 +68,7 @@ SELECT
 				+ ISNULL(RTRIM(al.LEGAL), 'DBNULL_TEXT') 
 				+ ISNULL(RTRIM(gis.longitude_x), 'DBNULL_TEXT')
 				+ ISNULL(RTRIM(gis.latitude_y), 'DBNULL_TEXT')
-				+ ISNULL(RTRIM(NULL), 'DBNULL_TEXT') -- elevation is null in new gis source
+				+ ISNULL(RTRIM(gis.elevation_z), 'DBNULL_TEXT')
 				+ ISNULL(RTRIM(gis.location), 'DBNULL_TEXT')
 				+ ISNULL(RTRIM(bpa.bldg_permit_auth_id), 'DBNULL_TEXT')
 				+ ISNULL(RTRIM(lloc.QTR), 'DBNULL_TEXT')
@@ -100,12 +95,8 @@ FROM
 					 ON l1.accountno = l2.accountno
 					 AND l1.seqid = l2.max_seqid ) al   
 	ON al.ACCOUNTNO = a.ACCOUNTNO
-	LEFT OUTER JOIN (
-	SELECT Account_Number, State_Parcel_Number, SUBSTRING([Location], 2, 11) as longitude_x, SUBSTRING([Location], 15, 13) as latitude_y,  [Location]
-	FROM CTE_gis) gis
+	LEFT OUTER JOIN [asr_staging].[s_account_location] gis
 	ON gis.Account_Number = a.ACCOUNTNO
-	--LEFT OUTER JOIN [asr_staging].[s_account_location] gis
-	--ON gis.Account_Number = a.ACCOUNTNO -- INC0086311
 	LEFT JOIN [asr_staging].[s_tblacctlegallocation] lloc
 	ON lloc.ACCOUNTNO = a.ACCOUNTNO
 	LEFT OUTER JOIN [dqm].[bad_account] b  --exclude accounts that have DQM rule violations
@@ -113,3 +104,8 @@ FROM
 	INNER JOIN [trn].[v_etl_bldg_permit_authority_by_account] bpa
 	ON bpa.account_no = a.ACCOUNTNO
 WHERE b.accountno IS NULL;
+
+
+GO
+
+
