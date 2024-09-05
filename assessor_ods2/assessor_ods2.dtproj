@@ -46,7 +46,6 @@
           <SSIS:Package SSIS:Name="load_spatialest.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="legacy_pp_npp_freeze_for_tsgvacctabstvalue.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="load_prime.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="load_cboe_v2.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="ssislogging.conmgr" />
@@ -6492,23 +6491,6 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{A764F483-30F8-4244-8067-17D3EA5B374B}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="load_cboe_v2.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{692048EE-2BA1-448C-B12D-6B0D3A18E03E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">load_cboe_v2</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">34</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B0087C4C-9BD4-4E44-9D23-2120B026EF4D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
