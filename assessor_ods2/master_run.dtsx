@@ -7,13 +7,13 @@
   DTS:CreatorName="DCGD\dguillen"
   DTS:DTSID="{63661C08-08D8-41E0-9564-03147A0A2E70}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="master_run"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="237"
-  DTS:VersionGUID="{FEF052C8-E539-40B0-9D43-2C0E755FA7F9}">
+  DTS:VersionBuild="247"
+  DTS:VersionGUID="{93843DDD-CFF5-4848-8C85-020A0C1F9CCF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -53,7 +53,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="v_ssisloggin_servername">
       <DTS:VariableValue
-        DTS:DataType="8">UADCETL-MST01</DTS:VariableValue>
+        DTS:DataType="8">DVDCETL-MST01</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -64,7 +64,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="v_staging_servername">
       <DTS:VariableValue
-        DTS:DataType="8">UADCETL-SQL01</DTS:VariableValue>
+        DTS:DataType="8">DVDCETL-SQL01</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -87,7 +87,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log INSERT"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -147,7 +147,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log INSERT"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -207,7 +207,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"insert into ssislogging 
@@ -227,7 +227,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES',&#xA;12345,&#xA;'',&#xA;619,&#xA;619,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -475,7 +475,7 @@ getdate()"+",
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log UPDATE SUCCESS"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -541,7 +541,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ETL FAILURE DURING LOAD ASR_APP',&#xA;12345,&#xA;'',&#xA;619,&#xA;619,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ETL FAILURE DURING LOAD ASR_APP',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -612,7 +612,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE DURING LOAD ODS_ASR2',&#xA;12345,&#xA;'',&#xA;619,&#xA;619,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE DURING LOAD ODS_ASR2',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -646,7 +646,7 @@ getdate()"+",
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log UPDATE SUCCESS"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -670,6 +670,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract building_permit_authority Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{12f732e7-520c-4f0b-83f5-ae255bf19430}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -857,9 +858,9 @@ getdate()"+",
                           name="URL" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract building_permit_authority Table\Staging azure_building_permit_authority Table.Inputs[OLE DB Destination Input].ExternalColumns[create_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="create_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="create_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract building_permit_authority Table\Staging azure_building_permit_authority Table.Inputs[OLE DB Destination Input].ExternalColumns[create_user_id]"
                           codePage="1252"
@@ -868,9 +869,9 @@ getdate()"+",
                           name="create_user_id" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract building_permit_authority Table\Staging azure_building_permit_authority Table.Inputs[OLE DB Destination Input].ExternalColumns[update_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="update_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="update_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract building_permit_authority Table\Staging azure_building_permit_authority Table.Inputs[OLE DB Destination Input].ExternalColumns[update_user_id]"
                           codePage="1252"
@@ -1176,6 +1177,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract important_dates Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{ec622c79-f4e0-4242-82f2-3e8dc402f096}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1548,9 +1550,9 @@ getdate()"+",
                           name="Category" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_dates Table\Staging azure_important_dates Table.Inputs[OLE DB Destination Input].ExternalColumns[create_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="create_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="create_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_dates Table\Staging azure_important_dates Table.Inputs[OLE DB Destination Input].ExternalColumns[create_user_id]"
                           codePage="1252"
@@ -1559,9 +1561,9 @@ getdate()"+",
                           name="create_user_id" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_dates Table\Staging azure_important_dates Table.Inputs[OLE DB Destination Input].ExternalColumns[update_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="update_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="update_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_dates Table\Staging azure_important_dates Table.Inputs[OLE DB Destination Input].ExternalColumns[update_user_id]"
                           codePage="1252"
@@ -1616,6 +1618,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract important_PPLinks Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{27492998-5a0a-481a-ab1e-fcb797048ae7}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1891,9 +1894,9 @@ getdate()"+",
                           scale="6" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_PPLinks Table\Staging azure_important_PPLinks Table.Inputs[OLE DB Destination Input].ExternalColumns[create_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="create_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="create_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_PPLinks Table\Staging azure_important_PPLinks Table.Inputs[OLE DB Destination Input].ExternalColumns[create_user_id]"
                           codePage="1252"
@@ -1902,9 +1905,9 @@ getdate()"+",
                           name="create_user_id" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_PPLinks Table\Staging azure_important_PPLinks Table.Inputs[OLE DB Destination Input].ExternalColumns[update_datetime]"
-                          dataType="dbTimeStamp2"
-                          name="update_datetime"
-                          scale="7" />
+                          dataType="wstr"
+                          length="27"
+                          name="update_datetime" />
                         <externalMetadataColumn
                           refId="Package\Load Stage Tables\Extract important_PPLinks Table\Staging azure_important_PPLinks Table.Inputs[OLE DB Destination Input].ExternalColumns[update_user_id]"
                           codePage="1252"
@@ -1954,6 +1957,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract improvement_details_whitelist  Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
           DTS:DTSID="{74be4053-76bb-4302-b820-ac8874fb3733}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -2240,6 +2244,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_building_permit_authority Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{6c3ad781-0a03-42ac-bda0-bbe55cdeb187}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2257,6 +2262,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_important_dates Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{5c66ed0b-e8a0-4624-97b9-7dc84c4957ba}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2274,6 +2280,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_important_PPLinks Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{bbe04826-1487-4fa2-9b87-581569d09d34}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2291,6 +2298,7 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_improvement_details_whitelist Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
           DTS:DTSID="{2a94eba7-f605-4a3c-aa0d-6f9d9fde1511}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2373,7 +2381,7 @@ getdate()"+",
       DTS:LocaleID="-1"
       DTS:ObjectName="LOG_BATCH_END"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3628,7 +3636,8 @@ getdate()"+",
                           scale="6" />
                         <externalMetadataColumn
                           refId="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Extract ETL Parameter Table\ETL Parameters on XXASSRRPT.Inputs[OLE DB Destination Input].ExternalColumns[date_value]"
-                          dataType="dbDate"
+                          dataType="wstr"
+                          length="10"
                           name="date_value" />
                         <externalMetadataColumn
                           refId="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Extract ETL Parameter Table\ETL Parameters on XXASSRRPT.Inputs[OLE DB Destination Input].ExternalColumns[boolean_value]"
@@ -3938,8 +3947,8 @@ values
 '',
 '0',
 '',
-619,
-619,
+641,
+641,
 getdate(),
 1267
 )</DTS:VariableValue>
@@ -3971,7 +3980,7 @@ getdate(),
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'OnError',&#xA;'master_run',&#xA;'',&#xA;'0',&#xA;'',&#xA;619,&#xA;619,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'OnError',&#xA;'master_run',&#xA;'',&#xA;'0',&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4041,7 +4050,7 @@ getdate(),
             <SendMailTask:SendMailTaskData
               SendMailTask:SMTPServer="{E4401D61-3331-43E4-8713-D163D6227BE0}"
               SendMailTask:From="etl_user@dvdcetl-mst01.douglas.co.us"
-              SendMailTask:To="rgreenfield@douglas.co.us"
+              SendMailTask:To="ktotten@douglas.co.us"
               SendMailTask:Subject="ETL for ASR_ODS2 Failed on DVDCETL-MST01-  for ASR_APP DATA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -4073,7 +4082,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'',&#xA;0,&#xA;'',&#xA;619,&#xA;618,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'',&#xA;0,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4096,7 +4105,7 @@ getdate()"+",
             <SendMailTask:SendMailTaskData
               SendMailTask:SMTPServer="{E4401D61-3331-43E4-8713-D163D6227BE0}"
               SendMailTask:From="etl_user@dvdcetl-mst01.douglas.co.us"
-              SendMailTask:To="rgreenfield@douglas.co.us"
+              SendMailTask:To="ktotten@douglas.co.us"
               SendMailTask:Subject="ETL for ASR_ODS2 Completed Successfully on DVDCETL-MST01 - for ASR_APP DATA" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -4138,7 +4147,7 @@ getdate()"+",
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="271,42"
+          Size="270.666666666667,42"
           Id="Package\Begin Load asr_app Tables\Execute sp_data_processing_log INSERT"
           TopLeft="5.5,23.2894740190536" />
         <NodeLayout
@@ -4170,12 +4179,12 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="282,195"
-          Size="282,237"
+          PanelSize="282,194.666666666667"
+          Size="282,237.333333333334"
           Id="Package\Begin Load asr_app Tables"
           TopLeft="414,3527.09999925613" />
         <NodeLayout
-          Size="216,43"
+          Size="216,42.6666666666667"
           Id="Package\Begin Load ODS2 Tables\Execute sp_data_processing_log INSERT"
           TopLeft="5.5,5.5" />
         <NodeLayout
@@ -4219,18 +4228,18 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="282,207"
-          Size="282,249"
+          PanelSize="282,206.666666666667"
+          Size="282,249.333333333334"
           Id="Package\Begin Load ODS2 Tables"
           TopLeft="414,2911.09999925613" />
         <NodeLayout
-          Size="329,42"
+          Size="329.333333333334,42"
           Id="Package\ETL Failed Prior to LOAD Packages\LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="340,103"
+          PanelSize="340,102.666666666667"
           Size="340,146"
           Id="Package\ETL Failed Prior to LOAD Packages"
           TopLeft="757,2962.09999925613" />
@@ -4239,11 +4248,11 @@ getdate()"+",
           Id="Package\Extract and DQM Sequence Container\create_dqm_indexes"
           TopLeft="46,413.5" />
         <NodeLayout
-          Size="163,42"
+          Size="162.666666666667,42"
           Id="Package\Extract and DQM Sequence Container\drop dqm indexes"
           TopLeft="52.5,107.5" />
         <NodeLayout
-          Size="153,42"
+          Size="153.333333333334,42"
           Id="Package\Extract and DQM Sequence Container\RUN_DQM_PD1"
           TopLeft="57.5000000000001,719.5" />
         <NodeLayout
@@ -4251,19 +4260,19 @@ getdate()"+",
           Id="Package\Extract and DQM Sequence Container\RUN_DQM_SIMPLE_SEARCH"
           TopLeft="27.0000000000001,617.5" />
         <NodeLayout
-          Size="168,43"
+          Size="168,42.6666666666667"
           Id="Package\Extract and DQM Sequence Container\RUN_RW_EXTRACT_PD1"
           TopLeft="48,308.833333333334" />
         <NodeLayout
-          Size="257,42"
+          Size="257.333333333334,42"
           Id="Package\Extract and DQM Sequence Container\RUN_RW_EXTRACT_SIMPLE_SEARCH"
           TopLeft="5.50000000000003,209.5" />
         <NodeLayout
-          Size="183,42"
+          Size="182.666666666667,42"
           Id="Package\Extract and DQM Sequence Container\trunc_dqm_err_tables"
           TopLeft="42.5000000000001,515.5" />
         <NodeLayout
-          Size="177,42"
+          Size="177.333333333334,42"
           Id="Package\Extract and DQM Sequence Container\trunc_staging_tables"
           TopLeft="45.5,5.5" />
         <EdgeLayout
@@ -4423,18 +4432,18 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="268,819"
-          Size="268,861"
+          PanelSize="268,818.666666666667"
+          Size="268,861.333333333334"
           Id="Package\Extract and DQM Sequence Container"
           TopLeft="421.333338871598,1737.83332969149" />
         <NodeLayout
-          Size="321,42"
+          Size="321.333333333334,42"
           Id="Package\Load  ASR APP Tables Successfully Completed\Execute sp_data_processing_log UPDATE SUCCESS"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="57"
           IsExpanded="True"
-          PanelSize="332,103"
+          PanelSize="332,102.666666666667"
           Size="332,160"
           Id="Package\Load  ASR APP Tables Successfully Completed"
           TopLeft="252.791668681429,3852.33157616148" />
@@ -4471,8 +4480,8 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="323,205"
-          Size="323,248"
+          PanelSize="322.666666666667,205.333333333334"
+          Size="322.666666666667,248"
           Id="Package\Load ASR_APP Tables Failed"
           TopLeft="654.66665699333,3851.43684013072" />
         <NodeLayout
@@ -4480,7 +4489,7 @@ getdate()"+",
           Id="Package\Load ODS2 Tables Failed\Execute sp_data_processing_log UPDATE FAILED"
           TopLeft="10,5.5" />
         <NodeLayout
-          Size="321,42"
+          Size="321.333333333334,42"
           Id="Package\Load ODS2 Tables Failed\LOG ODS2 ETL FAILURE DURING LOAD ODS_ASR2"
           TopLeft="5.50000000000003,107.5" />
         <EdgeLayout
@@ -4508,33 +4517,33 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="332,205"
+          PanelSize="332,205.333333333334"
           Size="332,248"
           Id="Package\Load ODS2 Tables Failed"
           TopLeft="782,3219.09999925613" />
         <NodeLayout
-          Size="345,42"
+          Size="345.333333333334,42"
           Id="Package\Load ODS2 Tables Successfully Completed\Execute sp_data_processing_log UPDATE SUCCESS"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="356,103"
+          PanelSize="356,102.666666666667"
           Size="356,146"
           Id="Package\Load ODS2 Tables Successfully Completed"
           TopLeft="389,3270.09999925613" />
         <NodeLayout
-          Size="265,42"
+          Size="265.333333333334,42.6666666666667"
           Id="Package\Load Stage Tables\Extract building_permit_authority Table"
-          TopLeft="110,179" />
+          TopLeft="110,180.368421078389" />
         <NodeLayout
-          Size="221,42"
+          Size="221.333333333334,42"
           Id="Package\Load Stage Tables\Extract important_dates Table"
           TopLeft="132,628" />
         <NodeLayout
-          Size="187,43"
+          Size="186.666666666667,42.6666666666667"
           Id="Package\Load Stage Tables\Extract important_PPLinks Table"
-          TopLeft="129,472" />
+          TopLeft="129,476.105263235166" />
         <NodeLayout
           Size="290,42"
           Id="Package\Load Stage Tables\Extract improvement_details_whitelist  Table"
@@ -4548,11 +4557,11 @@ getdate()"+",
           Id="Package\Load Stage Tables\Truncate azure_important_dates Table"
           TopLeft="123.5,551" />
         <NodeLayout
-          Size="272,42"
+          Size="276,42.6666666666667"
           Id="Package\Load Stage Tables\Truncate azure_important_PPLinks Table"
-          TopLeft="130.5,397" />
+          TopLeft="129.875000009313,398.368421078388" />
         <NodeLayout
-          Size="327,42"
+          Size="326.666666666667,42"
           Id="Package\Load Stage Tables\Truncate azure_improvement_details_whitelist Table"
           TopLeft="95,246" />
         <EdgeLayout
@@ -4561,26 +4570,26 @@ getdate()"+",
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-13,34"
+              EndConnector="-12.8333333333333,35.3684210783889"
               Start="0,0"
-              End="-13,26.5">
+              End="-12.8333333333333,27.8684210783889">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13" />
+                    End="0,13.6842105391945" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13"
-                    Point2="0,17"
-                    Point3="-4,17" />
+                    Point1="0,13.6842105391945"
+                    Point2="0,17.6842105391945"
+                    Point3="-4,17.6842105391945" />
                   <mssgle:LineSegment
-                    End="-9,17" />
+                    End="-8.83333333333334,17.6842105391945" />
                   <mssgle:CubicBezierSegment
-                    Point1="-9,17"
-                    Point2="-13,17"
-                    Point3="-13,21" />
+                    Point1="-8.83333333333334,17.6842105391945"
+                    Point2="-12.8333333333333,17.6842105391945"
+                    Point3="-12.8333333333333,21.6842105391945" />
                   <mssgle:LineSegment
-                    End="-13,26.5" />
+                    End="-12.8333333333333,27.8684210783889" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4591,30 +4600,30 @@ getdate()"+",
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Stage Tables.PrecedenceConstraints[Constraint 1]"
-          TopLeft="242.5,221">
+          TopLeft="242.666666666667,223.035087745056">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="16,25"
+              EndConnector="15.6666666666667,22.9649122549444"
               Start="0,0"
-              End="16,17.5">
+              End="15.6666666666667,15.4649122549444">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.5" />
+                    End="0,7.48245612747222" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.5"
-                    Point2="0,12.5"
-                    Point3="4,12.5" />
+                    Point1="0,7.48245612747222"
+                    Point2="0,11.4824561274722"
+                    Point3="4,11.4824561274722" />
                   <mssgle:LineSegment
-                    End="12,12.5" />
+                    End="11.6666666666667,11.4824561274722" />
                   <mssgle:CubicBezierSegment
-                    Point1="12,12.5"
-                    Point2="16,12.5"
-                    Point3="16,16.5" />
+                    Point1="11.6666666666667,11.4824561274722"
+                    Point2="15.6666666666667,11.4824561274722"
+                    Point3="15.6666666666667,15.4824561274722" />
                   <mssgle:LineSegment
-                    End="16,17.5" />
+                    End="15.6666666666667,15.4649122549444" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4663,26 +4672,26 @@ getdate()"+",
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="21,25"
+              EndConnector="22.3750000093132,26.3684210783885"
               Start="0,0"
-              End="21,17.5">
+              End="22.3750000093132,18.8684210783885">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.5" />
+                    End="0,9.18421053919423" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.5"
-                    Point2="0,12.5"
-                    Point3="4,12.5" />
+                    Point1="0,9.18421053919423"
+                    Point2="0,13.1842105391942"
+                    Point3="4,13.1842105391942" />
                   <mssgle:LineSegment
-                    End="17,12.5" />
+                    End="18.3750000093132,13.1842105391942" />
                   <mssgle:CubicBezierSegment
-                    Point1="17,12.5"
-                    Point2="21,12.5"
-                    Point3="21,16.5" />
+                    Point1="18.3750000093132,13.1842105391942"
+                    Point2="22.3750000093132,13.1842105391942"
+                    Point3="22.3750000093132,17.1842105391942" />
                   <mssgle:LineSegment
-                    End="21,17.5" />
+                    End="22.3750000093132,18.8684210783885" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4693,30 +4702,30 @@ getdate()"+",
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Stage Tables.PrecedenceConstraints[Constraint 4]"
-          TopLeft="266.5,439">
+          TopLeft="267.875000009313,441.035087745055">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-44.1666666666667,33"
+              EndConnector="-45.5416666759799,35.0701754901109"
               Start="0,0"
-              End="-44.1666666666667,25.5">
+              End="-45.5416666759799,27.5701754901109">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.5" />
+                    End="0,13.5350877450554" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.5"
-                    Point2="0,16.5"
-                    Point3="-4,16.5" />
+                    Point1="0,13.5350877450554"
+                    Point2="0,17.5350877450554"
+                    Point3="-4,17.5350877450554" />
                   <mssgle:LineSegment
-                    End="-40.1666666666667,16.5" />
+                    End="-41.5416666759799,17.5350877450554" />
                   <mssgle:CubicBezierSegment
-                    Point1="-40.1666666666667,16.5"
-                    Point2="-44.1666666666667,16.5"
-                    Point3="-44.1666666666667,20.5" />
+                    Point1="-41.5416666759799,17.5350877450554"
+                    Point2="-45.5416666759799,17.5350877450554"
+                    Point3="-45.5416666759799,21.5350877450554" />
                   <mssgle:LineSegment
-                    End="-44.1666666666667,25.5" />
+                    End="-45.5416666759799,27.5701754901109" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4727,30 +4736,30 @@ getdate()"+",
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Stage Tables.PrecedenceConstraints[Constraint 5]"
-          TopLeft="222.333333333333,514.666666666667">
+          TopLeft="222.333333333333,518.771929901833">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="32.1666666666667,36.3333333333334"
+              EndConnector="32.1666666666667,32.2280700981673"
               Start="0,0"
-              End="32.1666666666667,28.8333333333334">
+              End="32.1666666666667,24.7280700981673">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.1666666666667" />
+                    End="0,12.1140350490837" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.1666666666667"
-                    Point2="0,18.1666666666667"
-                    Point3="4,18.1666666666667" />
+                    Point1="0,12.1140350490837"
+                    Point2="0,16.1140350490837"
+                    Point3="4,16.1140350490837" />
                   <mssgle:LineSegment
-                    End="28.1666666666667,18.1666666666667" />
+                    End="28.1666666666667,16.1140350490837" />
                   <mssgle:CubicBezierSegment
-                    Point1="28.1666666666667,18.1666666666667"
-                    Point2="32.1666666666667,18.1666666666667"
-                    Point3="32.1666666666667,22.1666666666667" />
+                    Point1="28.1666666666667,16.1140350490837"
+                    Point2="32.1666666666667,16.1140350490837"
+                    Point3="32.1666666666667,20.1140350490837" />
                   <mssgle:LineSegment
-                    End="32.1666666666667,28.8333333333334" />
+                    End="32.1666666666667,24.7280700981673" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4797,22 +4806,22 @@ getdate()"+",
           Text="This section of code uses prrwsql PRRW tables to load &#xA;building permit authority, details whitelist, PP links, and important dates. &#xA;It replaces the Azure/Access program."
           ParentId="Package\Load Stage Tables"
           FontInfo="{assembly:Null}"
-          Size="415,72"
+          Size="414.666666666667,72"
           Id="5fc0e70c-de3e-4e1f-a2a3-64f63bf66f38"
           TopLeft="24,13" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="444,827"
-          Size="444,870"
+          PanelSize="444,828"
+          Size="444,870.666666666667"
           Id="Package\Load Stage Tables"
           TopLeft="536.833343304694,820.133333348831" />
         <NodeLayout
-          Size="205,42"
+          Size="205.333333333334,42"
           Id="Package\LOG_BATCH_END"
           TopLeft="320.291668681429,4060.33157616148" />
         <NodeLayout
-          Size="239,42"
+          Size="238.666666666667,42"
           Id="Package\LOG_BATCH_START"
           TopLeft="381.66667278856,30.7666662327449" />
         <NodeLayout
@@ -4820,11 +4829,11 @@ getdate()"+",
           Id="Package\SET BATCH_ERRORS"
           TopLeft="423.166672714055,110.099999953508" />
         <NodeLayout
-          Size="265,42"
+          Size="265.333333333334,42"
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\copy etl_parameter from staging to RW"
           TopLeft="103.5,392" />
         <NodeLayout
-          Size="417,42"
+          Size="417.333333333334,42"
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Execute assessor_staging update_etl_parameter_table_with_rw_extract"
           TopLeft="36,230" />
         <NodeLayout
@@ -4836,7 +4845,7 @@ getdate()"+",
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Truncate ETL Parameter Table"
           TopLeft="110,78" />
         <NodeLayout
-          Size="233,42"
+          Size="233.333333333334,42"
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\truncate RW etl_parameter table"
           TopLeft="117.5,307" />
         <EdgeLayout
@@ -4955,24 +4964,24 @@ getdate()"+",
           Text="This section of code uses PRREALWARE-SQL rw_extract dbo Web tables to load &#xA;ETL parameters. It replaces the Azure/Access program."
           ParentId="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables"
           FontInfo="{assembly:Null}"
-          Size="451,56"
+          Size="450.666666666667,56"
           Id="74938f8c-3b0d-4a8b-9b54-df56430b8eeb"
           TopLeft="24,13" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="480,505"
+          PanelSize="480,505.333333333334"
           Size="480,548"
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables"
           TopLeft="313.750012125819,213.684210539194" />
         <NodeLayout
-          Size="180,43"
+          Size="180,42.6666666666667"
           Id="Package\TRN Sequence Container\RUN_TRN_SIMPLE_SEARCH"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="222,103"
+          PanelSize="222,102.666666666667"
           Size="222,146"
           Id="Package\TRN Sequence Container"
           TopLeft="444.333338871598,2657.83332969149" />
@@ -5100,26 +5109,26 @@ getdate()"+",
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="205.083331178875,58.4491228096367"
+              EndConnector="205.083331178875,58.4491228096369"
               Start="0,0"
-              End="205.083331178875,50.9491228096367">
+              End="205.083331178875,50.9491228096369">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.2245614048184" />
+                    End="0,25.2245614048185" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,25.2245614048184"
-                    Point2="0,29.2245614048184"
-                    Point3="4,29.2245614048184" />
+                    Point1="0,25.2245614048185"
+                    Point2="0,29.2245614048185"
+                    Point3="4,29.2245614048185" />
                   <mssgle:LineSegment
-                    End="201.083331178875,29.2245614048184" />
+                    End="201.083331178875,29.2245614048185" />
                   <mssgle:CubicBezierSegment
-                    Point1="201.083331178875,29.2245614048184"
-                    Point2="205.083331178875,29.2245614048184"
-                    Point3="205.083331178875,33.2245614048184" />
+                    Point1="201.083331178875,29.2245614048185"
+                    Point2="205.083331178875,29.2245614048185"
+                    Point3="205.083331178875,33.2245614048185" />
                   <mssgle:LineSegment
-                    End="205.083331178875,50.9491228096367" />
+                    End="205.083331178875,50.9491228096369" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5164,30 +5173,30 @@ getdate()"+",
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="758.833343304694,1689.46666668216">
+          TopLeft="758.833343304694,1690.8000000155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-160.166671099763,48.3666630093255"
+              EndConnector="-203.500004433096,47.0333296759925"
               Start="0,0"
-              End="-160.166671099763,40.8666630093255">
+              End="-203.500004433096,39.5333296759925">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.8477722993306" />
+                    End="0,19.5166648379962" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.8477722993306"
-                    Point2="0,28.8477722993306"
-                    Point3="-4,28.8477722993306" />
+                    Point1="0,19.5166648379962"
+                    Point2="0,23.5166648379962"
+                    Point3="-4,23.5166648379962" />
                   <mssgle:LineSegment
-                    End="-156.166671099763,28.8477722993306" />
+                    End="-199.500004433096,23.5166648379962" />
                   <mssgle:CubicBezierSegment
-                    Point1="-156.166671099763,28.8477722993306"
-                    Point2="-160.166671099763,28.8477722993306"
-                    Point3="-160.166671099763,32.8477722993306" />
+                    Point1="-199.500004433096,23.5166648379962"
+                    Point2="-203.500004433096,23.5166648379962"
+                    Point3="-203.500004433096,27.5166648379962" />
                   <mssgle:LineSegment
-                    End="-160.166671099763,40.8666630093255" />
+                    End="-203.500004433096,39.5333296759925" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5410,7 +5419,7 @@ getdate()"+",
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="125,42"
           Id="Package.EventHandlers[OnError]\Error Log"
@@ -5438,7 +5447,9 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5540,9 +5551,9 @@ getdate()"+",
     design-time-name="Package\Load Stage Tables\Extract building_permit_authority Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="209,42"
+          Size="209.333333333334,42"
           Id="Package\Load Stage Tables\Extract building_permit_authority Table\WebPermitAuthority Source"
           TopLeft="201,52" />
         <NodeLayout
@@ -5580,7 +5591,9 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5902,7 +5915,7 @@ getdate()"+",
     design-time-name="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Extract ETL Parameter Table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="228,42"
           Id="Package\Setting ETL parameters using PRREALWARE-SQL rw_extract dbo Web tables\Extract ETL Parameter Table\ETL Parameters on XXASSRRPT"
@@ -5946,9 +5959,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5982,9 +5993,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

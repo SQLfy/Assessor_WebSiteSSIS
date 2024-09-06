@@ -9,6 +9,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=PRRW2-SQL01;Initial Catalog=assessor_extract;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-{1CFC3DB8-64B8-4B1C-960F-F77BFB102DAE}rw_extract;" />
+      DTS:ConnectionString="Data Source=PRRW2-SQL01;Initial Catalog=assessor_extract;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

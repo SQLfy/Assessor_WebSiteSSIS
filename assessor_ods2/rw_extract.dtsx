@@ -12,8 +12,8 @@
   DTS:ObjectName="rw_extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="110"
-  DTS:VersionGUID="{BA0F1F7F-EDC4-4D10-9233-613B0218A4B6}">
+  DTS:VersionBuild="111"
+  DTS:VersionGUID="{23A5D980-7514-4561-BED9-BA77C82F43A6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -20915,7 +20915,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;167435,&#xA;167434,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'rw_extract',&#xA;'',&#xA;0,&#xA;'',&#xA;488,&#xA;488,&#xA;getdate(),&#xA;0&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -20938,11 +20938,11 @@ getdate()"+",
           Id="Package\GIS ODS Extracts\ext_gis_api_locations"
           TopLeft="169,90" />
         <NodeLayout
-          Size="211,42"
+          Size="210.666666666667,42"
           Id="Package\GIS ODS Extracts\ext_tblacctpropertyaddress"
           TopLeft="20.5000000000001,34.5" />
         <NodeLayout
-          Size="231,42"
+          Size="230.666666666667,42"
           Id="Package\GIS ODS Extracts\SQL insert_s_account_location"
           TopLeft="77,183" />
         <EdgeLayout
@@ -21016,8 +21016,8 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="371,297"
-          Size="371,340"
+          PanelSize="370.666666666667,297.333333333334"
+          Size="370.666666666667,340"
           Id="Package\GIS ODS Extracts"
           TopLeft="337.5,501.8" />
         <NodeLayout
@@ -21025,19 +21025,19 @@ getdate()"+",
           Id="Package\RW Account Extracts\ext_tblacct"
           TopLeft="43.9,5.49999999999995" />
         <NodeLayout
-          Size="152,41"
+          Size="152,41.3333333333334"
           Id="Package\RW Account Extracts\ext_tblacctlegal"
           TopLeft="32.7,107.1" />
         <NodeLayout
-          Size="153,41"
+          Size="153.333333333334,41.3333333333334"
           Id="Package\RW Account Extracts\ext_tblacctnbhd"
           TopLeft="31.9,310.3" />
         <NodeLayout
-          Size="196,41"
+          Size="196,41.3333333333334"
           Id="Package\RW Account Extracts\ext_tblacctowneraddress"
           TopLeft="10.7000000000001,411.9" />
         <NodeLayout
-          Size="164,41"
+          Size="164,41.3333333333334"
           Id="Package\RW Account Extracts\ext_tblsubaccount"
           TopLeft="26.7,208.7" />
         <EdgeLayout
@@ -21139,24 +21139,24 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="271,611"
-          Size="271,654"
+          PanelSize="270.666666666667,610.666666666667"
+          Size="270.666666666667,654"
           Id="Package\RW Account Extracts"
           TopLeft="11.7000000000001,4.50000000000017" />
         <NodeLayout
-          Size="203,41"
+          Size="202.666666666667,41.3333333333334"
           Id="Package\RW TBL Extracts\ext_tbladdresssecure"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="143,41"
+          Size="142.666666666667,41.3333333333334"
           Id="Package\RW TBL Extracts\ext_tblappeal"
           TopLeft="23.1,310.3" />
         <NodeLayout
-          Size="161,41"
+          Size="161.333333333334,41.3333333333334"
           Id="Package\RW TBL Extracts\ext_tblappealacct"
           TopLeft="13.9,208.7" />
         <NodeLayout
-          Size="200,41"
+          Size="200,41.3333333333334"
           Id="Package\RW TBL Extracts\ext_tblpersonsecure"
           TopLeft="7.10000000000001,107.1" />
         <EdgeLayout
@@ -21242,16 +21242,16 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="259,408"
-          Size="259,451"
+          PanelSize="258.666666666667,408"
+          Size="258.666666666667,450.666666666667"
           Id="Package\RW TBL Extracts"
           TopLeft="27.1000000000001,719.1" />
         <NodeLayout
-          Size="167,41"
+          Size="166.666666666667,41.3333333333334"
           Id="Package\RW TBN Extracts\ext_tbnsubdivision"
           TopLeft="5.50000000000001,5.49999999999995" />
         <NodeLayout
-          Size="153,41"
+          Size="153.333333333334,41.3333333333334"
           Id="Package\RW TBN Extracts\ext_tbnsubfiling"
           TopLeft="11.9,107.1" />
         <EdgeLayout
@@ -21281,28 +21281,28 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="177,205"
-          Size="177,247"
+          PanelSize="177.333333333334,205.333333333334"
+          Size="177.333333333334,246.666666666667"
           Id="Package\RW TBN Extracts"
           TopLeft="32.7000000000002,1229.5" />
         <NodeLayout
-          Size="193,41"
+          Size="193.333333333334,41.3333333333334"
           Id="Package\RW TLKP Extracts\ext_tlkpaccttype"
           TopLeft="25.1,19.5" />
         <NodeLayout
-          Size="196,41"
+          Size="196,41.3333333333334"
           Id="Package\RW TLKP Extracts\ext_tlkpstatusacct"
           TopLeft="23.1,107.1" />
         <NodeLayout
-          Size="198,41"
+          Size="198,41.3333333333334"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthority"
           TopLeft="18.7,208.7" />
         <NodeLayout
-          Size="219,41"
+          Size="218.666666666667,41.3333333333334"
           Id="Package\RW TLKP Extracts\ext_tlkptaxauthoritydetail"
           TopLeft="5.50000000000004,310.3" />
         <NodeLayout
-          Size="187,41"
+          Size="186.666666666667,41.3333333333334"
           Id="Package\RW TLKP Extracts\ext_tlkptaxdistrict"
           TopLeft="24.3,411.9" />
         <EdgeLayout
@@ -21404,19 +21404,19 @@ getdate()"+",
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="269,509"
-          Size="269,552"
+          PanelSize="269.333333333334,509.333333333334"
+          Size="269.333333333334,552"
           Id="Package\RW TLKP Extracts"
           TopLeft="16.3000000000002,1536.7" />
         <NodeLayout
-          Size="224,41"
+          Size="224,41.3333333333334"
           Id="Package\RW TMAP Extracts\ext_tmaptaxdistrictauthority"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="261,102"
-          Size="261,145"
+          PanelSize="261.333333333334,102"
+          Size="261.333333333334,145.333333333334"
           Id="Package\RW TMAP Extracts"
           TopLeft="369.3,1257.7" />
         <EdgeLayout
@@ -21459,7 +21459,7 @@ getdate()"+",
           Text="INC0086311 8/24 gisods db and server retirement"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="293,40"
+          Size="293.333333333334,40"
           Id="0ebb6dab-c439-467b-bf1f-fdd0da7c0228"
           TopLeft="371,442" />
       </GraphLayout>
@@ -21483,15 +21483,15 @@ getdate()"+",
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="177,42"
+          Size="177.333333333334,42"
           Id="Package\GIS ODS Extracts\ext_gis_api_locations\OLE DB Destination"
           TopLeft="380,170" />
         <NodeLayout
-          Size="157,42"
+          Size="157.333333333334,42"
           Id="Package\GIS ODS Extracts\ext_gis_api_locations\OLE DB Source"
           TopLeft="325,17" />
         <NodeLayout
-          Size="161,42"
+          Size="161.333333333334,42"
           Id="Package\GIS ODS Extracts\ext_gis_api_locations\Data Conversion"
           TopLeft="367,97" />
         <EdgeLayout
@@ -21567,6 +21567,19 @@ getdate()"+",
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\GIS ODS Extracts\ext_gis_api_locations\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GIS ODS Extracts\ext_gis_api_locations\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

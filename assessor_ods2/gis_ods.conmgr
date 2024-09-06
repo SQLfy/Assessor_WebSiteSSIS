@@ -9,6 +9,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=DVDCETL-SQL01;Initial Catalog= opendata_gis;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=DVDCETL-SQL01;Initial Catalog=opendata_gis;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-{3A11B769-670E-4C9B-95FC-F15EFC3BE5C6}gis_ods;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

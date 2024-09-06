@@ -9,6 +9,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=prdcetl-mst01.dcgov.douglas.co.us;Initial Catalog=MDS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=prdcetl-mst01.dcgov.douglas.co.us;Initial Catalog=MDS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-{5AB4F590-AFBA-4525-B10B-F3561852B74E}prdcetl-mst01 MDS;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
