@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/27/2016 2:31:29 PM"
@@ -7,30 +7,16 @@
   DTS:CreatorName="DCGD\agolden"
   DTS:DTSID="{47C3589A-FB0D-44D4-8C5F-35EF91AB6271}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="legacy_pp_npp_freeze"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{E2C05E75-C26E-4766-A5AB-91C592F72088}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{CD433FB4-ED42-4E01-8BBA-F6F16C865D98}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[dvassrrpt.assessor_datastore]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{FBFBD6E6-D605-47D1-B0EA-1944BC5ED1AD}"
-      DTS:ObjectName="dvassrrpt.assessor_datastore">
-      <DTS:PropertyExpression
-        DTS:Name="ConnectionString">"Data Source="+ @[$Project::asr_ods2_servername] +";"+"Initial Catalog=assessor_datastore"+";"+"Provider=SQLNCLI11.1"+";"+"Integrated Security=SSPI"+";"+"Auto Translate=False"+";"</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=uaassrrpt;Initial Catalog=assessor_datastore;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
       DTS:CreationName="FLATFILE"
@@ -299,8 +285,8 @@
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\rn account_valuation_pp_frz B\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -527,8 +513,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\rn account_valuation_pp_frz B\Query account_valuation_pp_frz.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -792,8 +778,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_frz\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1027,8 +1013,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_frz\Query account_valuation_npp_frz.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1292,8 +1278,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_reg\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1529,8 +1515,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_reg\Query account_valuation_npp_reg.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1794,8 +1780,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_frz A\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2022,8 +2008,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_frz A\Query account_valuation_pp_frz.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2287,8 +2273,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_reg A\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2515,8 +2501,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_reg A\Query account_valuation_pp_reg.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2780,8 +2766,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_reg B\account_valuation.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -3008,8 +2994,8 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
                   <connections>
                     <connection
                       refId="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_pp_reg B\Query account_valuation_pp_reg.Connections[OleDbConnection]"
-                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                      connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                      connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -3213,7 +3199,7 @@ AGG_INPUT.ACCOUNTNO$1 , AGG_INPUT.ABSTRACTCODE$1 ) AGGREGATOR  ) INGRP1
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{FBFBD6E6-D605-47D1-B0EA-1944BC5ED1AD}"
+              SQLTask:Connection="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}"
               SQLTask:SqlStatementSource="TRUNCATE TABLE assessor_staging.[asr_staging].[s_account_valuation]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -3363,7 +3349,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'legacy_pp_npp_freeze',&#xA;'',&#xA;0,&#xA;'',&#xA;0,&#xA;0,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'legacy_pp_npp_freeze',&#xA;'',&#xA;0,&#xA;'',&#xA;242,&#xA;242,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -3374,7 +3360,7 @@ getdate()"+",
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -3717,6 +3703,18 @@ getdate()"+",
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="137.333333333334,42.6666666666667"
+          Id="Package.EventHandlers[OnPostExecute]\Log Post Execute"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\TRN ACCOUNT_VALUATION TABLES\rn account_valuation_pp_frz B">
     <LayoutInfo>
@@ -3787,9 +3785,9 @@ getdate()"+",
     design-time-name="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_frz">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="237,42"
+          Size="237.333333333334,42"
           Id="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_frz\Query account_valuation_npp_frz"
           TopLeft="64,44" />
         <NodeLayout
@@ -3815,9 +3813,7 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3853,7 +3849,7 @@ getdate()"+",
     design-time-name="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_reg">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="241.333333333334,42"
           Id="Package\TRN ACCOUNT_VALUATION TABLES\trn account_valuation_npp_reg\Query account_valuation_npp_reg"
@@ -3881,7 +3877,9 @@ getdate()"+",
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4123,17 +4121,5 @@ getdate()"+",
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnPostExecute]">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
-        <NodeLayout
-          Size="137.333333333334,42.6666666666667"
-          Id="Package.EventHandlers[OnPostExecute]\Log Post Execute"
-          TopLeft="60,60" />
-      </GraphLayout>
-    </LayoutInfo>
-  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
