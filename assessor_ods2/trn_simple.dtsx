@@ -11,8 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="trn_simple"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{320BFA03-0887-42AB-936D-775862E6F3B5}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{48928482-84D8-40FC-BD73-332F62373E15}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1388,14 +1389,14 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="The stored proc for truncating is in the staging db.&#xD;&#xA;However, the tables it is acting on is in the datastore db."
+          Text="The stored proc for truncating is in the staging db.&#xA;However, the tables it is acting on is in the datastore db."
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="325.333333333334,60"
+          Size="325.333333333334,56"
           Id="be3a99b3-ad10-49c0-9e7d-e45c49d73843"
           TopLeft="284.374995762482,89.6315806344606" />
         <AnnotationLayout
-          Text="The data flow task for &quot;od&quot; Open Data.  &#xD;&#xA;Was trying to pull directly from RW and there is no such schema.&#xD;&#xA;Shut off in this version of our ETL 2024-10-04"
+          Text="The data flow task for &quot;od&quot; Open Data.  &#xA;Was trying to pull directly from RW and there is no such schema.&#xA;Shut off in this version of our ETL 2024-10-04"
           ParentId="Package"
           FontInfo="{assembly:Null}"
           Size="370.666666666667,72"
