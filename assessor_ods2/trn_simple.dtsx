@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/11/2017 3:50:17 PM"
@@ -7,12 +7,12 @@
   DTS:CreatorName="DCGD\dguillen"
   DTS:DTSID="{D744B265-AA96-4A81-A595-6F024C9DB06A}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="trn_simple"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{EA7C00A7-BA65-4A99-ADB6-DF279F5010A4}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{320BFA03-0887-42AB-936D-775862E6F3B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,6 +85,7 @@
       DTS:refId="Package\trn_od_propertylocation"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{13BF1689-5A6E-4795-AEEB-6D4BEBE2B169}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -154,8 +155,8 @@
               <connections>
                 <connection
                   refId="Package\trn_od_propertylocation\PropertyLocation.Connections[OleDbConnection]"
-                  connectionManagerID="{B706685C-CD53-476B-80EB-B5720E832541}:invalid"
-                  connectionManagerRefId="{B706685C-CD53-476B-80EB-B5720E832541}:invalid"
+                  connectionManagerID="{B706685C-CD53-476B-80EB-B5720E832541}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[assessor_datastore]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -570,8 +571,8 @@
               <connections>
                 <connection
                   refId="Package\trn_od_propertylocation\v_od_propertylocation.Connections[OleDbConnection]"
-                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
-                  connectionManagerRefId="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
+                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SourceRWDatabase]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1207,7 +1208,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -1215,11 +1216,11 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="163,42"
+          Size="162.666666666667,42"
           Id="Package\trn_built_as_code"
           TopLeft="27.5000000000001,515.5" />
         <NodeLayout
-          Size="145,42"
+          Size="145.333333333334,42"
           Id="Package\trn_heat_type"
           TopLeft="36.5,311.5" />
         <NodeLayout
@@ -1227,19 +1228,19 @@
           Id="Package\trn_land"
           TopLeft="50.0000000000001,617.5" />
         <NodeLayout
-          Size="175,42"
+          Size="174.666666666667,42"
           Id="Package\trn_occupancy_code"
           TopLeft="21.5000000000001,413.5" />
         <NodeLayout
           Size="192,42"
           Id="Package\trn_od_propertylocation"
-          TopLeft="238,633.5" />
+          TopLeft="253.624999767169,527.447366424875" />
         <NodeLayout
           Size="150,42"
           Id="Package\trn_subdivision"
           TopLeft="34,209.5" />
         <NodeLayout
-          Size="207,42"
+          Size="206.666666666667,42"
           Id="Package\truncate_trn_simple_tables"
           TopLeft="5.5,5.5" />
         <EdgeLayout
@@ -1266,30 +1267,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="168,638.5">
+          TopLeft="127.333333333333,617.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="69.9999999999999,16"
+              EndConnector="222.291666433836,-48.0526335751251"
               Start="0,0"
-              End="62.4999999999999,16">
+              End="222.291666433836,-40.5526335751251">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="30.9999999999999,0" />
+                    End="0,-15.6067601878437" />
                   <mssgle:CubicBezierSegment
-                    Point1="30.9999999999999,0"
-                    Point2="34.9999999999999,0"
-                    Point3="34.9999999999999,4" />
+                    Point1="0,-15.6067601878437"
+                    Point2="0,-19.6067601878437"
+                    Point3="4,-19.6067601878437" />
                   <mssgle:LineSegment
-                    End="34.9999999999999,12" />
+                    End="218.291666433836,-19.6067601878437" />
                   <mssgle:CubicBezierSegment
-                    Point1="34.9999999999999,12"
-                    Point2="34.9999999999999,16"
-                    Point3="38.9999999999999,16" />
+                    Point1="218.291666433836,-19.6067601878437"
+                    Point2="222.291666433836,-19.6067601878437"
+                    Point3="222.291666433836,-23.6067601878437" />
                   <mssgle:LineSegment
-                    End="62.4999999999999,16" />
+                    End="222.291666433836,-40.5526335751251" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1386,6 +1387,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="The stored proc for truncating is in the staging db.&#xD;&#xA;However, the tables it is acting on is in the datastore db."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="325.333333333334,60"
+          Id="be3a99b3-ad10-49c0-9e7d-e45c49d73843"
+          TopLeft="284.374995762482,89.6315806344606" />
+        <AnnotationLayout
+          Text="The data flow task for &quot;od&quot; Open Data.  &#xD;&#xA;Was trying to pull directly from RW and there is no such schema.&#xD;&#xA;Shut off in this version of our ETL 2024-10-04"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="370.666666666667,72"
+          Id="e35d3c2a-debd-43ef-8a10-aa63f36afb98"
+          TopLeft="357.638883559654,402.163750259793" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
