@@ -40,7 +40,6 @@
           <SSIS:Package SSIS:Name="SpatialestFTP.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="legacy_pp_npp_freeze.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Verify_JSON_Sync_Processed.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="rw_extract_simple.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="dqm_simple.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="trn_simple.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="load_spatialest.dtsx" SSIS:EntryPoint="1" />
@@ -769,7 +768,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">DVRW</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">PRRW</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1035,7 +1034,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">DVRW</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">PRRW</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -6185,23 +6184,6 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{0DB22FA3-0982-4021-8221-F421057FDF2E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="rw_extract_simple.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{2B44B823-54E9-41F4-B3DF-0FAA03CAD8D4}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">rw_extract_simple</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A942C130-90B9-4F03-B4E7-6DC5F3519449}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
