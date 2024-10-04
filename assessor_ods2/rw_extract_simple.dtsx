@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/11/2017 1:20:35 PM"
@@ -7,12 +7,12 @@
   DTS:CreatorName="DCGD\dguillen"
   DTS:DTSID="{2B44B823-54E9-41F4-B3DF-0FAA03CAD8D4}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="rw_extract_simple"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{6CD927D8-A83E-473E-9F43-BCD9DCC46191}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{D87007EB-F016-4AE3-957B-EFBAE5658B4A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -90,8 +90,8 @@
               <connections>
                 <connection
                   refId="Package\tblimpsbltasvalue\s_tblimpsbltasvalue.Connections[OleDbConnection]"
-                  connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                  connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                  connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -761,8 +761,8 @@
               <connections>
                 <connection
                   refId="Package\tblimpsbltasvalue\tblimpsbltasvalue.Connections[OleDbConnection]"
-                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
-                  connectionManagerRefId="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
+                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SourceRWDatabase]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1875,8 +1875,8 @@
               <connections>
                 <connection
                   refId="Package\tlkpimpshvactype\s_tlkpimpshvactype.Connections[OleDbConnection]"
-                  connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
-                  connectionManagerRefId="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:invalid"
+                  connectionManagerID="{A8E6D93A-AC3A-4236-9872-B8F5C679CDA7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2048,8 +2048,8 @@
               <connections>
                 <connection
                   refId="Package\tlkpimpshvactype\tlkpimpshvactype.Connections[OleDbConnection]"
-                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
-                  connectionManagerRefId="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:invalid"
+                  connectionManagerID="{7E30739A-BC87-46B8-80DE-0F8D5D4822C8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SourceRWDatabase]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2271,7 +2271,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -2346,6 +2346,13 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="This has not run in production.&#xD;&#xA;It was also set to pull from Realware directly and use an &quot;ODS..&quot;schema that does not exist.&#xD;&#xA;Neither did the view it was looking for exist in our assessor extract db.&#xD;&#xA;Therefore, this is being mothballed."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="508,88"
+          Id="41d7392d-1e75-4be6-b248-69f7ebc3006f"
+          TopLeft="659.374990174547,91.0000017128493" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2417,18 +2424,18 @@
     design-time-name="Package\tlkpimpshvactype">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="160,42"
           Id="Package\tlkpimpshvactype\tlkpimpshvactype"
-          TopLeft="11,5.5" />
+          TopLeft="10.3750000093133,5.5" />
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\tlkpimpshvactype\s_tlkpimpshvactype"
           TopLeft="5.50000000000001,107.5" />
         <EdgeLayout
           Id="Package\tlkpimpshvactype.Paths[OLE DB Source Output]"
-          TopLeft="91,47.5">
+          TopLeft="90.6041666713233,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2445,9 +2452,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
