@@ -12,8 +12,8 @@
   DTS:ObjectName="master_run"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="247"
-  DTS:VersionGUID="{93843DDD-CFF5-4848-8C85-020A0C1F9CCF}">
+  DTS:VersionBuild="248"
+  DTS:VersionGUID="{E29BC018-B23A-46D9-98D1-BC2B17DDFFFB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,7 +87,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log INSERT"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -147,7 +147,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log INSERT"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -207,7 +207,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"insert into ssislogging 
@@ -227,7 +227,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE PRIOR TO LOAD PACKAGES',&#xA;12345,&#xA;'',&#xA;165,&#xA;165,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -475,7 +475,7 @@ getdate()"+",
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log UPDATE SUCCESS"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -541,7 +541,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ETL FAILURE DURING LOAD ASR_APP',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ETL FAILURE DURING LOAD ASR_APP',&#xA;12345,&#xA;'',&#xA;165,&#xA;165,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -612,7 +612,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE DURING LOAD ODS_ASR2',&#xA;12345,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'LOG ODS2 ETL FAILURE DURING LOAD ODS_ASR2',&#xA;12345,&#xA;'',&#xA;165,&#xA;165,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -646,7 +646,7 @@ getdate()"+",
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute sp_data_processing_log UPDATE SUCCESS"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -670,7 +670,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract building_permit_authority Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:Disabled="True"
           DTS:DTSID="{12f732e7-520c-4f0b-83f5-ae255bf19430}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1177,7 +1176,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract important_dates Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:Disabled="True"
           DTS:DTSID="{ec622c79-f4e0-4242-82f2-3e8dc402f096}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1618,7 +1616,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract important_PPLinks Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:Disabled="True"
           DTS:DTSID="{27492998-5a0a-481a-ab1e-fcb797048ae7}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -1957,7 +1954,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Extract improvement_details_whitelist  Table"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:Disabled="True"
           DTS:DTSID="{74be4053-76bb-4302-b820-ac8874fb3733}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -2244,7 +2240,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_building_permit_authority Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{6c3ad781-0a03-42ac-bda0-bbe55cdeb187}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2262,7 +2257,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_important_dates Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{5c66ed0b-e8a0-4624-97b9-7dc84c4957ba}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2280,7 +2274,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_important_PPLinks Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{bbe04826-1487-4fa2-9b87-581569d09d34}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2298,7 +2291,6 @@ getdate()"+",
           DTS:refId="Package\Load Stage Tables\Truncate azure_improvement_details_whitelist Table"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{2a94eba7-f605-4a3c-aa0d-6f9d9fde1511}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -2381,7 +2373,7 @@ getdate()"+",
       DTS:LocaleID="-1"
       DTS:ObjectName="LOG_BATCH_END"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3947,8 +3939,8 @@ values
 '',
 '0',
 '',
-641,
-641,
+166,
+166,
 getdate(),
 1267
 )</DTS:VariableValue>
@@ -3980,7 +3972,7 @@ getdate(),
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'OnError',&#xA;'master_run',&#xA;'',&#xA;'0',&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'OnError',&#xA;'master_run',&#xA;'',&#xA;'0',&#xA;'',&#xA;165,&#xA;165,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -4082,7 +4074,7 @@ getdate()"+",
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{812B2DC5-DAC8-48F4-A8F4-A80E873DCBE3}"
-              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'',&#xA;0,&#xA;'',&#xA;641,&#xA;641,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into ssislogging &#xA;(EventType, PackageName, TaskName, EventCode, EventDescription,PackageDuration, ContainerDuration,logDate,BatchID) &#xA;values &#xA;(&#xA;'PostExecute',&#xA;'master_run',&#xA;'',&#xA;0,&#xA;'',&#xA;165,&#xA;164,&#xA;getdate(),&#xA;1267&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
