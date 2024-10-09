@@ -28,7 +28,7 @@ Date        Author           Description
 ******************************************************************************/
 
 
-ALTER PROCEDURE [asr_staging].[insert_s_account_location]
+CREATE OR ALTER PROCEDURE [asr_staging].[insert_s_account_location]
 AS 
 BEGIN
 	SET NOCOUNT ON;
