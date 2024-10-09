@@ -26,29 +26,14 @@ Date        Author           Description
 ----------- ---------------- --------------------
 2024-08-10  Kate Totten      INC0086311 - ODS2 GIS Failure
 ******************************************************************************/
+-- Current version is in DB Build scripts
 
-
-CREATE OR ALTER PROCEDURE [asr_staging].[insert_s_account_location]
-AS 
+--CREATE OR ALTER PROCEDURE [asr_staging].[insert_s_account_location]
+--AS 
 BEGIN
 	SET NOCOUNT ON;
-	
-	INSERT INTO [asr_staging].[s_account_location] (Account_Number, State_Parcel_Number, longitude_x,  latitude_y, [Location])
-	SELECT ACCOUNTNO, State_Parcel_Number, TRY_CONVERT(NUMERIC(30,8),SUBSTRING(maxloc, 1,11)) as 'longitude_x', TRY_CONVERT(NUMERIC(30,8),SUBSTRING(maxloc, 13,24)) as 'latitude_y', maxloc AS [Location]
-	FROM
-		(SELECT ACCOUNTNO, State_Parcel_Number, MAX(ISNULL(PrimeBldPick.[Location], CONCAT(longitude_x, ',',latitude_y))) maxloc
-		FROM (
-		SELECT ACCOUNTNO, gisloc.State_Parcel_Number, x as 'longitude_x', y as 'latitude_y', gisloc.[Location] as [Location]
-				FROM [assessor_staging].[asr_staging].[s_tblacctpropertyaddress] pra
-					JOIN [assessor_staging].[asr_staging].[s_gis_api_locations] gisloc
-					ON pra.ACCOUNTNO = gisloc.Account_Number
-				WHERE [ORDERNO] = 1
-		) PrimeBldPick
-		GROUP BY ACCOUNTNO, State_Parcel_Number) picks
-
+	Select getdate()
 	SET NOCOUNT OFF;
 END
-GO
-
 
 GO
