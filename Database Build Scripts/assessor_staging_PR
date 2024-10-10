@@ -8917,15 +8917,15 @@ Date        Author           Description
 ******************************************************************************/
 -- TRUNCATE [asr_staging].[s_account_location] -- occurs in ssis package
 
-CREATE PROCEDURE [asr_staging].[insert_s_account_location]
+CREATE OR ALTER PROCEDURE [asr_staging].[insert_s_account_location]
 AS 
 BEGIN
 	SET NOCOUNT ON;
 	
 	INSERT INTO [asr_staging].[s_account_location] (Account_Number, State_Parcel_Number, longitude_x,  latitude_y, [Location])
-	SELECT ACCOUNTNO, grp.State_Parcel_Number, TRY_CONVERT(NUMERIC(30,8),Substring(MinXY, 1, 13)) as 'longitude_x', TRY_CONVERT(NUMERIC(30,8),SUBSTRING(MinXY, 15, 11))  as 'latitude_y', NULL as [location] --, MinXY
+	SELECT ACCOUNTNO, grp.State_Parcel_Number, TRY_CONVERT(NUMERIC(30,8),Substring(MinYX, 15, 11)) as 'latitude_y', TRY_CONVERT(NUMERIC(30,8),SUBSTRING(MinYX, 1, 11))  as 'longitude_x', MinYX as [location] --, MinXY
 	FROM [assessor_staging].[asr_staging].[s_tblacctpropertyaddress] pra
-		JOIN (SELECT Account_Number , State_Parcel_Number, MIN(CONCAT(CONCAT(x,','),y)) MinXY 
+		JOIN (SELECT Account_Number , State_Parcel_Number, MIN(CONCAT(CONCAT(y,','),x)) MinYX 
 			 FROM [assessor_staging].[asr_staging].[s_gis_api_locations] gisloc
 			 GROUP BY Account_Number, State_Parcel_Number
 			)grp
