@@ -1,0 +1,4095 @@
+USE [master]
+GO
+/****** Object:  Database [assessor_extract]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE DATABASE [assessor_extract]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'assessor_extract', FILENAME = N'E:\Data\assessor_extract_4_parcel_detail.mdf' , SIZE = 16384KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'assessor_extract_log', FILENAME = N'E:\Logs\assessor_extract_4_parcel_detail_log.ldf' , SIZE = 22528KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [assessor_extract] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [assessor_extract].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [assessor_extract] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [assessor_extract] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [assessor_extract] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [assessor_extract] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [assessor_extract] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [assessor_extract] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [assessor_extract] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [assessor_extract] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [assessor_extract] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [assessor_extract] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [assessor_extract] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [assessor_extract] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [assessor_extract] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [assessor_extract] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [assessor_extract] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [assessor_extract] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [assessor_extract] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [assessor_extract] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [assessor_extract] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [assessor_extract] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [assessor_extract] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [assessor_extract] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [assessor_extract] SET RECOVERY FULL 
+GO
+ALTER DATABASE [assessor_extract] SET  MULTI_USER 
+GO
+ALTER DATABASE [assessor_extract] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [assessor_extract] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [assessor_extract] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [assessor_extract] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [assessor_extract] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [assessor_extract] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'assessor_extract', N'ON'
+GO
+ALTER DATABASE [assessor_extract] SET QUERY_STORE = OFF
+GO
+USE [assessor_extract]
+GO
+/****** Object:  User [DCGOV\wmusteen]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\wmusteen] FOR LOGIN [DCGOV\wmusteen] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGOV\T1-jlongach]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\T1-jlongach] FOR LOGIN [DCGOV\T1-jlongach] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGOV\T1_Database_Developers]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\T1_Database_Developers] FOR LOGIN [DCGOV\T1_Database_Developers]
+GO
+/****** Object:  User [DCGOV\SA_PBI_Realware]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\SA_PBI_Realware] FOR LOGIN [DCGOV\SA_PBI_Realware] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGOV\SA_MOVERE_SQL]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\SA_MOVERE_SQL] FOR LOGIN [DCGOV\SA_MOVERE_SQL] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGOV\pmathews]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGOV\pmathews] FOR LOGIN [DCGOV\pmathews] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGD\wsams]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGD\wsams] FOR LOGIN [DCGD\wsams] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGD\glycas]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGD\glycas] FOR LOGIN [DCGOV\glycas] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [DCGD\dbrooks]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE USER [DCGD\dbrooks] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGOV\wmusteen]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [DCGOV\wmusteen]
+GO
+ALTER ROLE [db_ddladmin] ADD MEMBER [DCGOV\T1_Database_Developers]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGOV\T1_Database_Developers]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [DCGOV\T1_Database_Developers]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [DCGOV\SA_PBI_Realware]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGOV\SA_PBI_Realware]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGOV\SA_MOVERE_SQL]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGOV\pmathews]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGD\wsams]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGD\glycas]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [DCGD\dbrooks]
+GO
+/****** Object:  Schema [Audit]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE SCHEMA [Audit]
+GO
+/****** Object:  Schema [rw_extract]    Script Date: 10/15/2024 4:32:28 PM ******/
+CREATE SCHEMA [rw_extract]
+GO
+/****** Object:  UserDefinedFunction [dbo].[udf_GetFreezeFlag]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE FUNCTION [dbo].[udf_GetFreezeFlag] (@Parameter_Name Varchar)
+    RETURNS VARCHAR(1)
+AS
+begin
+  declare @Freeze_Flag varchar(1)
+  SET @FREEZE_FLAG = (SELECT PARAMETER_VALUE FROM rw_extract.etl_parameter WHERE PARAMETER_NAME = @Parameter_Name);
+
+  return @Freeze_Flag
+end 
+
+
+GO
+/****** Object:  Table [rw_extract].[etl_parameter]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [rw_extract].[etl_parameter](
+	[PARAMETER_NAME] [varchar](50) NULL,
+	[PARAMETER_VALUE] [varchar](100) NULL,
+	[PARAMETER_DESCR] [varchar](1000) NULL,
+	[CREATE_DTM] [datetime2](7) NULL,
+	[CREATE_USER_ID] [varchar](30) NULL,
+	[UPDATE_DTM] [datetime2](7) NULL,
+	[UPDATE_USER_ID] [varchar](30) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  View [rw_extract].[V_TBLADDRESSSECURE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLADDRESSSECURE]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLADDRESSSECURE]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ADDRESSCODE
+      ,ADDRESS1
+      ,ADDRESS2
+      ,CITY
+      ,STATECODE
+      ,ZIPCODE
+      ,PERSONCODE
+      ,PROVINCE
+      ,ADDRESSON0
+      ,ADDRESSON1
+      ,ADDRESSON2
+      ,JURISDICTIONID
+      ,COUNTRY
+      ,POSTALCODE
+      ,CAST(ADDRESSOD0 AS VARCHAR(22) ) ADDRESSOD0
+      ,CAST(ADDRESSOD1 AS VARCHAR(22) ) ADDRESSOD1
+      ,ADDRESSOM0
+      ,ADDRESSOM1
+      ,ADDRESSOT0
+      ,ADDRESSOT1
+      ,ADDRESSVALIDFLAG
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLADDRESSSECURE T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLPERSONSECURE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLPERSONSECURE]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLPERSONSECURE]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,PERSONCODE
+      ,NAME1
+      ,NAME2
+      ,PHONE
+      ,FAX
+      ,MOBILE
+      ,PAGER
+      ,EMAILADDRESS
+      ,FEDERALIDNO
+      ,PRIVATEFLAG
+      ,PERSONON0
+      ,PERSONON1
+      ,PERSONON2
+      ,ALTNAME1
+      ,PERSONTYPEID
+      ,JURISDICTIONID
+      ,CAST(PERSONOD0 AS VARCHAR(22) ) PERSONOD0
+      ,CAST(PERSONOD1 AS VARCHAR(22) ) PERSONOD1 
+      ,PERSONOM0
+      ,PERSONOM1
+      ,PERSONOT0
+      ,PERSONOT1
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLPERSONSECURE T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLAPPEALFILER]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [rw_extract].[V_TBLAPPEALFILER]
+AS
+SELECT  AF.APPEALNO 
+      ,AF.PERSONCODE
+      ,AF.ADDRESSCODE
+      ,P.EMAILADDRESS FILER_EMAIL
+      ,P.PHONE FILER_PHONE
+	  ,P.NAME1 + +isnull(P.NAME2,' ')  FILER
+	  ,A.ADDRESS1 FILER_ADDRESS
+	  ,A.CITY  FILER_CITY
+	  ,A.STATECODE FILER_STATECODE
+	  ,A.ZIPCODE FILER_ZIPCODE
+  FROM PRRW.ENCOMPASS.TBLAPPEALFILER AF 
+	  JOIN rw_extract.V_TBLPERSONSECURE P ON P.PERSONCODE = AF.PERSONCODE
+	  JOIN rw_extract.V_TBLADDRESSSECURE A ON A.ADDRESSCODE = AF.ADDRESSCODE
+                    ,(select cast(parameter_value as numeric) verstart
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+              ,(select cast(parameter_value as numeric) verend
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where AF.VERSTART <= p1.verstart
+  and AF.VEREND > p2.verend
+ -- and ISNULL(PAA.VEREND,'99999999999') = '99999999999'  --AJG added code to account for person_secure ver end of 999's only
+ -- and ISNULL(PS.VEREND,'99999999999') = '99999999999';  --AJG added code to account for person_secure ver end of 999's only
+  --and appealno in (201704207,201704235);
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [rw_extract].[V_TBLACCT]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,PARCELNO
+      ,LOCALNO
+      ,MAPNO
+      ,ACCTSTATUSCODE
+      ,ACCTTYPE
+      ,ASSIGNEDTO
+      ,VALUEAREACODE
+      ,ASSOCIATEDACCT
+      ,APPRAISALTYPE
+      ,ECONOMICAREACODE
+      --,CAST(ACCTDATEALTERD AS VARCHAR(22) ) ACCTDATEALTERD
+      ,DEFAULTAPPROACHTYPE
+      ,DEFAULTTAXDISTRICT
+      ,BUSINESSLICENSE
+      ,MAPGROUP
+      ,CONTROLMAP
+      ,PROPERTYIDENTIFIER
+      ,SPECIALINTERESTNUMBER
+      ,ACCTON0
+      ,ACCTON1
+      ,ACCTON2
+      ,PRIMARYUSECODE
+      ,WARD
+      ,CAST(ACCTOD0 AS VARCHAR(22) ) ACCTOD0
+      ,CAST(ACCTOD1 AS VARCHAR(22) ) ACCTOD1
+      ,ACCTOM0
+      ,ACCTOM1
+      ,STRIPPEDACCOUNTNO
+      ,JURISDICTIONID
+      ,ACCTOT0
+      ,ACCTOT1
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,CENSUSTRACT
+      ,CENSUSBLOCK
+      ,MOBILEHOMESPACE
+      ,EFILEFLAG
+      ,BUSINESSNAME
+      ,COSTHYBRIDPERCENT
+      ,MARKETHYBRIDPERCENT
+      ,INCOMEHYBRIDPERCENT
+      ,RECONCILEDHYBRIDPERCENT
+      ,PARCELSEQUENCE
+      ,PROPERTYCLASSID
+      ,SEQID
+      ,CAST(DETAILEDREVIEWDATE  AS VARCHAR(22) ) DETAILEDREVIEWDATE
+  FROM PRRW.ENCOMPASS.TBLACCT T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;  
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLAPPEAL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--select count(*), TAXYEAR from [rw_extract].[V_TBLAPPEAL] 
+--GROUP BY TAXYEAR
+--order by 2
+
+
+
+CREATE VIEW [rw_extract].[V_TBLAPPEAL]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,TAXYEAR
+      ,T1.APPEALNO
+      ,T1.APPEALTYPE
+      ,T1.APPEALMETHOD
+      ,T1.ASSIGNEDTO
+      ,T1.INITIATEDBY
+      ,T1.AGENTCODE
+      ,PS.NAME1+'  '+isnull(PS.NAME2,' ') AGENT_NAME
+      ,PS.EMAILADDRESS 
+      ,PS.PHONE  
+      ,(SELECT ADS.ADDRESS1+' '+ADS.ADDRESS2+' '+ADS.CITY+' '+ADS.STATECODE+' '+ADS.ZIPCODE FROM PRRW.ENCOMPASS.TBLADDRESSSECURE ADS WHERE ADS.PERSONCODE = PAA.PERSONCODE AND ADS.ADDRESSCODE = PAA.ADDRESSCODE and ADS.VEREND = '99999999999') AGENT_ADDRESS
+      --,AF.FILER_EMAIL
+      --,AF.FILER_PHONE
+      --,AF.FILER
+      --,AF.FILER_ADDRESS
+      --,AF.FILER_CITY
+      --,AF.FILER_STATECODE
+      --,AF.FILER_ZIPCODE
+	  ,APS.EMAILADDRESS AS FILER_EMAIL
+	  ,APS.PHONE AS FILER_PHONE
+	  ,ISNULL(APS.NAME1, PS.NAME2) AS FILER
+	  ,ADF.ADDRESS1 AS FILER_ADDRESS
+	  ,ADF.CITY AS FILER_CITY
+	  ,ADF.STATECODE AS FILER_STATECODE
+	  ,ADF.ZIPCODE AS FILER_ZIPCODE
+      ,T1.MAILTO
+      ,T1.DECISIONBY
+      ,T1.CASENO
+      ,T1.REREVIEWSTATUS
+      ,T1.REREVIEWINITIALS
+      ,T1.REREVIEWDECISION
+      ,T1.APPEALREASON
+      ,T1.APPEALBASIS
+      ,T1.APPEALRECOMMENDATION
+      ,T1.APPEALADJUSTDENYREASONID
+      ,T1.APPEALENDVALUE
+      ,CAST(DATEOFAPPEAL AS VARCHAR(22) ) DATEOFAPPEAL
+      ,CAST(DATERECEIVED AS VARCHAR(22) ) DATERECEIVED
+      ,T1.TAXPAYERMEETINGREQUESTFLAG  
+      ,CAST(TAXPAYERMEETINGDATE AS VARCHAR(22) ) TAXPAYERMEETINGDATE
+      ,T1.TAXPAYERMEETINGTIME
+      ,T1.BEGINNINGAPPEALVALUE
+      ,T1.APPEALON1
+      ,T1.APPEALON2
+      ,CAST(APPEALOD0 AS VARCHAR(22) ) APPEALOD0
+      ,CAST(APPEALOD1 AS VARCHAR(22) ) APPEALOD1
+      ,T1.APPEALOM0
+      ,T1.APPEALOM1
+      ,T1.APPEALON0
+      ,T1.APPEALOT0
+      ,T1.APPEALOT1
+      ,T1.APPRAISALTYPE
+      ,T1.PRIMARYACCOUNT
+      ,T1.JURISDICTIONID
+      ,CAST(SCHEDULEDATE AS VARCHAR(22) ) SCHEDULEDATEAS
+      ,T1.SCHEDULESTARTTIME
+      ,T1.SCHEDULEENDTIME
+      ,T1.SCHEDULECOMMENT
+      ,T1.SCHEDULEBOARDFILENO
+      ,T1.SCHEDULEAPPRAISERINITIALS
+      ,T1.APPOINTMENTCOLOR
+      ,CAST(T1.WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,T1.APPEALSTATUSID
+      ,T1.APPEALREASONDESCRIPTION
+     -- ,T1.BOARDNO  -- OLD TABLE RW 5.13
+         ,SB.BOARDNO  -- NEW TABLE RW 5.15
+      ,T1.APPEALDECISION
+      ,T1.SEQID
+	  --select count(*), TAXYEAR
+  FROM PRRW.ENCOMPASS.TBLAPPEAL T1
+                JOIN (SELECT cast(parameter_value as numeric) verstart
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+					 ON T1.VERSTART <= p1.verstart
+              JOIN (select cast(parameter_value as numeric) verend
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+					 ON T1.VEREND > p2.VEREND
+      LEFT OUTER JOIN PRRW.ENCOMPASS.TBLPERSONAPPEALAGENT PAA ON PAA.AGENTCODE = T1.AGENTCODE
+														AND ISNULL(PAA.VEREND,'99999999999') = '99999999999'
+      LEFT OUTER JOIN PRRW.ENCOMPASS.TBLPERSONSECURE PS ON PAA.PERSONCODE = PS.PERSONCODE
+														AND ISNULL(PS.VEREND,'99999999999') = '99999999999'
+      LEFT OUTER JOIN PRRW.ENCOMPASS.TLKPSCHEDULEBOARD SB ON SB.SCHEDULEBOARDID = T1.SCHEDULEBOARDID --RW 5.15 UPGRADE TABLE STRUCTURE CHANGE
+     --   LEFT OUTER JOIN rw_extract.V_TBLAPPEALFILER AF ON AF.APPEALNO = T1.APPEALNO
+	  LEFT OUTER JOIN PRRW.ENCOMPASS.TBLAPPEALFILER AF ON AF.APPEALNO = T1.APPEALNO
+												AND AF.VEREND = 99999999999
+	  LEFT OUTER JOIN PRRW.ENCOMPASS.TBLPERSONSECURE APS ON APS.PERSONCODE = AF.PERSONCODE
+												  AND APS.VEREND = 99999999999
+	  LEFT OUTER JOIN PRRW.ENCOMPASS.TBLADDRESSSECURE ADF ON ADF.ADDRESSCODE = AF.ADDRESSCODE
+												  AND ADF.VEREND = 99999999999
+	--where T1.TAXYEAR = 2024
+	--group by T1.TAXYEAR
+
+  --WHERE T1.VERSTART <= p1.verstart
+  --and T1.VEREND > p2.verend
+  --and ISNULL(PAA.VEREND,'99999999999') = '99999999999'  --AJG added code to account for person_secure verend of 999's only
+  --and ISNULL(PS.VEREND,'99999999999') = '99999999999';  --AJG added code to account for person_secure verend of 999's only
+  --group by TAXYEAR
+  
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTLEGAL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTLEGAL]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,CAST(LEGAL AS VARCHAR(4000) ) LEGAL
+      ,ACCTLEGALON0
+      ,ACCTLEGALON1
+      ,ACCTLEGALON2
+      ,CAST(ACCTLEGALOD0 AS VARCHAR(22) ) ACCTLEGALOD0
+      ,CAST(ACCTLEGALOD1 AS VARCHAR(22) ) ACCTLEGALOD1
+      ,ACCTLEGALOM0
+      ,ACCTLEGALOM1
+      ,ACCTLEGALOT0
+      ,ACCTLEGALOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+      ,SHORTDESCRIPTION
+  FROM PRRW.ENCOMPASS.TBLACCTLEGAL T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+  and  ACCOUNTNO not like 'P%';
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTNBHD]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLACCTNBHD]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTNBHD]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,NBHDCODE
+      ,NBHDEXTENSION
+      ,PROPERTYTYPE
+      ,NBHDADJUSTMENTVALUE
+      ,ACCTNBHDON0
+      ,ACCTNBHDON1
+      ,ACCTNBHDON2
+      ,CAST(ACCTNBHDOD0 AS VARCHAR(22) ) ACCTNBHDOD0
+      ,CAST(ACCTNBHDOD1 AS VARCHAR(22) ) ACCTNBHDOD1
+      ,ACCTNBHDOM0
+      ,ACCTNBHDOM1
+      ,ACCTNBHDOT0
+      ,ACCTNBHDOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) )  WRITEDATE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLACCTNBHD T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTOWNERADDRESS]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTOWNERADDRESS]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,T1.ACCOUNTNO
+      ,T1.PERSONCODE
+      ,T1.ADDRESSCODE
+      ,PRIMARYOWNERFLAG
+      ,ACCTOWNERADDRESSON0
+      ,ACCTOWNERADDRESSON1
+      ,ACCTOWNERADDRESSON2
+      ,CAST(ACCTOWNERADDRESSOD0 AS VARCHAR(22) ) ACCTOWNERADDRESSOD0
+      ,CAST(ACCTOWNERADDRESSOD1 AS VARCHAR(22) ) ACCTOWNERADDRESSOD1
+      ,ACCTOWNERADDRESSOM0
+      ,ACCTOWNERADDRESSOM1
+      ,ACCTOWNERADDRESSOT0
+      ,ACCTOWNERADDRESSOT1
+      ,T1.JURISDICTIONID
+      ,T1.OWNERPERCENT
+      ,CAST(T1.WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,T1.SEQID
+      ,OWNERSHIPTYPE
+  FROM PRRW.ENCOMPASS.TBLACCTOWNERADDRESS T1, 
+       PRRW.ENCOMPASS.TBLACCT A 
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+  and A.accountno = T1.accountno
+  and A.VERSTART <= p1.verstart
+  and A.VEREND > p2.verend; 
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTPROPERTYADDRESS]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLACCTPROPERTYADDRESS]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTPROPERTYADDRESS]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,T1.ACCOUNTNO
+      ,T1.BUILDINGID
+      ,T1.PREDIRECTION
+      ,STREETNO
+      ,UNITNAME
+      ,POSTDIRECTION
+      ,STREETTYPE
+      ,STREETNAME
+      ,PROPERTYZIPCODE
+      ,PROPERTYCITY
+      ,ORDERNO
+      ,ACCTPROPERTYADDRESSON0
+      ,ACCTPROPERTYADDRESSON1
+      ,ACCTPROPERTYADDRESSON2
+      ,T1.BUSINESSNAME
+      ,CAST(ACCTPROPERTYADDRESSOD0 AS VARCHAR(22) ) ACCTPROPERTYADDRESSOD0
+      ,CAST(ACCTPROPERTYADDRESSOD1 AS VARCHAR(22) ) ACCTPROPERTYADDRESSOD1
+      ,ACCTPROPERTYADDRESSOM0
+      ,ACCTPROPERTYADDRESSOM1
+      ,ACCTPROPERTYADDRESSOT0
+      ,ACCTPROPERTYADDRESSOT1
+      ,T1.JURISDICTIONID
+      ,PROPERTYADDRESSCODE
+      ,CAST(T1.WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,LOCATIONID
+      ,T1.SEQID
+  FROM PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS T1
+        , PRRW.ENCOMPASS.TBLACCT A
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+  and A.accountno = T1.accountno
+  and A.VERSTART <= p1.verstart
+  and A.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLSUBACCOUNT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLSUBACCOUNT]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLSUBACCOUNT]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,SUBNO
+      ,FILINGNO
+      ,T1.ACCOUNTNO
+      ,BLOCK
+      ,LOT
+      ,TRACT
+      ,SUBACCOUNTON0
+      ,SUBACCOUNTON1
+      ,SUBACCOUNTON2
+      ,CAST(SUBACCOUNTOD0 AS VARCHAR(22) ) SUBACCOUNTOD0
+      ,CAST(SUBACCOUNTOD1 AS VARCHAR(22) ) SUBACCOUNTOD1
+      ,SUBACCOUNTOM0
+      ,SUBACCOUNTOM1
+      ,SUBACCOUNTOT0
+      ,SUBACCOUNTOT1
+      ,T1.JURISDICTIONID
+      ,CAST(T1.WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,T1.SEQID
+      ,PRIORSUBNO
+      ,PRIORFILINGNO
+  FROM PRRW.ENCOMPASS.TBLSUBACCOUNT T1
+    , PRRW.ENCOMPASS.TBLACCT A
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+  and A.accountno = T1.accountno
+  and A.VERSTART <= p1.verstart
+  and A.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPTAXAUTHORITYDETAIL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TLKPTAXAUTHORITYDETAIL]
+AS
+SELECT TAXAUTHORITY
+      ,T1.TAXYEAR
+      ,NETASSESSED
+      ,GROSSASSESSED
+      ,TIFDISTRICTINCREMENT
+      ,NEWCONSTRUCTION
+      ,PRODUCINGMINEINCREMENT
+      ,ANNEXINCLUSIONS
+      ,PREVIOUSEXEMPTFEDERAL
+      ,NEWPRIMARYOIL
+      ,TAXOMITTEDPROPERTY
+      ,TAXESABATEDREFUNDED
+      ,REALACTUALVALUE
+      ,REALNEWCONSTACTUALVALUE
+      ,NEWANNEXACTUALVALUE
+      ,PRODUCINGMINEACTUALVALUE
+      ,PREVIOUSEXEMPTACTUALVALUE
+      ,NEWWELLPRODUCINGACTUALVALUE
+      ,REALOMITTEDACTUALVALUE
+      ,REALDESTROYEDACTUALVALUE
+      ,DISCONNECTEXCLACTUALVALUE
+      ,PREVIOUSTAXACTUALVALUE
+      ,GROSSACTUALVALUE
+      ,ACTIVEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,MAXASSESSEDMILLLEVY
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPTAXAUTHORITYDETAIL  T1
+    ,(SELECT  cast(parameter_value AS numeric(4,0)) taxyear 
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR' ) P1
+WHERE T1.TAXYEAR = p1.taxyear;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TMAPTAXDISTRICTAUTHORITY]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TMAPTAXDISTRICTAUTHORITY]
+AS
+SELECT --details for the ASSESSMENT_TAX_YEAR
+       TAXDISTRICT
+      ,TAXAUTHORITY
+      ,T1.TAXYEAR
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,TIFAUTHORITY
+      ,TIFPERCENTAGE
+      ,EXCESSVALUE
+      ,EXCESSVALUENOTUSED
+FROM PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY T1
+    ,(SELECT  cast(parameter_value AS numeric(4,0)) taxyear 
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR' ) P1
+WHERE T1.TAXYEAR = p1.taxyear
+UNION ALL
+SELECT --add last known details for tax_districts that are no longer active but are needed for references by 
+       --inactive or deleted accounts
+          X.TAXDISTRICT
+      ,X.TAXAUTHORITY
+      ,X.TAXYEAR
+      ,X.SORTORDER
+      ,X.JURISDICTIONID
+      ,CAST(X.LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,X.TIFAUTHORITY
+      ,X.TIFPERCENTAGE
+      ,X.EXCESSVALUE
+      ,X.EXCESSVALUENOTUSED
+FROM PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY X
+INNER JOIN ( --identify the last known details
+                     select O.TAXDISTRICT
+                             ,MAX(O.TAXYEAR) AS LAST_KNOWN_TAXYEAR
+                     FROM PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY O
+                     LEFT OUTER JOIN (SELECT DISTINCT TAXDISTRICT 
+                                                  FROM PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY T1
+                                                  INNER JOIN (SELECT CAST(parameter_value AS NUMERIC(4,0)) taxyear 
+                                                                       FROM   rw_extract.ETL_PARAMETER 
+                                                                       WHERE  PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR' ) P1
+                                                  ON T1.TAXYEAR = P1.taxyear
+                                                ) C
+                     ON O.TAXDISTRICT = C.TAXDISTRICT 
+                     WHERE C.TAXDISTRICT IS NULL
+                     GROUP BY O.TAXDISTRICT ) L
+ON X.TAXDISTRICT = L.TAXDISTRICT 
+AND X.TAXYEAR = L.LAST_KNOWN_TAXYEAR;
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTREAL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTREAL]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPONLYFLAG
+      ,TIFFLAG
+      ,VACANTFLAG
+      ,LANDWIDTH
+      ,LANDDEPTH
+      ,LANDEASEMENTSF
+      ,LANDEXCESSSF
+      ,TRAFFICCOUNT
+      ,PARKINGSPACES
+      ,ZONINGCODE
+      ,FLOODFRINGE
+      ,FLOODWAY
+      ,TAPFEE
+      ,PLATTEDFLAG
+      ,LANDCERTIFICATIONCODE
+      ,LANDAPPRAISER
+      ,CAST(LANDAPPRAISALDATE AS VARCHAR(22) ) LANDAPPRAISALDATE
+      ,LANDOVERRIDESIZEADJ
+      ,LANDSIZEADJ
+      ,LANDGROSSSF
+      ,LANDGROSSACRES
+      ,LANDGROSSFF
+      ,LANDGROSSUNITCOUNT
+      ,ACCTREALON0
+      ,ACCTREALON1
+      ,ACCTREALON2
+      ,CAST(ACCTREALOD0 AS VARCHAR(22) ) ACCTREALOD0
+      ,CAST(ACCTREALOD1 AS VARCHAR(22) ) ACCTREALOD1
+      ,ACCTREALOM0
+      ,ACCTREALOM1
+      ,ACCTREALOT0
+      ,ACCTREALOT1
+      ,JURISDICTIONID
+      ,DEFAULTLEA
+      ,TOTALACCTIMPINTERESTPCT
+      ,TOTALACCTLANDINTERESTPCT
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLACCTREAL T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLIMPS]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLIMPS]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPNO
+      ,IMPDESCRIPTION
+      ,COSTVALUEBY
+      ,MARKETVALUEBY
+      ,INCOMEVALUEBY
+      ,LANDATTRIBUTEDPCT
+      ,IMPCOMPLETEDPCT
+      ,IMPQUALITY
+      ,IMPUNITTYPE
+      ,IMPDESIGNADJPCT
+      ,IMPEXTERIORADJPCT
+      ,IMPPHYSICALDEPRPCT
+      ,FUNCTIONALOBSOLESCEPCT
+      ,ECONOMICOBSOLESCEPCT
+      ,IMPOTHERADJPCT
+      ,MHTITLENO
+      ,MHSERIALNO
+      ,MHTOTALLENGTH
+      ,MHDECALNO
+      ,MHTAGNO
+      ,APPRAISER
+      ,CAST(APPRAISALDATE AS VARCHAR(22) ) APPRAISALDATE
+      ,OWNEROCCUPIEDFLAG
+      ,COSTMETHOD
+      ,MARKETMETHOD
+      ,INCOMEMETHOD
+      ,IMPCONDITIONTYPE
+      ,CONDOLANDPERCENT
+      ,IMPSF
+      ,CONDOIMPPERCENT
+      ,IMPPERIMETER
+      ,IMPINTERIORADJPCT
+      ,CONDOIMPSF
+      ,IMPAMATEURADJPCT
+      ,IMPNETSF
+      ,PROPERTYTYPE
+      ,APPROACHTYPE
+      ,JURISDICTIONID
+      ,IMPSOT0
+      ,IMPSOT1
+      ,IMPSOM0
+      ,IMPSOM1
+      ,CAST(IMPSOD0 AS VARCHAR(22) ) IMPSOD0
+      ,CAST(IMPSOD1 AS VARCHAR(22) ) IMPSOD1
+      ,IMPSON0
+      ,IMPSON1
+      ,IMPSON2
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE 
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLIMPS T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLIMPSOCC]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLIMPSOCC]
+AS
+SELECT DETAILID
+      ,T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPNO
+      ,OCCCODE
+      ,OCCPERCENT
+      ,ABSTRACTCODE
+      ,IMPABSTRACTVALUE
+      ,CAST(ABSTRACTINDATE AS VARCHAR(22) ) ABSTRACTINDATE
+      ,CAST(ABSTRACTOUTDATE AS VARCHAR(22) ) ABSTRACTOUTDATE 
+      ,ABSTRACTADJCODE
+      ,PRORATETYPE
+      ,TAXDISTRICT
+      ,JURISDICTIONID
+      ,IMPSOCCOT0
+      ,IMPSOCCOT1
+      ,IMPSOCCOM0
+      ,IMPSOCCOM1
+      ,CAST(IMPSOCCOD0 AS VARCHAR(22) ) IMPSOCCOD0
+      ,CAST(IMPSOCCOD1 AS VARCHAR(22) ) IMPSOCCOD1
+      ,IMPSOCCON0
+      ,IMPSOCCON1
+      ,IMPSOCCON2
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,OCCCOMPLETEDPCT
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLIMPSOCC T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLIMPSBLTAS]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLIMPSBLTAS]
+AS
+SELECT DETAILID
+      ,T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPNO
+      ,BLTASCODE
+      ,HVACPERCENT
+      ,CLIMATE
+      ,IMPEXTERIOR
+      ,IMPINTERIOR
+      ,BLTASSTORIES
+      ,BLTASSTORYHEIGHT
+      ,ROOFTYPE
+      ,ROOFCOVER
+      ,FLOORCOVER
+      ,BLTASFOUNDATION
+      ,ROOMCOUNT
+      ,BEDROOMCOUNT
+      ,BLTASTOTALUNITCOUNT
+      ,IMPBLTASOTHER
+      ,CLASSCODE
+      ,DIAMETER
+      ,CAPACITY
+      ,BLTASHORSEPOWER
+      ,BLTASHEIGHT
+      ,BLTASYEARBUILT
+      ,YEARREMODELED
+      ,REMODELEDPERCENT
+      ,EFFECTIVEAGE
+      ,BLTASLENGTH
+      ,BLTASWIDTH
+      ,MHTAGLENGTH
+      ,MHTAGWIDTH
+      ,MHSKIRT
+      ,MHSKIRTLINEARFEET
+      ,MHWALLTYPE
+      ,BLTASSF
+      ,SPRINKLERSF
+      ,BATHCOUNT
+      ,PRIMARYBLTASORDERNO
+      ,JURISDICTIONID
+      ,HVACTYPE
+      ,IMPSBLTASOT0
+      ,IMPSBLTASOT1
+      ,IMPSBLTASOM0
+      ,IMPSBLTASOM1
+      ,CAST(IMPSBLTASOD0 AS VARCHAR(22) ) IMPSBLTASOD0
+      ,CAST(IMPSBLTASOD1 AS VARCHAR(22) ) IMPSBLTASOD1
+      ,IMPSBLTASON0
+      ,IMPSBLTASON1
+      ,IMPSBLTASON2
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE 
+      ,MHDEPRCODE
+      ,MHMAKE
+      ,MHMODELNAME
+      ,SEQID
+      ,APEXID
+  FROM PRRW.ENCOMPASS.TBLIMPSBLTAS T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLIMPSDETAIL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLIMPSDETAIL]
+AS
+SELECT DETAILID
+      ,T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,IMPNO
+      ,IMPDETAILTYPE
+      ,IMPDETAILDESCRIPTION
+      ,DETAILUNITCOUNT
+      ,DETAILYEARBUILT
+      ,ADDONCODE
+      ,JURISDICTIONID
+      ,APEXLINKFLAG
+      ,IMPSDETAILOT0
+      ,IMPSDETAILOT1
+      ,IMPSDETAILOM0
+      ,IMPSDETAILOM1
+      ,CAST(IMPSDETAILOD0 AS VARCHAR(22) ) IMPSDETAILOD0
+      ,CAST(IMPSDETAILOD1 AS VARCHAR(22) ) IMPSDETAILOD1
+      ,IMPSDETAILON0
+      ,IMPSDETAILON1
+      ,IMPSDETAILON2
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE 
+      ,SEQID
+      ,IMPDETAILTYPEID
+  FROM PRRW.ENCOMPASS.TBLIMPSDETAIL T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLLANDABSTRACT_OLD]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLLANDABSTRACT_OLD]
+AS
+SELECT ACCOUNTNO
+      ,T1.VERSTART
+      ,T1.VEREND
+      ,LANDTYPE
+      ,ABSTRACTCODE
+      ,LANDACRES
+      ,LANDSF
+      ,LANDFF
+      ,LANDUNITCOUNT
+      ,LANDVALUEPER
+      ,LANDVALUE
+      ,LANDOVERRIDEFLAG
+      ,LANDOVERRIDETOTAL
+      ,LANDACTUALTOTAL
+      ,LANDCLASS
+      ,LANDSUBCLASS
+      ,LANDVALUEBY
+      ,LANDVALUEMEASURE
+      ,CAST(ABSTRACTINDATE AS VARCHAR(22) ) ABSTRACTINDATE
+      ,CAST(ABSTRACTOUTDATE AS VARCHAR(22) ) ABSTRACTOUTDATE 
+      ,PRORATETYPE
+      ,LANDACTIVEFLAG
+      ,DETAILID
+      ,ABSTRACTADJCODE
+      ,LANDVALUEPERADJFACTOR
+      ,ATTRIBUTEADJFLAG
+      ,LANDADJSIZE
+      ,LANDOVERRIDEADJSIZE
+      ,LANDABSTRACTON0
+      ,LANDABSTRACTON1
+      ,LANDABSTRACTON2
+      ,LANDOVERRIDEVALUEPER
+      ,TAXDISTRICT
+      ,CAST(LANDABSTRACTOD0 AS VARCHAR(22) ) LANDABSTRACTOD0
+      ,CAST(LANDABSTRACTOD1 AS VARCHAR(22) ) LANDABSTRACTOD1
+      ,LANDABSTRACTOM0
+      ,LANDABSTRACTOM1
+      ,LANDABSTRACTOT0
+      ,LANDABSTRACTOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,MSALANDVALUE
+      ,MSALANDVALUEPER
+      ,LEA
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLLANDABSTRACT T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLSALE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLSALE]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,RECEPTIONNO
+      ,BOOK
+      ,PAGE
+      ,GRANTOR
+      ,GRANTEE
+      ,CAST(DOCUMENTDATE AS VARCHAR(22) ) DOCUMENTDATE
+      ,CAST(SALEDATE AS VARCHAR(22) ) SALEDATE
+      ,DOCUMENTFEE
+      ,DEEDCODE
+      ,PENALTYFLAG
+      ,CAST(PENALTYDATE AS VARCHAR(22) ) PENALTYDATE
+      ,SALEPRICE
+      ,PPADJAMOUNT
+      ,GOODWILLADJAMOUNT
+      ,OTHERADJAMOUNT
+      ,TIMEADJ
+      ,DOWNPAYMENTAMOUNT
+      ,DOWNPAYMENTPCT
+      ,NOTEAMOUNT
+      ,INTERESTRATEPCT
+      ,LOANTERM
+      ,POINTSPAID
+      ,POINTSPAIDBY
+      ,LOANINSTITUTION
+      ,MKTRATEPCT
+      ,PAYMENTAMOUNT
+      ,RECOURSEFLAG
+      ,TENANT
+      ,VALID1FLAG
+      ,VALID2FLAG
+      ,CONFIRMEDFLAG
+      ,EXCLUDECODE1
+      ,EXCLUDECODE2
+      ,IMPROVEDFLAG
+      ,CONFIRMBY
+      ,CONFIRMMETHOD
+      ,CAST(CONFIRMDATE AS VARCHAR(22) ) CONFIRMDATE
+      ,COMMENTS
+      ,NONSALEFLAG
+      ,SALEON0
+      ,SALEON1
+      ,SALEON2
+      ,CAST(SALEOD0 AS VARCHAR(22) ) SALEOD0
+      ,CAST(SALEOD1 AS VARCHAR(22) ) SALEOD1
+      ,SALEOM0
+      ,SALEOM1
+      ,SALEOT0
+      ,SALEOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,BALLOONPAYMENTYEAR
+      ,TRANSFERDECLARATIONFLAG
+      ,CAST(TRANSFERDECLARATIONDATE AS VARCHAR(22) ) TRANSFERDECLARATIONDATE
+      ,CAST(QUESTIONNAIREMAILDATE AS VARCHAR(22) ) QUESTIONNAIREMAILDATE
+      ,CAST(QUESTIONNAIRERETURNDATE AS VARCHAR(22) ) QUESTIONNAIRERETURNDATE
+      ,SEQID
+        FROM PRRW.ENCOMPASS.TBLSALE T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLSALEACCT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLSALEACCT]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,RECEPTIONNO
+      ,ACCOUNTNO
+      ,CAST(INVENTORYEFFECTIVEDATE AS VARCHAR(22) ) INVENTORYEFFECTIVEDATE
+      ,ACCTADJSALEPRICE
+      ,GROUPPRIMARYACCTFLAG
+      ,SALEACCTON0
+      ,SALEACCTON1
+      ,SALEACCTON2
+      ,CAST(SALEACCTOD0 AS VARCHAR(22) ) SALEACCTOD0
+      ,CAST(SALEACCTOD1 AS VARCHAR(22) ) SALEACCTOD1
+      ,SALEACCTOM0
+      ,SALEACCTOM1
+      ,SALEACCTOT0
+      ,SALEACCTOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE 
+      ,CAST(SALEACCTPENALTYDATE AS VARCHAR(22) ) SALEACCTPENALTYDATE
+      ,SALEACCTPENALTYFLAG
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLSALEACCT T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TMAPTAXAUTHORITYDETAILFUND]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TMAPTAXAUTHORITYDETAILFUND]
+AS
+SELECT TAXAUTHORITY
+      ,T1.TAXYEAR
+      ,FUNDCODE
+      ,PARENTFUNDCODE
+      ,ASSESSEDMILLLEVY
+      ,ALTERNATEMILLLEVY
+      ,REALFLAG
+      ,PPFLAG
+      ,MAXLEVYINCLUDEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,LEVYTYPEID
+      ,TAXDISTRICTID
+      ,EXCLUDEREDUCEDRATEFLAG
+      ,INCLUDEONTAXBILLFLAG
+      ,PERMANENTRATE
+      ,BILLINGRATE
+      ,URDOTADJUSTMENTRATE
+      ,BUDGETEDTAXVALUE
+      ,BUDGETEDTAXRATE
+      ,TRUNCATIONLOSSVALUE
+      ,FUNDCATEGORYTYPEID
+  FROM PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND T1
+   ,(SELECT  cast(parameter_value AS numeric(4,0)) taxyear 
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR' ) P1
+WHERE T1.TAXYEAR = p1.taxyear ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLLANDATTRIBUTE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TBLLANDATTRIBUTE]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,DETAILID
+      ,ATTRIBUTETYPE
+      ,ATTRIBUTESUBTYPE
+      ,ATTRIBUTEADJUSTMENT
+      ,FILTERTYPE
+      ,LANDATTRIBUTEOT0
+      ,LANDATTRIBUTEOT1
+      ,LANDATTRIBUTEON0
+      ,LANDATTRIBUTEON1
+      ,LANDATTRIBUTEON2
+      ,CAST(LANDATTRIBUTEOD0 AS VARCHAR(22) ) LANDATTRIBUTEOD0
+      ,CAST(LANDATTRIBUTEOD1 AS VARCHAR(22) ) LANDATTRIBUTEOD1
+      ,LANDATTRIBUTEOM0
+      ,LANDATTRIBUTEOM1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLLANDATTRIBUTE T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPABSTRACTCODEVALUE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPABSTRACTCODEVALUE]
+AS
+SELECT ABSTRACTCODE
+      ,T1.TAXYEAR
+      ,ASSESSMENTRATIO
+      ,ALTERNATEASSESSMENTRATIO
+      ,ROLLVALUEGROUPFLAG
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,CAPFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPABSTRACTCODEVALUE  T1
+    ,(SELECT  cast(parameter_value AS numeric(4,0)) taxyear 
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR' ) P1
+WHERE T1.TAXYEAR = p1.taxyear ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTPARENTPARCEL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTPARENTPARCEL]
+AS
+SELECT T1.[VERSTART]
+      ,T1.[VEREND]
+      ,[ACCOUNTNO]
+      ,[PARENTACCOUNT]
+      ,[PARENTACCOUNTON0]
+      ,[PARENTACCOUNTON1]
+      ,[PARENTACCOUNTON2]
+      ,[ACCTPARENTPARCELOD0]
+      ,[ACCTPARENTPARCELOD1]
+      ,[ACCTPARENTPARCELOM0]
+      ,[ACCTPARENTPARCELOM1]
+      ,[ACCTPARENTPARCELOT0]
+      ,[ACCTPARENTPARCELOT1]
+      ,[JURISDICTIONID]
+      ,[WRITEDATE]
+      ,[SEQID]
+  FROM [PRRW].[ENCOMPASS].[TBLACCTPARENTPARCEL] T1
+   ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTPP]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLACCTPP]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTPP]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,PPCERTIFICATIONCODE
+      ,CAST(PPCERTIFICATIONDATE AS VARCHAR(22) ) PPCERTIFICATIONDATE
+      ,CAST(JURISDICTIONAUDITDATE AS VARCHAR(22) ) JURISDICTIONAUDITDATE
+      ,CAST(NOVSENTDATE AS VARCHAR(22) ) NOVSENTDATE
+      ,ASSOCIATEDREALSF
+      ,PPAUDITEDBY
+      ,CAST(PPDECLARATIONSENTDATE AS VARCHAR(22) ) PPDECLARATIONSENTDATE
+      ,CAST(PPDECLARATIONRETURNDATE AS VARCHAR(22) ) PPDECLARATIONRETURNDATE
+      ,ASSOCIATEDREALUNITCOUNT
+      ,LATEDECLARATIONFLAG 
+      ,CAST(PRECOLLECTDATE AS VARCHAR(22) ) PRECOLLECTDATE
+      ,LETTERSENTFLAG
+      ,PPAPPRAISER
+      ,CAST(PPAPPRASALDATE AS VARCHAR(22) ) PPAPPRASALDATE
+      ,CROPTYPE
+      ,ACRESUSED
+      ,FARMSERVICEAGENCYFLAG
+      ,FARMSERVICEAGENCYNO
+      ,NOCHANGEFLAG
+      ,CAST(AUDITDATE AS VARCHAR(22) ) AUDITDATE
+      ,NODECLARATIONFLAG
+      ,BESTINFOAVAILABLEFLAG
+      ,PPCITYCODE
+      ,ATTACHMENTCOUNT
+      ,SPECIALDISTRICT1
+      ,SPECIALDISTRICT2
+      ,AREACODEID
+      ,DESKAUDITBY
+      ,PPUNITTYPE
+      ,APPRAISEDVALUEPERUNIT
+      ,UNITNUMBER
+      ,SMALLACCTCERTIFICATIONFLAG
+      ,STATESALESTAXID
+      ,FEDERALID
+      ,ACCTPPON0
+      ,ACCTPPON1
+      ,ACCTPPON2
+      ,ELECTRONICFILEFLAG
+      ,CAST(ACCTPPOD0 AS VARCHAR(22) ) ACCTPPOD0
+      ,CAST(ACCTPPOD1 AS VARCHAR(22) ) ACCTPPOD1
+      ,ACCTPPOM0
+      ,ACCTPPOM1
+      ,ACCTPPOT0
+      ,ACCTPPOT1
+      ,BUSINESSCODE
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,SEQID
+      ,ONLINEFILINGOPTOUTFLAG
+  FROM PRRW.ENCOMPASS.TBLACCTPP T1
+    ,(select cast(parameter_value as numeric) verstart
+        from ASSESSOR_EXTRACT.RW_EXTRACT.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from ASSESSOR_EXTRACT.RW_EXTRACT.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTPPDETAIL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTPPDETAIL]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,DETAILID
+      ,PPRECORDNO
+      ,ABSTRACTCODE
+      ,ABSTRACTADJCODE
+      ,TAXDISTRICT
+      ,PPOGTYPE
+      ,PPOGDESCRIPTIONTYPEID
+      ,ACQUISITIONYEAR
+      ,PPAGE
+      ,PPQUANTITY
+      ,TYPEFACTOR
+      ,ORIGINALCOST
+      , null as PPMETHODCODE --removed in rw v5131
+      ,PPLIFEEXPECTANCY
+      ,PPCONDITIONCODE
+      ,PPGOODPERCENT
+      ,PERCENTADDEDDEPRECIATION
+      ,ROLLBACKFACTOR
+      ,PPABSTRACTVALUE
+      ,BESTINFOAVAILABLEFLAG
+      ,OMITTEDFLAG
+      ,DEPRECIATIONVALUE
+      --,ECONOMICOBSOLESCENCEPERCENT
+      --,ECONOMICOBSOLESCENCEVALUE
+      --,FUNCTIONALOBSOLESCENCEPCT
+      --,FUNCTIONALOBSOLESCENCEVALUE
+      --,OTHEROBSOLESCENCEPERCENT
+      --,OTHEROBSOLESCENCEVALUE
+      ,REPORTEDACQUIREDYEAR
+      ,REPORTEDACQUIREDCOST
+      ,PPREPORTEDRECORDNO
+      ,PPMAKE
+      ,PPMODEL
+      ,PPLEASETERM
+      ,PPMONTHLYRENT
+      ,PPLESSORCODE
+      --,ACCTPPDETAILON0
+      --,ACCTPPDETAILON1
+      --,ACCTPPDETAILON2
+      --,CAST(ACCTPPDETAILOD0 AS VARCHAR(22) ) ACCTPPDETAILOD0
+      --,CAST(ACCTPPDETAILOD1 AS VARCHAR(22) ) ACCTPPDETAILOD1
+      --,ACCTPPDETAILOM0
+      --,ACCTPPDETAILOM1
+      --,ACCTPPDETAILOT0
+      --,ACCTPPDETAILOT1
+      ,PPDETAILDESCRIPTION
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) ) WRITEDATE
+      ,APPRAISALTYPE
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLACCTPPDETAIL T1
+    ,(select cast(parameter_value as numeric) verstart
+        from RW_EXTRACT.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from RW_EXTRACT.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLLANDABSTRACT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TBLLANDABSTRACT]
+AS
+SELECT        T1.ACCOUNTNO, T1.VERSTART, T1.VEREND, T1.LANDTYPE, T1.ABSTRACTCODE, T1.LANDACRES, T1.LANDSF, T1.LANDFF, T1.LANDUNITCOUNT, T1.LANDVALUEPER, T1.LANDVALUE, T1.LANDOVERRIDEFLAG, 
+                         T1.LANDOVERRIDETOTAL, T1.LANDACTUALTOTAL, T1.LANDCLASS, T1.LANDSUBCLASS, T1.LANDVALUEBY, T1.LANDVALUEMEASURE, CAST(T1.ABSTRACTINDATE AS VARCHAR(22)) AS ABSTRACTINDATE, 
+                         CAST(T1.ABSTRACTOUTDATE AS VARCHAR(22)) AS ABSTRACTOUTDATE, T1.PRORATETYPE, T1.LANDACTIVEFLAG, T1.DETAILID, T1.ABSTRACTADJCODE, T1.LANDVALUEPERADJFACTOR, T1.ATTRIBUTEADJFLAG, 
+                         T1.LANDADJSIZE, T1.LANDOVERRIDEADJSIZE, T1.LANDABSTRACTON0, T1.LANDABSTRACTON1, T1.LANDABSTRACTON2, T1.LANDOVERRIDEVALUEPER, T1.TAXDISTRICT, 
+                         CAST(T1.LANDABSTRACTOD0 AS VARCHAR(22)) AS LANDABSTRACTOD0, CAST(T1.LANDABSTRACTOD1 AS VARCHAR(22)) AS LANDABSTRACTOD1, T1.LANDABSTRACTOM0, T1.LANDABSTRACTOM1, 
+                         T1.LANDABSTRACTOT0, T1.LANDABSTRACTOT1, T1.JURISDICTIONID, CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.MSALANDVALUE, T1.MSALANDVALUEPER, T1.LEA, T1.SEQID
+FROM            PRRW.ENCOMPASS.TBLLANDABSTRACT AS T1 INNER JOIN
+                             (SELECT        CAST(PARAMETER_VALUE AS numeric) AS verstart
+                               FROM            rw_extract.etl_parameter
+                               WHERE        (PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_START_DATE')) AS p1 ON T1.VERSTART <= p1.verstart INNER JOIN
+                             (SELECT        CAST(PARAMETER_VALUE AS numeric) AS verend
+                               FROM            rw_extract.etl_parameter
+                               WHERE        (PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_END_DATE')) AS p2 ON T1.VEREND > p2.verend
+
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTNEWCONSTRUCTION]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TBLACCTNEWCONSTRUCTION]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLACCTNEWCONSTRUCTION]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,ACCOUNTNO
+      ,DETAILID
+      ,NCTOTALACTUALVALUE
+      ,T1.TAXYEAR
+      ,ABSTRACTCODE
+      ,ABSTRACTADJCODE
+      ,TAXDISTRICT
+      ,ACCTNEWCONSTRUCTIONON0
+      ,ACCTNEWCONSTRUCTIONON1
+      ,ACCTNEWCONSTRUCTIONON2
+      ,CAST(ACCTNEWCONSTRUCTIONOD0  AS VARCHAR(22) ) ACCTNEWCONSTRUCTIONOD0 
+      ,CAST(ACCTNEWCONSTRUCTIONOD1  AS VARCHAR(22) ) ACCTNEWCONSTRUCTIONOD1
+      ,ACCTNEWCONSTRUCTIONOM0
+      ,ACCTNEWCONSTRUCTIONOM1
+      ,ACCTNEWCONSTRUCTIONOT0
+      ,ACCTNEWCONSTRUCTIONOT1
+      ,LANDCLASS
+      ,LANDSUBCLASS
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE  AS VARCHAR(22) ) WRITEDATE 
+      ,SEQID
+  FROM PRRW.ENCOMPASS.TBLACCTNEWCONSTRUCTION T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+    ,(SELECT  cast(parameter_value AS numeric(11,0)) taxyear
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR') TY      
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend
+  and T1.taxyear = TY.taxyear;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCT_Old]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCT]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLAPPEALACCT_Old]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,TAXYEAR
+      ,APPEALNO
+      ,ACCOUNTNO
+      ,APPEALADJUSTDENYREASONID
+      ,APPEALCOMMENT
+      ,APPEALACCOUNTENDVALUE
+      ,APPEALACCTON0
+      ,APPEALACCTON1
+      ,APPEALACCTON2
+      ,CAST(APPEALACCTOD0 AS VARCHAR(22) ) APPEALACCTOD0
+      ,CAST(APPEALACCTOD1 AS VARCHAR(22) ) APPEALACCTOD1
+      ,APPEALACCTOM0
+      ,APPEALACCTOM1
+      ,APPEALACCTOT0
+      ,APPEALACCTOT1
+      ,JURISDICTIONID
+      ,CAST(WRITEDATE AS VARCHAR(22) )  WRITEDATE
+      ,BEGINNINGACCOUNTVALUE
+      ,APPEALDECISION
+      ,APPEALACCTREASONDESC
+      ,ADDBOARDAPPEALENDVALUE
+      ,SEQID
+from PRRW.ENCOMPASS.TBLAPPEALACCT T1
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where T1.VERSTART <= p1.verstart
+  and T1.VEREND > p2.verend;
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCTVALUE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TBLAPPEALACCTVALUE]
+AS
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT AAV.VERSTART
+      ,AAV.VEREND
+      ,AAV.TAXYEAR
+      ,AAV.APPEALNO
+      ,AAV.ACCOUNTNO
+      ,AAV.VALUEGROUPCODE
+	  ,VG.VALUEGROUPDESCRIPTION
+      ,AAV.ESTIMATEDVALUE
+      ,AAV.INITIALREVIEWVALUE
+      ,AAV.FINALREVIEWVALUE
+      ,AAV.APPEALACCTVALUEON0
+      ,AAV.APPEALACCTVALUEON1
+      ,AAV.APPEALACCTVALUEON2
+      ,AAV.APPEALACCTVALUEOD0
+      ,AAV.APPEALACCTVALUEOD1
+      ,AAV.APPEALACCTVALUEOM0
+      ,AAV.APPEALACCTVALUEOM1
+      ,AAV.APPEALACCTVALUEOT0
+      ,AAV.APPEALACCTVALUEOT1
+      ,AAV.JURISDICTIONID
+      ,AAV.WRITEDATE
+      ,AAV.SEQID
+  FROM PRRW.ENCOMPASS.TBLAPPEALACCTVALUE AAV,
+       PRRW.ENCOMPASS.TLKPVALUEGROUP VG
+	   ,(select cast(parameter_value as numeric) verstart
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+              ,(select cast(parameter_value as numeric) verend
+                     from RW_EXTRACT.ETL_PARAMETER 
+                     where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where AAV.VERSTART <= p1.verstart
+  and AAV.VEREND > p2.verend
+  and  AAV.VALUEGROUPCODE = VG.VALUEGROUPCODE
+  
+  
+
+GO
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+/****** Object:  View [rw_extract].[V_TBLAPPEALACCT]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+CREATE VIEW [rw_extract].[V_TBLAPPEALACCT]
+AS
+SELECT T1.VERSTART
+      ,T1.VEREND
+      ,T1.TAXYEAR
+      ,T1.APPEALNO
+      ,T1.ACCOUNTNO
+      ,T1.APPEALADJUSTDENYREASONID
+      ,T1.APPEALCOMMENT
+      ,AAV.FINALREVIEWVALUE APPEALACCOUNTENDVALUE
+	  ,AAV.VALUEGROUPDESCRIPTION
+      ,T1.APPEALACCTON0
+      ,T1.APPEALACCTON1
+      ,T1.APPEALACCTON2
+      ,CAST(T1.APPEALACCTOD0 AS VARCHAR(22) ) APPEALACCTOD0
+      ,CAST(T1.APPEALACCTOD1 AS VARCHAR(22) ) APPEALACCTOD1
+      ,T1.APPEALACCTOM0
+      ,T1.APPEALACCTOM1
+      ,T1.APPEALACCTOT0
+      ,T1.APPEALACCTOT1
+      ,T1.JURISDICTIONID
+      ,CAST(T1.WRITEDATE AS VARCHAR(22) )  WRITEDATE
+      ,T1.BEGINNINGACCOUNTVALUE
+      ,T1.APPEALDECISION
+      ,T1.APPEALACCTREASONDESC
+      ,T1.ADDBOARDAPPEALENDVALUE
+      ,T1.SEQID
+from PRRW.ENCOMPASS.TBLAPPEALACCT T1
+    LEFT OUTER JOIN [rw_extract].[V_TBLAPPEALACCTVALUE] AAV 
+		ON  T1.ACCOUNTNO = AAV.ACCOUNTNO 
+		AND T1.APPEALNO = AAV.APPEALNO 
+		AND T1.TAXYEAR = AAV.TAXYEAR
+     --JOIN PRRW.ENCOMPASS.TBLAPPEALACCTVALUE AAV ON AAV.APPEALNO = T1.APPEALNO AND AAV.ACCOUNTNO = T1.ACCOUNTNO
+    ,(select cast(parameter_value as numeric) verstart
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE' ) p1
+    ,(select cast(parameter_value as numeric) verend
+        from rw_extract.ETL_PARAMETER 
+       where PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE' ) p2
+where t1.verend = 99999999999
+  --and T1.VERSTART <= p1.verstart
+  --and T1.VEREND > p2.verend;
+  
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TSGVACCTABSTVALUE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   VIEW [rw_extract].[V_TSGVACCTABSTVALUE]
+/***
+SSIS	Package:	rw_extract_pd1
+		DataFlow:	ext_tsgvacctabstvalue
+		SOURCE:		v_tsgvacctabstvalue
+		QUERY
+					SELECT 
+						VERSTART
+						,VEREND
+						,ACCOUNTNO
+						,ABSTRACTCODE
+						,TAXYEAR
+						,ACTUALVALUE
+						,RAWASSESSEDVALUE
+						,NEWCONSTVALUECHANGE
+						,NEWCONSTVALUECHANGEASSESSED
+						,JURISDICTIONID
+						,WRITEDATE
+						,SEQID
+						,TAXDISTRICT
+						,MILLLEVY
+						,ASSESSMENTRATIO
+					 FROM [rw_extract].[V_TSGVACCTABSTVALUE]
+***/
+AS
+SELECT        
+	T1.VERSTART
+	, T1.VEREND
+	, ACCOUNTNO
+	, ABSTRACTCODE
+	, T1.TAXYEAR
+	, ACTUALVALUE
+	, RAWASSESSEDVALUE
+	, NEWCONSTVALUECHANGE
+	, NEWCONSTVALUECHANGEASSESSED
+	, JURISDICTIONID
+	, CAST(WRITEDATE AS VARCHAR(22)) AS WRITEDATE
+	, SEQID
+	, T1.TAXDISTRICT
+	, MILL.MILLLEVY AS MILLLEVY
+	, T1.ASSESSMENTRATIO
+FROM PRRW.ENCOMPASS.TSGVACCTABSTVALUE AS T1 
+	INNER JOIN (SELECT CAST(PARAMETER_VALUE AS numeric) AS verstart
+					FROM rw_extract.etl_parameter
+                    WHERE (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE')
+				) AS p1 ON T1.VERSTART <= p1.verstart 
+	INNER JOIN (SELECT CAST(PARAMETER_VALUE AS numeric) AS verend
+					FROM rw_extract.etl_parameter
+                    WHERE (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE')
+				) AS p2 ON T1.VEREND > p2.verend
+	INNER JOIN (SELECT 
+					DA.TAXDISTRICT
+					,AF.TAXYEAR
+					,SUM(AF.ASSESSEDMILLLEVY) AS MILLLEVY
+                 FROM PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY AS DA 
+				 INNER JOIN PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND AS AF ON DA.TAXAUTHORITY = AF.TAXAUTHORITY AND DA.TAXYEAR = AF.TAXYEAR
+                 GROUP BY DA.TAXDISTRICT, AF.TAXYEAR
+				) AS MILL ON T1.TAXDISTRICT = MILL.TAXDISTRICT AND T1.TAXYEAR = MILL.TAXYEAR
+GO
+/****** Object:  View [rw_extract].[V_TSGVACCTABSTVALUE_NONPP_FRZ]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TSGVACCTABSTVALUE_NONPP_FRZ]
+AS
+SELECT      T1.VERSTART, T1.VEREND, T1.ACCOUNTNO, T1.ABSTRACTCODE, T1.TAXDISTRICT, T1.TAXYEAR, T1.ACTUALVALUE, T1.RAWASSESSEDVALUE, T1.NEWCONSTVALUECHANGE, T1.NEWCONSTVALUECHANGEASSESSED, T1.JURISDICTIONID
+			,T1.ASSESSMENTRATIO
+			,CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.SEQID, MILL.MILLLEVY
+FROM        PRRW.ENCOMPASS.TSGVACCTABSTVALUE AS T1 INNER JOIN
+                      (SELECT     DA.TAXDISTRICT, AF.TAXYEAR, SUM(AF.ASSESSEDMILLLEVY) AS MILLLEVY
+                       FROM        PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY AS DA INNER JOIN
+                                         PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND AS AF ON DA.TAXAUTHORITY = AF.TAXAUTHORITY AND DA.TAXYEAR = AF.TAXYEAR
+                       --WHERE     (DA.TAXDISTRICT <> '9999')
+                       GROUP BY DA.TAXDISTRICT, AF.TAXYEAR) AS MILL ON T1.TAXDISTRICT = MILL.TAXDISTRICT AND T1.TAXYEAR = MILL.TAXYEAR INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS freeze_verstart
+                       FROM        rw_extract.etl_parameter
+                       WHERE     (PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_START_DATE')) AS P1 ON T1.VERSTART <= P1.freeze_verstart INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS freeze_verend
+                       FROM        rw_extract.etl_parameter AS etl_parameter_2
+                       WHERE     (PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_END_DATE')) AS P2 ON T1.VEREND > P2.freeze_verend INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(4, 0)) AS freeze_taxyear
+                       FROM        rw_extract.etl_parameter AS etl_parameter_1
+                       WHERE     (PARAMETER_NAME = 'ASR_VALUE_FREEZE_TAX_YEAR')) AS P3 ON T1.TAXYEAR = P3.freeze_taxyear
+WHERE     (T1.ACCOUNTNO NOT LIKE 'P%')
+GO
+/****** Object:  View [rw_extract].[V_TSGVACCTABSTVALUE_NONPP_REG]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TSGVACCTABSTVALUE_NONPP_REG]
+AS
+SELECT    T1.VERSTART, T1.VEREND, T1.ACCOUNTNO, T1.ABSTRACTCODE, T1.TAXDISTRICT, T1.TAXYEAR, T1.ACTUALVALUE, T1.RAWASSESSEDVALUE, T1.NEWCONSTVALUECHANGE, T1.NEWCONSTVALUECHANGEASSESSED, T1.JURISDICTIONID
+		, T1.ASSESSMENTRATIO
+		, CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.SEQID, MILL.MILLLEVY
+FROM        PRRW.ENCOMPASS.TSGVACCTABSTVALUE AS T1 INNER JOIN
+                      (SELECT     DA.TAXDISTRICT, AF.TAXYEAR, SUM(AF.ASSESSEDMILLLEVY) AS MILLLEVY
+                       FROM        PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY AS DA INNER JOIN
+                                         PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND AS AF ON DA.TAXAUTHORITY = AF.TAXAUTHORITY AND DA.TAXYEAR = AF.TAXYEAR
+                       --WHERE     (DA.TAXDISTRICT <> '9999')
+                       GROUP BY DA.TAXDISTRICT, AF.TAXYEAR) AS MILL ON T1.TAXDISTRICT = MILL.TAXDISTRICT AND T1.TAXYEAR = MILL.TAXYEAR INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS regular_verstart
+                       FROM        rw_extract.etl_parameter
+                       WHERE     (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE')) AS P1 ON T1.VERSTART <= P1.regular_verstart INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS regular_verend
+                       FROM        rw_extract.etl_parameter AS etl_parameter_2
+                       WHERE     (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE')) AS P2 ON T1.VEREND > P2.regular_verend INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(4, 0)) AS regular_taxyear
+                       FROM        rw_extract.etl_parameter AS etl_parameter_1
+                       WHERE     (PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR')) AS P3 ON T1.TAXYEAR = P3.regular_taxyear
+WHERE     (T1.ACCOUNTNO NOT LIKE 'P%')
+GO
+/****** Object:  View [rw_extract].[V_TSGVACCTABSTVALUE_PP_FRZ]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TSGVACCTABSTVALUE_PP_FRZ]
+AS
+SELECT    T1.VERSTART, T1.VEREND, T1.ACCOUNTNO, T1.ABSTRACTCODE, T1.TAXDISTRICT, T1.TAXYEAR, T1.ACTUALVALUE, T1.RAWASSESSEDVALUE, T1.NEWCONSTVALUECHANGE, T1.NEWCONSTVALUECHANGEASSESSED, T1.JURISDICTIONID
+		, T1.ASSESSMENTRATIO
+		, CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.SEQID, MILL.MILLLEVY
+FROM        PRRW.ENCOMPASS.TSGVACCTABSTVALUE AS T1 INNER JOIN
+                      (SELECT     DA.TAXDISTRICT, AF.TAXYEAR, SUM(AF.ASSESSEDMILLLEVY) AS MILLLEVY
+                       FROM        PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY AS DA INNER JOIN
+                                         PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND AS AF ON DA.TAXAUTHORITY = AF.TAXAUTHORITY AND DA.TAXYEAR = AF.TAXYEAR
+                       --WHERE     (DA.TAXDISTRICT <> '9999')
+                       GROUP BY DA.TAXDISTRICT, AF.TAXYEAR) AS MILL ON T1.TAXDISTRICT = MILL.TAXDISTRICT AND T1.TAXYEAR = MILL.TAXYEAR INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS freeze_verstart
+                       FROM        rw_extract.etl_parameter
+                       WHERE     (PARAMETER_NAME = 'ASR_PERS_VALUE_FREEZE_VERSION_START_DATE')) AS P1 ON T1.VERSTART <= P1.freeze_verstart INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS freeze_verend
+                       FROM        rw_extract.etl_parameter AS etl_parameter_2
+                       WHERE     (PARAMETER_NAME = 'ASR_PERS_VALUE_FREEZE_VERSION_END_DATE')) AS P2 ON T1.VEREND > P2.freeze_verend INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(4, 0)) AS freeze_taxyear
+                       FROM        rw_extract.etl_parameter AS etl_parameter_1
+                       WHERE     (PARAMETER_NAME = 'ASR_PERS_VALUE_FREEZE_TAX_YEAR')) AS P3 ON T1.TAXYEAR = P3.freeze_taxyear
+WHERE     (T1.ACCOUNTNO LIKE 'P%')
+GO
+/****** Object:  View [rw_extract].[V_TSGVACCTABSTVALUE_PP_REG]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TSGVACCTABSTVALUE_PP_REG]
+AS
+SELECT    T1.VERSTART, T1.VEREND, T1.ACCOUNTNO, T1.ABSTRACTCODE, T1.TAXDISTRICT, T1.TAXYEAR, T1.ACTUALVALUE, T1.RAWASSESSEDVALUE, T1.NEWCONSTVALUECHANGE, T1.NEWCONSTVALUECHANGEASSESSED, T1.JURISDICTIONID
+		, T1.ASSESSMENTRATIO
+		, CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.SEQID, MILL.MILLLEVY
+FROM        PRRW.ENCOMPASS.TSGVACCTABSTVALUE AS T1 INNER JOIN
+                      (SELECT     DA.TAXDISTRICT, AF.TAXYEAR, SUM(AF.ASSESSEDMILLLEVY) AS MILLLEVY
+                       FROM        PRRW.ENCOMPASS.TMAPTAXDISTRICTAUTHORITY AS DA INNER JOIN
+                                         PRRW.ENCOMPASS.TMAPTAXAUTHORITYDETAILFUND AS AF ON DA.TAXAUTHORITY = AF.TAXAUTHORITY AND DA.TAXYEAR = AF.TAXYEAR
+                       --WHERE     (DA.TAXDISTRICT <> '9999')
+                       GROUP BY DA.TAXDISTRICT, AF.TAXYEAR) AS MILL ON T1.TAXDISTRICT = MILL.TAXDISTRICT AND T1.TAXYEAR = MILL.TAXYEAR INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS regular_verstart
+                       FROM        rw_extract.etl_parameter
+                       WHERE     (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE')) AS P1 ON T1.VERSTART <= P1.regular_verstart INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(11, 0)) AS regular_verend
+                       FROM        rw_extract.etl_parameter AS etl_parameter_2
+                       WHERE     (PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE')) AS P2 ON T1.VEREND > P2.regular_verend INNER JOIN
+                      (SELECT     CAST(PARAMETER_VALUE AS numeric(4, 0)) AS regular_taxyear
+                       FROM        rw_extract.etl_parameter AS etl_parameter_1
+                       WHERE     (PARAMETER_NAME = 'ASSESSMENT_TAX_YEAR')) AS P3 ON T1.TAXYEAR = P3.regular_taxyear
+WHERE     (T1.ACCOUNTNO LIKE 'P%')
+GO
+/****** Object:  View [rw_extract].[V_NODTABLE1]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_NODTABLE1]
+AS
+SELECT        [HEADER]
+      ,[AGENT_FLAG]
+      ,[REVIEWNUMBER]
+      ,[TAXYEAR]
+      ,[OWNERNAME1]
+      ,[OWNERNAME2]
+      ,[OWNERADDRESS1]
+      ,[OWNERADDRESS2]
+      ,[OWNERCITY]
+      ,[OWNERSTATE]
+      ,[OWNERZIP]
+      ,[LOCATION]
+      ,[SUBNAME]
+      ,[VALUEDESCRIPTION1]
+      ,[VALUEDESCRIPTION2]
+      ,[VALUEDESCRIPTION3]
+FROM            PRRW.dbo.NODTABLE1
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_NODTABLE2]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_NODTABLE2]
+AS
+SELECT       [HEADER]
+      ,[AGENT_FLAG]
+      ,[REVIEWNUMBER]
+      ,[TAXYEAR]
+      ,[ACCOUNTNO]
+      ,[SUBLOT]
+      ,[SUBBLOCK]
+      ,[DESC1]
+      ,[DESC2]
+      ,[DESC3]
+      ,[DESC4]
+      ,[A/D]
+      ,[PRIORVALUE1]
+      ,[PRIORVALUE2]
+      ,[PRIORVALUE3]
+      ,[PRIORVALUE4]
+      ,[CURRENTVALUE1]
+      ,[CURRENTVALUE2]
+      ,[CURRENTVALUE3]
+      ,[CURRENTVALUE4]
+      ,[PETVALUETOTAL]
+      ,[PRIORVALUETOTAL]
+      ,[CURRENTVALUETOTAL]
+      ,[APPEALACCTADJUSTDENYREASON]
+      ,[APPEALACCTREASONDESC]
+      ,[SUBNAME]
+      ,[FILINGNO]
+FROM   PRRW.dbo.NODTABLE2
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_OD_PROPERTYLOCATION]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_OD_PROPERTYLOCATION]
+AS
+SELECT DISTINCT 
+                      PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO AS ACCOUNT_NO, PRRW.ENCOMPASS.TBLACCT.ACCTTYPE AS ACCOUNT_TYPE_CODE, 
+                      PRRW.ENCOMPASS.TBLACCT.PARCELNO AS STATE_PARCEL_NO, PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.STREETNO AS ADDRESS_NUMBER, 
+                      PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.PREDIRECTION AS PRE_DIRECTION_CODE, 
+                      PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.STREETNAME AS STREET_NAME, PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.STREETTYPE AS STREET_TYPE_CODE, 
+                      PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.UNITNAME AS UNIT_NO, PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.PROPERTYZIPCODE AS LOCATION_ZIP_CODE, 
+                      PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.PROPERTYCITY AS CITY_NAME, PRRW.ENCOMPASS.TBLACCTLEGAL.LEGAL AS LEGAL_DESCR, 
+                      PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.SECTION, PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.TOWNSHIP, PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.RANGE, 
+                      PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.QTR AS QUARTER, PRRW.ENCOMPASS.TBLACCTREAL.DEFAULTLEA AS LAND_ECONOMIC_AREA_CODE, 
+                      CASE WHEN PRRW.ENCOMPASS.TBLACCTREAL.VACANTFLAG = 1 THEN 'Y' ELSE 'N' END AS VACANT_FLAG, 
+                      PRRW.ENCOMPASS.TBLACCTREAL.LANDGROSSACRES AS TOTAL_NET_ACRES, PRRW.ENCOMPASS.TBLACCT.DEFAULTTAXDISTRICT AS TAX_DISTRICT_NO, 
+                      PRRW.dbo.uv_Prop_NBHDs.NBHDCODE AS NEIGHBORHOOD_CODE, PRRW.dbo.uv_Prop_NBHDs.NBHDEXTENSION AS NEIGHBORHOOD_EXTENSION
+FROM         PRRW.ENCOMPASS.TBLACCT INNER JOIN
+                      PRRW.ENCOMPASS.TBLACCTREAL ON PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO = PRRW.ENCOMPASS.TBLACCTREAL.ACCOUNTNO INNER JOIN
+                      PRRW.ENCOMPASS.TBLACCTLEGALLOCATION ON PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO = PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.ACCOUNTNO INNER JOIN
+                      PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS ON PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO = PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.ACCOUNTNO INNER JOIN
+                      PRRW.ENCOMPASS.TBLACCTLEGAL ON PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO = PRRW.ENCOMPASS.TBLACCTLEGAL.ACCOUNTNO INNER JOIN
+                      PRRW.dbo.uv_Prop_NBHDs ON PRRW.ENCOMPASS.TBLACCT.ACCOUNTNO = PRRW.dbo.uv_Prop_NBHDs.accountno
+WHERE     (PRRW.ENCOMPASS.TBLACCT.ACCTSTATUSCODE = 'A') AND (PRRW.ENCOMPASS.TBLACCT.VEREND = 99999999999) AND 
+                      (PRRW.ENCOMPASS.TBLACCTPROPERTYADDRESS.VEREND = 99999999999) AND (PRRW.ENCOMPASS.TBLACCTLEGALLOCATION.VEREND = 99999999999) AND 
+                      (PRRW.ENCOMPASS.TBLACCTLEGAL.VEREND = 99999999999) AND (PRRW.ENCOMPASS.TBLACCTREAL.VEREND = 99999999999)
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_PPNOV]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_PPNOV]
+AS
+SELECT        ACCOUNTNO, TAXYEAR, PARCELNO, PROPADDRESS, LEGALDESCRIPTION1, LEGALDESCRIPTION2, LEGALDESCRIPTION3, NAME1, NAME2, PNAME1, PNAME2, OWNERADDRESS1, OWNERADDRESS2, 
+                         OWNERCITY, OWNERSTATE, OWNERZIP, PROPCLASS1, PRIORVALUE1, CURRENTVALUE1, INCREASEDECREASE1, PROPCLASS2, PRIORVALUE2, CURRENTVALUE2, INCREASEDECREASE2, PROPCLASS3, 
+                         PRIORVALUE3, CURRENTVALUE3, INCREASEDECREASE3, PROPCLASS4, PRIORVALUE4, CURRENTVALUE4, INCREASEDECREASE4, PROPCLASS5, PRIORVALUE5, CURRENTVALUE5, INCREASEDECREASE5, 
+                         PROPCLASS6, PRIORVALUE6, CURRENTVALUE6, INCREASEDECREASE6, TOTALPRIOR, TOTALCURRENT, TOTALINCREASEDECREASE, VALUEYEAR, PROPERTYTYPE, PRIMARYBUILDING, BUILDINGCOUNT, 
+                         SUBDIVISION, NEIGHBORHOOD, RESIDENTIALSF, STYLE, QUALITY, YEARBUILT, HEATTYPE, BASEMENTSF, FINISHEDBSMNTSF, BASEMENTTYPE, GARAGESF, IMPSF, COMMERCIALSF, OUTBUILDINGSF, 
+                         LANDTYPE, ACREAGE, LEA, LANDATTRIBUTES, APPRDATEYEAR, REAPPRYEAR, BEGPERYEAR, ENDPERYEAR, CBOEDEADLINE, PRINTFLAG, BULKNOVFLAG, PRIVATEFLAG, ASSESSOR, 
+                         SREXEMPTIONDEADLINE, VETEXEMPTIONDEADLINE, NODMONTH
+FROM            PRRW.dbo.REALNOV
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_REALNOV]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_REALNOV]
+AS
+SELECT        ACCOUNTNO, TAXYEAR, PARCELNO, PROPADDRESS, LEGALDESCRIPTION1, LEGALDESCRIPTION2, LEGALDESCRIPTION3, NAME1, NAME2, PNAME1, PNAME2, OWNERADDRESS1, OWNERADDRESS2, 
+                         OWNERCITY, OWNERSTATE, OWNERZIP, PROPCLASS1, PRIORVALUE1, CURRENTVALUE1, INCREASEDECREASE1, PROPCLASS2, PRIORVALUE2, CURRENTVALUE2, INCREASEDECREASE2, PROPCLASS3, 
+                         PRIORVALUE3, CURRENTVALUE3, INCREASEDECREASE3, PROPCLASS4, PRIORVALUE4, CURRENTVALUE4, INCREASEDECREASE4, PROPCLASS5, PRIORVALUE5, CURRENTVALUE5, INCREASEDECREASE5, 
+                         PROPCLASS6, PRIORVALUE6, CURRENTVALUE6, INCREASEDECREASE6, TOTALPRIOR, TOTALCURRENT, TOTALINCREASEDECREASE, VALUEYEAR, PROPERTYTYPE, PRIMARYBUILDING, BUILDINGCOUNT, 
+                         SUBDIVISION, NEIGHBORHOOD, RESIDENTIALSF, STYLE, QUALITY, YEARBUILT, HEATTYPE, BASEMENTSF, FINISHEDBSMNTSF, BASEMENTTYPE, GARAGESF, IMPSF, COMMERCIALSF, OUTBUILDINGSF, 
+                         LANDTYPE, ACREAGE, LEA, LANDATTRIBUTES, APPRDATEYEAR, REAPPRYEAR, BEGPERYEAR, ENDPERYEAR, CBOEDEADLINE, PRINTFLAG, BULKNOVFLAG, PRIVATEFLAG, ASSESSOR, 
+                         SREXEMPTIONDEADLINE, VETEXEMPTIONDEADLINE, NODMONTH
+FROM            PRRW.dbo.REALNOV
+WHERE TAXYEAR >= 2024
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_REALNOV_old]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_REALNOV_old]
+AS
+SELECT        ACCOUNTNO, TAXYEAR, PARCELNO, PROPADDRESS, LEGALDESCRIPTION1, LEGALDESCRIPTION2, LEGALDESCRIPTION3, NAME1, NAME2, PNAME1, PNAME2, OWNERADDRESS1, OWNERADDRESS2, 
+                         OWNERCITY, OWNERSTATE, OWNERZIP, PROPCLASS1, PRIORVALUE1, CURRENTVALUE1, INCREASEDECREASE1, PROPCLASS2, PRIORVALUE2, CURRENTVALUE2, INCREASEDECREASE2, PROPCLASS3, 
+                         PRIORVALUE3, CURRENTVALUE3, INCREASEDECREASE3, PROPCLASS4, PRIORVALUE4, CURRENTVALUE4, INCREASEDECREASE4, PROPCLASS5, PRIORVALUE5, CURRENTVALUE5, INCREASEDECREASE5, 
+                         PROPCLASS6, PRIORVALUE6, CURRENTVALUE6, INCREASEDECREASE6, TOTALPRIOR, TOTALCURRENT, TOTALINCREASEDECREASE, VALUEYEAR, PROPERTYTYPE, PRIMARYBUILDING, BUILDINGCOUNT, 
+                         SUBDIVISION, NEIGHBORHOOD, RESIDENTIALSF, STYLE, QUALITY, YEARBUILT, HEATTYPE, BASEMENTSF, FINISHEDBSMNTSF, BASEMENTTYPE, GARAGESF, IMPSF, COMMERCIALSF, OUTBUILDINGSF, 
+                         LANDTYPE, ACREAGE, LEA, LANDATTRIBUTES, APPRDATEYEAR, REAPPRYEAR, BEGPERYEAR, ENDPERYEAR, CBOEDEADLINE, PRINTFLAG, BULKNOVFLAG, PRIVATEFLAG, ASSESSOR
+FROM            PRRW.dbo.REALNOV
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_RESMODELANALYSISDATA]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_RESMODELANALYSISDATA]
+AS
+/**************************************************************************************************
+Created By:		Marc Beacom
+Description:	Used in the ODS2 extract to bring tables used in the Assesor Propery PBI Report
+Usage:			select top 100 * from [rw_extract].[V_RESMODELANALYSISDATA]
+--------------------------------------------------------------------------------------------------
+Date:		Name:			Comments:
+20210324	Marc Beacom		Initial Creation
+
+**************************************************************************************************/
+
+SELECT 
+		[NBHD]
+		,[SUBNAME]
+		,[ACCOUNTNO]
+		,[PARCELNO]
+		,[STREETADDRESS]
+		,[ANALYSISMODEL]
+		,[PLANMODEL]
+		,[ADJYEARBUILT]
+		,[IMPQUALITY]
+		,[PROPERTYTYPE]
+		,[IMPUNITTYPE]
+		,[CURRIMPCOUNT]
+		,[BLTASDESCRIPTION]
+		,[HVACTYPE]
+		,[BATHCOUNT]
+		,[FPCOUNT]
+		,[BLTASSF]
+		,[BASEMENTSF]
+		,[FINISHEDBASEMENTSF]
+		,[GARAGESF]
+		,[CARPORTSF]
+		,[PORCHSF]
+		,[BASEMENT]
+		,[LANDSF]
+		,[GOLF]
+		,[GREENBELT]
+		,[POWERLINE]
+		,[SUPVIEW]
+		,[TRAFFIC]
+		,[CULDESAC]
+		,[TREED]
+		,[CORNERLOT]
+		,[RAILROAD]
+		,[UNPAVEDROAD]
+		,[RECEPTIONNO]
+		,[SALEDATE]
+		,[ADJSALEPRICE]
+		,[TASP]
+		,[VALID1FLAG]
+		,[EXCLUDECODE1]
+		,[NEWCONSTRUCTION]
+		,[SALESRATIO]
+		,[PREVIOUSVALUE]
+		,[PREVIOUSYEAR]
+		,[CURRENTVALUE]
+		,[CURRENTYEAR]
+		,[VALUECHANGE]
+		,[PRICEPERSF]
+		,[COUNTAPPEAL]
+		,[UNIQUEFEATURE]
+		,[AG]
+		,[SALEPRICEPERSF]
+FROM	[PRRW].[dbo].[RESMODELANALYSISDATA]
+
+GO
+/****** Object:  View [rw_extract].[V_RESMODELSALES]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_RESMODELSALES]
+AS
+/**************************************************************************************************
+Created By:		Marc Beacom
+Description:	Used in the ODS2 extract to bring tables used in the Assesor Propery PBI Report
+Usage:			select top 100 * from [rw_extract].[V_RESMODELSALES]
+--------------------------------------------------------------------------------------------------
+Date:		Name:			Comments:
+20210324	Marc Beacom		Initial Creation
+
+**************************************************************************************************/
+
+SELECT 
+		[NBHD]
+		,[SUBNAME]
+		,[ACCOUNTNO]
+		,[PARCELNO]
+		,[STREETADDRESS]
+		,[PLANMODEL]
+		,[RECEPTIONNO]
+		,[SALEDATE]
+		,[ADJSALEPRICE]
+		,[TASP]
+		,[VALID1FLAG]
+		,[EXCLUDECODE1]
+		,[NEWCONSTRUCTION]
+		,[SALESRATIO]
+		,[CURRENTVALUE]
+		,[CURRENTYEAR]
+FROM	[PRRW].[dbo].[RESMODELSALES]
+
+GO
+/****** Object:  View [rw_extract].[V_TBLACCTLEGALLOCATION]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBLACCTLEGALLOCATION]
+AS
+SELECT        VERSTART, VEREND, ACCOUNTNO, DETAILID, QTRQTR, QTR, SECTION, TOWNSHIP, RANGE, GOVERNMENTLOT, GOVERNMENTTRACT, LEGALCOMMENT, ACCTLEGALLOCATIONON0, ACCTLEGALLOCATIONON1, 
+                         ACCTLEGALLOCATIONON2, ACCTLEGALLOCATIONOD0, ACCTLEGALLOCATIONOD1, ACCTLEGALLOCATIONOM0, ACCTLEGALLOCATIONOM1, ACCTLEGALLOCATIONOT0, ACCTLEGALLOCATIONOT1, 
+                         JURISDICTIONID, WRITEDATE, SEQID
+FROM            PRRW.ENCOMPASS.TBLACCTLEGALLOCATION
+WHERE        (VERSTART < CONVERT(VARCHAR, GETDATE(), 112) + '999') AND (VEREND >= CONVERT(VARCHAR, GETDATE(), 112) + '999')
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBLMLSHISTORY]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TBLMLSHISTORY]
+AS
+/**************************************************************************************************
+Description:	Used in the ODS2 extract to bring tables used in the Assesor Propery PBI Report
+Usage:			select top 100 * from [rw_extract].[V_TBLMLSHISTORY]
+--------------------------------------------------------------------------------------------------
+Date:		Name:			Comments:
+20210324	Marc Beacom		Initial Creation
+20210512	Marc Beacom		Refactored due to source system changes
+
+**************************************************************************************************/
+
+
+SELECT 
+		[MLSMONTH]
+		,[MLSYEAR]
+		,[MLSTYPE]
+		,[MONTHSOFINVENTORY]
+		,[ACTIVELISTINGCOUNT]
+		,[AVGDOM]
+		,[MEDIANDOM]
+		,[SALESCOUNT]
+		,[AVGLISTPRICE]
+		,[MEDIANLISTPRICE]
+		,[AVGCLOSEPRICE]
+		,[MEDIANCLOSEPRICE]
+FROM	[PRRW].[dbo].[TBLMLSHISTORY]
+
+GO
+/****** Object:  View [rw_extract].[V_TBNSALEINVENTORY]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TBNSALEINVENTORY]
+AS
+SELECT RECEPTIONNO
+      ,ACCOUNTNO
+      ,PARCELNO
+      ,CAST(INVENTORYEFFECTIVEDATE AS VARCHAR(22) ) INVENTORYEFFECTIVEDATE
+      ,CAST(SALEDATE AS VARCHAR(22) ) SALEDATE
+      ,SALEPRICE
+      ,ADJSALEPRICE
+      ,SALEVALUEPER
+      ,ACCTTYPE
+      ,ECONOMICAREACODE
+      ,LEA
+      ,SUBDIVISION
+      ,VALUEAREACODE
+      ,PROPERTYTYPE
+      ,IMPCONDITIONTYPE
+      ,IMPQUALITY
+      ,IMPABSTRACTCODE
+      ,BLTASDESCRIPTION
+      ,BLTASYEARBUILT
+      ,PHYSICALAGE
+      ,ADJUSTEDYEARBUILT
+      ,EFFECTIVEAGE
+      ,IMPEXTERIOR
+      ,CLASSCODE
+      ,IMPCOUNT
+      ,BLTASTOTALUNITCOUNT
+      ,ROOMCOUNT
+      ,BEDROOMCOUNT
+      ,BATHCOUNT
+      ,FIXTURECOUNT
+      ,TOTALIMPSF
+      ,RESIDENTIALSF
+      ,COMMERCIALSF
+      ,CONDOIMPSF
+      ,OUTBUILDINGSF
+      ,IMPBLTASOTHER
+      ,LANDNETSF
+      ,MULTIPLEUSEFLAG
+      ,LANDTYPE
+      ,LANDABSTRACTCODE
+      ,LANDCERTIFICATIONCODE
+      ,LANDGROSSACRECOUNT
+      ,LANDGROSSSF
+      ,LANDGROSSFF
+      ,LANDGROSSUNITCOUNT
+      ,ZONINGCODE
+      ,PLATTEDFLAG
+      ,UNITNAME
+      ,ACCTADJSALEVALUEPER
+     ,TOTALLANDVALUETIMEOFSALE
+      ,TOTALACCTVALUETIMEOFSALE
+      ,PRIORYEARTAXROLLACTUALAMT
+      ,PRIORYEARTAXROLLASSESSED
+      ,LANDNETACRECOUNT
+      ,HVACTYPE
+      ,IMPUNITTYPE
+      ,IMPINTERIOR
+      ,ROOFCOVER
+      ,ROOFTYPE
+      ,INVENTORYOVERRIDEFLAG
+      ,ZONEDAREA
+      ,NBHDCODE1
+      ,NBHDCODE2
+      ,NBHDCODE3
+      ,NBHDCODE4
+      ,NBHDEXTENSION1
+      ,NBHDEXTENSION2
+      ,NBHDEXTENSION3
+      ,NBHDEXTENSION4
+      ,OCCCODE1
+      ,OCCCODE2
+      ,OCCCODE3
+      ,ACCTADJSALEPRICE
+      ,TIMEADJSALEPRICE
+      ,DEEDCODE
+      ,VALID1FLAG
+      ,VALID2FLAG
+      ,EXCLUDECODE1
+      ,EXCLUDECODE2
+      ,IMPROVEDFLAG
+      ,CONFIRMEDFLAG
+      ,BUSINESSNAME
+      ,STREETNO
+      ,PREDIRECTION
+      ,STREETNAME
+      ,STREETTYPE
+      ,POSTDIRECTION
+      ,PROPERTYCITY
+      ,PROPERTYZIPCODE
+      ,OUTBUILDINGCOUNT
+      ,LANDEXCESSSF
+      ,APPROACHTYPE
+      ,FLOORCOVER
+      ,CONDOIMPPERCENT
+      ,FINALSF
+      ,FINALSFVALUEPER
+      ,ZONEDAREAVALUEPER
+      ,GROUPINVENTORYFLAG
+      ,GRANTORNAME1
+      ,GRANTORNAME2
+      ,GRANTORADDRESS1
+      ,GRANTORADDRESS2
+      ,GRANTORCITY
+      ,GRANTORSTATECODE
+      ,GRANTORZIPCODE
+      ,SUBDIVISIONNAME
+      ,LOT
+      ,BLOCK
+      ,FILINGNO
+      ,TRACT
+      ,LEGALDESCRIPTION
+      ,GRANTEENAME1
+      ,GRANTEENAME2
+      ,GRANTEEADDRESS1
+      ,GRANTEEADDRESS2
+      ,GRANTEECITY
+      ,GRANTEESTATECODE
+      ,GRANTEEZIPCODE
+      ,SALEINVENTORYON0
+      ,SALEINVENTORYON1
+      ,SALEINVENTORYON2
+      ,OCCCODEDESCRIPTION1
+      ,OCCCODEDESCRIPTION2
+      ,OCCCODEDESCRIPTION3
+      ,CAST(SALEINVENTORYOD0 AS VARCHAR(22) ) SALEINVENTORYOD0
+      ,CAST(SALEINVENTORYOD1 AS VARCHAR(22) ) SALEINVENTORYOD1
+      ,SALEINVENTORYOM0
+      ,SALEINVENTORYOM1
+      ,SALEINVENTORYOT0
+      ,SALEINVENTORYOT1
+      ,LANDNETFF
+      ,JURISDICTIONID
+      ,OUTOFAREASALEJURISDICTION
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,GRANTEEPROVINCE
+      ,GRANTEECOUNTRY
+      ,GRANTEEPOSTALCODE
+      ,OCCCOMPLETEDPCT
+      ,PRIMARYUSECODE
+      ,GRANTORPROVINCE
+      ,GRANTORCOUNTRY
+      ,GRANTORPOSTALCODE
+      ,LANDNETUNITCOUNT
+      ,TOTALFINISHEDSF
+      ,TOTALUNFINISHEDSF
+      ,BLTASCODE
+      ,SALERATIO
+  FROM PRRW.ENCOMPASS.TBNSALEINVENTORY;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBNSALEINVENTORYDETAIL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TBNSALEINVENTORYDETAIL]
+AS
+SELECT RECEPTIONNO
+      ,ACCOUNTNO
+      ,DETAILTYPE
+      ,INVENTORYDETAILTYPE
+      ,INVENTORYDETAILDESCRIPTION
+      ,INVENTORYUNITCOUNT
+      ,SALEINVENTORYDETAILON0
+      ,SALEINVENTORYDETAILON1
+      ,SALEINVENTORYDETAILON2
+      ,CAST(SALEINVENTORYDETAILOD0 AS VARCHAR(22) ) SALEINVENTORYDETAILOD0
+      ,CAST(SALEINVENTORYDETAILOD1 AS VARCHAR(22) ) SALEINVENTORYDETAILOD1
+      ,SALEINVENTORYDETAILOM0
+      ,SALEINVENTORYDETAILOM1
+      ,SALEINVENTORYDETAILOT0
+      ,SALEINVENTORYDETAILOT1
+      ,YEARBUILT
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,INVENTORYDETAILID
+  FROM PRRW.ENCOMPASS.TBNSALEINVENTORYDETAIL;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBNSUBDIVISION]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TBNSUBDIVISION]
+AS
+SELECT SUBNO
+      ,SUBNAME
+      --,CAST(SUBDATEALTERD AS VARCHAR(22) ) SUBDATEALTERD
+      ,SUBON2
+      ,SUBOT0
+      ,SUBOT1
+      ,CAST(SUBOD0 AS VARCHAR(22) ) SUBOD0
+      ,CAST(SUBOD1 AS VARCHAR(22) ) SUBOD1
+      ,SUBOM0
+      ,SUBOM1
+      ,SUBON0
+      ,SUBON1
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+  FROM PRRW.ENCOMPASS.TBNSUBDIVISION;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TBNSUBFILING]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+CREATE VIEW [rw_extract].[V_TBNSUBFILING]
+AS
+SELECT SUBNO
+      ,FILINGNO
+      ,SUBFILINGDESCRIPTION
+      ,SUBFILINGRECORDINGNO
+      ,SUBFILINGCITY
+      ,DEFAULTSECTION
+      ,DEFAULTTOWNSHIP
+      ,DEFAULTRANGE
+      ,DEFAULTQTR
+      ,DEFAULTQTRQTR
+      ,CAST(SUBFILINGDATERECORDED AS VARCHAR(22) ) SUBFILINGDATERECORDED
+      ,DEFAULTLEA
+      ,DEFAULTTAXDISTRICT
+      ,MAPNO
+      ,ECONOMICAREACODE
+      ,ACCOUNTTYPE
+      ,LANDCERTIFICATIONCODE
+      ,FLAGTYPE
+      ,SUBFILINGSTATUS
+      ,DEFAULTAPPROACHTYPE
+      ,VALUEAREACODE
+      ,ZONINGCODE
+      ,BLOCKCOUNT
+      ,LOTCOUNT
+      ,TRACTCOUNT
+      ,SUBFILINGMHTITLEFLAG
+      ,SUBFILINGNOTESFLAG
+      ,SUBFILINGNEWCONSTFLAG
+      ,SUBFILINGPHOTOSFLAG
+      ,SUBFILINGSKETCHESFLAG
+      ,SUBFILINGTAXYEAR
+      ,SUBFILINGON0
+      ,SUBFILINGON1
+      ,SUBFILINGON2
+      ,ASSIGNEDTO
+      ,CAST(SUBFILINGOD0 AS VARCHAR(22) ) SUBFILINGOD0
+      ,CAST(SUBFILINGOD1 AS VARCHAR(22) ) SUBFILINGOD1
+      ,SUBFILINGOM0
+      ,SUBFILINGOM1
+      ,SUBFILINGOT0
+      ,SUBFILINGOT1
+      ,JURISDICTIONID
+      ,CAST(DEFAULTLEGAL AS VARCHAR(4000) ) DEFAULTLEGAL
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,PRIMARYUSECODE
+      ,APPRAISALTYPE
+  FROM PRRW.ENCOMPASS.TBNSUBFILING;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPABSTRACTCODE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPABSTRACTCODE]
+AS   
+SELECT ABSTRACTCODE
+      ,ABSTRACTDESCRIPTION
+      ,EQUIVALENCEABSTRACTCODE
+      ,ROLLABSTRACTVALUEFLAG
+      ,VALUEGROUPCODE
+      ,ACTUALPRECISION
+      ,ACTUALMINIMUMVALUE
+      ,ASSESSEDPRECISION
+      ,ASSESSEDMINIMUMVALUE
+      ,ACTUALROUNDTYPE
+      ,ASSESSEDROUNDTYPE
+      ,USEVALUEFLAG
+      ,ADJACTUALPRECISION
+      ,ADJACTUALMINIMUMVALUE
+      ,ADJACTUALROUNDTYPE
+      ,ADJASSESSEDPRECISION
+      ,ADJASSESSEDMINIMUMVALUE
+      ,ADJASSESSEDROUNDTYPE
+      ,ADJALTACTUALPRECISION
+      ,ADJALTACTUALMINVALUE
+      ,ADJALTACTUALROUNDTYPE
+      ,ADJALTASSESSEDPRECISION
+      ,ADJALTASSESSEDMINVALUE
+      ,ADJALTASSESSEDDROUNDTYPE
+      ,ALTASSESSEDPRECISION
+      ,ALTASSESSEDMINIMUMVALUE
+      ,ALTASSESSEDROUNDTYPE
+      ,SHOWADMINFLAG
+      ,CLASSIFICATIONID
+      ,LOCALGROWTHEXEMPTFLAG
+      ,EXPORTCNTGROUPEXCLUSIONFLAG
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,LIMITTOABSTTYPE
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,ABSTRACTCATEGORYCODE 
+FROM PRRW.ENCOMPASS.TLKPABSTRACTCODE;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPABSTRACTCODETYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPABSTRACTCODETYPE]
+AS   
+SELECT ABSTRACTCODE
+      ,ABSTRACTTYPE
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,SORTORDER
+FROM PRRW.ENCOMPASS.TLKPABSTRACTCODETYPE ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPACCTTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPACCTTYPE]
+AS
+SELECT ACCTTYPE
+      ,APPRAISALTYPE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,MHLPFLAG
+      ,JURISDICTIONID
+      ,MASSINCLUDEFLAG
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED 
+FROM PRRW.ENCOMPASS.TLKPACCTTYPE;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPBUSINESSTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TLKPBUSINESSTYPE]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPBUSINESSTYPE]
+AS
+SELECT BUSINESSCODE
+      ,BUSINESSTYPEDESCRIPTION
+      ,ACTIVEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPBUSINESSTYPE ;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPDEEDTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [rw_extract].[V_TLKPDEEDTYPE]
+AS
+SELECT DEEDCODE
+      ,DEEDDESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,EFFECTEXEMPTIONSFLAG
+      ,EFFECTCAPFLAG
+      ,INCLUDEINSALESRATIOSFLAG
+      ,JURISDICTIONID
+      ,NONSALEFLAG
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED  
+FROM PRRW.ENCOMPASS.TLKPDEEDTYPE ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPIMPSADDONS]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPIMPSADDONS]
+AS
+SELECT ADDONDESCRIPTION
+      ,ADDONVALUE
+      ,ADDONFILTERTYPE
+      ,DEPRTYPE
+      ,OVERRIDELIFEEXPECTANCY
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,USEINANALYSISFLAG
+      ,IMPDETAILTYPE
+      ,ADDONCODE
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,APEXLINKFLAG
+         ,TAXYEAR
+FROM PRRW.ENCOMPASS.TLKPIMPSADDONS;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPIMPSBLTASTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPIMPSBLTASTYPE]
+AS
+SELECT BLTASCODE
+      ,BLTASDESCRIPTION
+      ,MSCOSTTABLE
+      ,PROPERTYTYPE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,BLTASTOTALTYPE
+      ,MARSHALLSWIFTCODE
+      ,BLTASCALCULATIONTYPE
+  FROM PRRW.ENCOMPASS.TLKPIMPSBLTASTYPE;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPIMPSCOMCLASSTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TLKPIMPSCOMCLASSTYPE]
+AS
+SELECT CLASSCODE
+      ,CLASSDESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+  FROM PRRW.ENCOMPASS.TLKPIMPSCOMCLASSTYPE;
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPIMPSOCCTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPIMPSOCCTYPE]
+AS
+SELECT OCCCODE
+      ,OCCCODEDESCRIPTION
+      ,ABSTRACTCODE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPIMPSOCCTYPE ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPLANDATTRIBUTETYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPLANDATTRIBUTETYPE]
+AS
+SELECT ATTRIBUTETYPE
+      ,ATTRIBUTESUBTYPE
+      ,ATTRIBUTEADJUSTMENT
+      ,FILTERTYPE
+      ,ACTIVEFLAG
+      ,USEINANALYSISFLAG
+      ,JURISDICTIONID
+      ,SORTORDER
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,EXECUTIONORDER
+      ,NULL ADJUSTMENTCALCULATIONTYPE -- ADD NULL for RW 5.15
+FROM PRRW.ENCOMPASS.TLKPLANDATTRIBUTETYPE ;
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPLEATYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPLEATYPE]
+AS
+SELECT LEA
+      ,LEADESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPLEATYPE;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPPPCONDITION]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TLKPPPCONDITION]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPPPCONDITION]
+AS
+SELECT PPCONDITIONCODE
+      ,PPCONDITIONDESCRIPTION
+      ,ACTIVEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED 
+FROM PRRW.ENCOMPASS.TLKPPPCONDITION ;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPPPOGDESCRIPTIONTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TLKPPPOGDESCRIPTIONTYPE]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPPPOGDESCRIPTIONTYPE]
+AS
+SELECT PPOGDESCRIPTIONTYPEID
+      ,PPOGDESCRIPTIONTYPE
+      ,DEFAULTABSTRACTCODE
+      ,DEFAULTPPTYPE
+      ,SORTORDER
+      ,APPRAISALTYPE
+      ,PPOGDETAILTYPE
+      ,ACCTTYPE
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+from PRRW.ENCOMPASS.TLKPPPOGDESCRIPTIONTYPE T1;
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPPPOGTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/****** Object:  View [ODS_EXTRACT_ASR].[V_TLKPPPOGTYPE]    Script Date: 10/30/2013 11:58:51 AM ******/
+
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPPPOGTYPE]
+AS
+SELECT PPOGTYPE
+      ,PPOGDESCRIPTION
+      ,APPRAISALTYPE
+      ,ACTIVEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+  FROM PRRW.ENCOMPASS.TLKPPPOGTYPE;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPSALEEXCLUDE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPSALEEXCLUDE]
+AS
+SELECT EXCLUDECODE
+      ,EXCLUDEDESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPSALEEXCLUDE;
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPSTATUSACCT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TLKPSTATUSACCT]
+AS
+SELECT ACCTSTATUSCODE
+      ,ACCTSTATUSDESCRIPTION
+      ,ACTIVEFLAG
+      ,SORTORDER
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPSTATUSACCT;
+
+
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPTAXAUTHORITY]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPTAXAUTHORITY]
+AS
+SELECT TAXAUTHORITY
+      ,STATEAUTHORITYCODE
+      ,AUTHORITYTYPE
+      ,AUTHORITYNAME
+      ,CAST(CREATIONDATE AS VARCHAR(22) ) CREATIONDATE
+      ,CONTACTPERSON
+      ,CONTACTADDRESS1
+      ,CONTACTADDRESS2
+      ,CONTACTCITY
+      ,CONTACTSTATE
+      ,CONTACTZIPCODE
+      ,AFFILIATE
+      ,AUTHORITYSIZE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,CONTACTPHONE
+      ,AUTHORITYVALUETYPE
+      ,ISURBANRENEWALAUTHORIZERFLAG
+FROM PRRW.ENCOMPASS.TLKPTAXAUTHORITY;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPTAXDISTRICT]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPTAXDISTRICT]
+AS
+SELECT TAXDISTRICT
+      ,TAXDISTRICTNAME
+      ,TAXAREA
+      ,CAST(CREATIONDATE AS VARCHAR(22) ) CREATIONDATE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,TAXDISTRICTCATEGORY
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+      ,TAXDISTRICTTYPE
+      ,TAXDISTRICTID
+      ,ASSOCIATEDURBANRENEWALPLAN
+      ,REPORTINGTAXDISTRICT 
+FROM PRRW.ENCOMPASS.TLKPTAXDISTRICT;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPTAXFUND]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPTAXFUND]
+AS
+SELECT FUNDCODE
+      ,FUNDDESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+FROM PRRW.ENCOMPASS.TLKPTAXFUND;
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPVALUEGROUP]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [rw_extract].[V_TLKPVALUEGROUP]
+AS
+SELECT [VALUEGROUPCODE],
+       [VALUEGROUPDESCRIPTION],
+       [VALUECODE],
+       [SORTORDER],
+       [ACTIVEFLAG],
+       [JURISDICTIONID],
+       CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED,
+       [SUPPLEMENTALBILLTYPEID]
+  FROM PRRW.ENCOMPASS.TLKPVALUEGROUP;
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TLKPZONING]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [rw_extract].[V_TLKPZONING]
+AS
+SELECT ZONINGCODE
+      ,ZONINGDESCRIPTION
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,JURISDICTIONID
+      ,LASTUPDATED
+      ,ZONINGFACTOR
+  FROM PRRW.ENCOMPASS.TLKPZONING
+
+
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TSGNVALUE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE VIEW [rw_extract].[V_TSGNVALUE]
+AS
+SELECT   ACCOUNTNO
+              ,TAXYEAR
+              ,VALUEGROUPCODE
+              ,TAXDISTRICT
+              ,PARCELNO
+              ,TAXDOLLARS
+              ,ALTERNATETAXDOLLARS
+              ,ADJUSTEDTAXDOLLARS
+              ,ADJALTERNATETAXDOLLARS
+              ,TOTALTAXDOLLARS
+              ,ADJTOTALTAXDOLLARS
+              ,ACTUALVALUE
+              ,ADJACTUALVALUE
+              ,ALTERNATEADJACTUALVALUE
+              ,ADJALTERNATEADJACTUALVALUE
+              ,ASSESSEDVALUE
+              ,ALTERNATEASSESSEDVALUE
+              ,ADJASSESSEDVALUE
+              ,ADJALTERNATEASSESSEDVALUE
+              ,MILLLEVY
+              ,ALTERNATEMILLLEVY
+              ,AVERAGEASSESSMENTRATIO
+              ,AVERAGEALTASSESSMENTRATIO
+              ,ACTUALPENALTYVALUE
+              ,ALTERNATEACTUALPENALTYVALUE
+              ,ASSESSEDPENALTYVALUE
+              ,ALTERNATEASSDPENALTYVALUE
+              ,PENALTYTAXDOLLARS
+              ,ALTERNATEPENALTYTAXDOLLARS
+              ,RAWASSESSEDVALUE
+              ,RAWTAXDOLLARS
+              ,TOTALPENALTYTAXDOLLARS
+              ,IMPCURRENTUSE
+              ,LANDMKTUSE
+              ,JURISDICTIONID
+              ,LASTUPDATED
+              ,FINALADJASSESSEDVALUE
+              ,FINALADJALTASSESSEDVALUE
+              ,FINALADJASSDPENALTYVALUE
+              ,FINALADJALTASSDPENALTYVALUE
+              ,CCIAPPLICATIONID
+              ,CAPOVERMARKETVALUE
+FROM PRRW.ENCOMPASS.TSGNVALUE;
+
+
+
+
+
+GO
+/****** Object:  View [rw_extract].[V_TSYLEVYTYPE]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [rw_extract].[V_TSYLEVYTYPE]
+AS
+SELECT LEVYTYPEID
+      ,JURISDICTIONID
+      ,LEVYTYPE
+      ,SORTORDER
+      ,ACTIVEFLAG
+      ,CAST(LASTUPDATED AS VARCHAR(22) ) LASTUPDATED
+  FROM PRRW.CCI_SYS.TSYLEVYTYPE
+
+
+
+
+
+GO
+/****** Object:  Table [Audit].[WebETL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Audit].[WebETL](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ParamID] [int] NOT NULL,
+	[ParameterName] [nvarchar](100) NOT NULL,
+	[ParameterValue] [nvarchar](100) NOT NULL,
+	[Action] [nvarchar](10) NOT NULL,
+	[RowType] [nvarchar](10) NOT NULL,
+	[ChangedDate] [datetime] NOT NULL,
+	[ChangedBy] [nvarchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WebDates]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WebDates](
+	[Event_Name] [nvarchar](255) NULL,
+	[Title] [nvarchar](255) NULL,
+	[Description] [nvarchar](255) NULL,
+	[Reappraisal] [nvarchar](255) NULL,
+	[Intervening] [nvarchar](255) NULL,
+	[Category] [nvarchar](255) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WebETL]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WebETL](
+	[ID] [int] NOT NULL,
+	[PROPERTY_NAME] [varchar](250) NULL,
+	[PROPERTY_TYPE] [nvarchar](255) NULL,
+	[PROPERTY_DESCRIPTION] [varchar](1000) NULL,
+	[PARAMETER_FORMAT] [varchar](50) NULL,
+	[PARAMETER_VALUE] [varchar](100) NULL,
+	[ETL_NAME] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WebPermitAuthority]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WebPermitAuthority](
+	[authority_name] [nvarchar](255) NULL,
+	[phone] [nvarchar](255) NULL,
+	[street] [nvarchar](255) NULL,
+	[city] [nvarchar](255) NULL,
+	[zip] [nvarchar](255) NULL,
+	[email] [nvarchar](255) NULL,
+	[URL] [nvarchar](255) NULL,
+	[associated_tax_authority_no] [nvarchar](255) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WebPPLinks]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WebPPLinks](
+	[LinkOrder] [float] NULL,
+	[LinkName] [nvarchar](255) NULL,
+	[LinkURL] [nvarchar](255) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WebWhitelist]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WebWhitelist](
+	[detail_type] [nvarchar](255) NULL,
+	[detail_type_description] [nvarchar](255) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [rw_extract].[etl_parameter_old]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [rw_extract].[etl_parameter_old](
+	[PARAMETER_NAME] [varchar](50) NULL,
+	[PARAMETER_VALUE] [varchar](100) NULL,
+	[PARAMETER_DESCR] [varchar](1000) NULL,
+	[CREATE_DTM] [datetime2](7) NULL,
+	[CREATE_USER_ID] [varchar](30) NULL,
+	[UPDATE_DTM] [datetime2](7) NULL,
+	[UPDATE_USER_ID] [varchar](30) NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [Audit].[WebETL] ADD  DEFAULT (getdate()) FOR [ChangedDate]
+GO
+ALTER TABLE [Audit].[WebETL] ADD  DEFAULT (suser_sname()) FOR [ChangedBy]
+GO
+/****** Object:  StoredProcedure [dbo].[SearchAllTables]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[SearchAllTables] ( @SearchStr nvarchar(100) ) AS 
+BEGIN 
+    
+CREATE TABLE #Results (ColumnName nvarchar(370), ColumnValue nvarchar(3630)) 
+
+SET NOCOUNT ON 
+
+DECLARE @TableName nvarchar(256), 
+        @ColumnName nvarchar(128), 
+        @SearchStr2 nvarchar(110) 
+        
+SET @TableName = '' 
+SET @SearchStr2 = QUOTENAME('%' + @SearchStr + '%','''') 
+
+WHILE @TableName IS NOT NULL 
+BEGIN 
+     SET @ColumnName = '' 
+     SET @TableName = ( SELECT MIN(QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME)) 
+                        FROM INFORMATION_SCHEMA.TABLES 
+                        WHERE TABLE_TYPE = 'BASE TABLE' 
+                              AND QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME) > @TableName 
+                              AND OBJECTPROPERTY( OBJECT_ID( QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME) ), 'IsMSShipped' ) = 0 
+                      ) 
+                              
+ WHILE (@TableName IS NOT NULL) AND (@ColumnName IS NOT NULL) 
+ BEGIN 
+      SET @ColumnName = ( SELECT MIN(QUOTENAME(COLUMN_NAME)) 
+                          FROM INFORMATION_SCHEMA.COLUMNS 
+                          WHERE TABLE_SCHEMA = PARSENAME(@TableName, 2) 
+                                AND TABLE_NAME = PARSENAME(@TableName, 1) 
+                                AND DATA_TYPE IN ('char', 'varchar', 'nchar', 'nvarchar') 
+                                AND QUOTENAME(COLUMN_NAME) > @ColumnName ) 
+       IF @ColumnName IS NOT NULL 
+       BEGIN 
+             INSERT INTO #Results 
+             EXEC ( 'SELECT ''' + @TableName + '.' + @ColumnName + ''', LEFT(' + @ColumnName + ', 3630) FROM ' + @TableName + ' (NOLOCK) ' + ' WHERE ' + @ColumnName + ' LIKE ' + @SearchStr2 ) 
+       END 
+ END 
+ END 
+ 
+ SELECT ColumnName, ColumnValue FROM #Results 
+ 
+ END
+GO
+/****** Object:  StoredProcedure [dbo].[usp_landabstract]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author:		ktotten
+-- Create date: 2023-09-26
+-- Description:	Encapsulate logic for TBLLANDABSTRACT with parameters for ETL
+-- =============================================
+CREATE   PROCEDURE [dbo].[usp_landabstract]
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+DECLARE @FREEZE_FLAG VARCHAR(1);
+SELECT @FREEZE_FLAG = (SELECT PARAMETER_VALUE FROM [rw_extract].[etl_parameter] WHERE PARAMETER_NAME = 'ASR_VALUE_FREEZE_FLAG');
+
+
+SELECT			T1.ACCOUNTNO, T1.VERSTART, T1.VEREND, T1.LANDTYPE, T1.ABSTRACTCODE, T1.LANDACRES, T1.LANDSF, T1.LANDFF, T1.LANDUNITCOUNT, T1.LANDVALUEPER, T1.LANDVALUE, T1.LANDOVERRIDEFLAG, 
+                         T1.LANDOVERRIDETOTAL, T1.LANDACTUALTOTAL, T1.LANDCLASS, T1.LANDSUBCLASS, T1.LANDVALUEBY, T1.LANDVALUEMEASURE, CAST(T1.ABSTRACTINDATE AS VARCHAR(22)) AS ABSTRACTINDATE, 
+                         CAST(T1.ABSTRACTOUTDATE AS VARCHAR(22)) AS ABSTRACTOUTDATE, T1.PRORATETYPE, T1.LANDACTIVEFLAG, T1.DETAILID, T1.ABSTRACTADJCODE, T1.LANDVALUEPERADJFACTOR, T1.ATTRIBUTEADJFLAG, 
+                         T1.LANDADJSIZE, T1.LANDOVERRIDEADJSIZE, T1.LANDABSTRACTON0, T1.LANDABSTRACTON1, T1.LANDABSTRACTON2, T1.LANDOVERRIDEVALUEPER, T1.TAXDISTRICT, 
+                         CAST(T1.LANDABSTRACTOD0 AS VARCHAR(22)) AS LANDABSTRACTOD0, CAST(T1.LANDABSTRACTOD1 AS VARCHAR(22)) AS LANDABSTRACTOD1, T1.LANDABSTRACTOM0, T1.LANDABSTRACTOM1, 
+                         T1.LANDABSTRACTOT0, T1.LANDABSTRACTOT1, T1.JURISDICTIONID, CAST(T1.WRITEDATE AS VARCHAR(22)) AS WRITEDATE, T1.MSALANDVALUE, T1.MSALANDVALUEPER, T1.LEA, T1.SEQID
+FROM            PRRW.ENCOMPASS.TBLLANDABSTRACT AS T1 
+INNER JOIN
+                             (SELECT        CAST(PARAMETER_VALUE AS numeric) AS verstart
+                               FROM            rw_extract.etl_parameter
+                               WHERE        (@FREEZE_FLAG = 'Y' AND PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_START_DATE')
+							             OR (@FREEZE_FLAG = 'N' AND PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE')
+							  ) AS p1 ON T1.VERSTART <= p1.verstart INNER JOIN
+                             (SELECT        CAST(PARAMETER_VALUE AS numeric) AS verend
+                               FROM            rw_extract.etl_parameter
+                               WHERE        (@FREEZE_FLAG = 'Y' AND PARAMETER_NAME = 'ASR_VALUE_FREEZE_VERSION_END_DATE')
+							             OR (@FREEZE_FLAG = 'N' AND PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE')
+							  ) AS p2 ON T1.VEREND > p2.verend
+END -- proc
+GO
+/****** Object:  StoredProcedure [dbo].[usp_webetl_update]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[usp_webetl_update]
+(
+	@ETL_NAME			VARCHAR(50),
+	@PARAMETER_VALUE	VARCHAR(100),
+	@DEBUG				BIT = 0  -- 0=False anything else is true
+)
+AS
+BEGIN
+/**************************************************************************************************
+Description:	Updates the WebETL table based on the passed in parameters
+Usage:			exec dbo.usp_webetl_update 'Tax Year', '2022', -1
+--------------------------------------------------------------------------------------------------
+Date:		Name:		Comments:
+20211224    RGreenfield Initial Creation    	  
+**************************************************************************************************/
+	SET NOCOUNT ON;
+
+	DECLARE @CurrentValue VARCHAR(100)
+
+	-- values before the change
+	-- [PARAMETER_NAME], [PARAMETER_VALUE], [PARAMETER_DESCR], [CREATE_DTM], [CREATE_USER_ID], [UPDATE_DTM], [UPDATE_USER_ID]
+	SELECT @CurrentValue = PARAMETER_VALUE FROM dbo.WebETL WHERE ETL_NAME = @ETL_NAME
+
+	IF (@DEBUG = 0)
+	BEGIN
+		IF (@CurrentValue <> @PARAMETER_VALUE)
+		BEGIN
+			UPDATE	dbo.WebETL
+			SET		PARAMETER_VALUE	=	@PARAMETER_VALUE
+			WHERE	ETL_NAME	=	@ETL_NAME
+			--AND		PARAMETER_VALUE	<>	@PARAMETER_VALUE
+
+			-- values after the change
+			SELECT * FROM dbo.WebETL WHERE ETL_NAME = @ETL_NAME
+		END
+	END
+	ELSE
+	BEGIN
+		-- DEBUG
+		IF (@CurrentValue <> @PARAMETER_VALUE)
+		BEGIN
+			SELECT 'DEBUG' [New], ETL_NAME, PARAMETER_VALUE [OriginalValue], @PARAMETER_VALUE [NewValue] FROM dbo.WebETL WHERE ETL_NAME = @ETL_NAME
+		END
+		ELSE
+			SELECT CONCAT('DEBUG  Parm Name: ', @ETL_NAME, '  Parm Value: ', @PARAMETER_VALUE, '  (No Change)') [Same]
+	END
+END
+GO
+/****** Object:  StoredProcedure [rw_extract].[update_etl_parameter_table_old]    Script Date: 10/15/2024 4:32:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author:		David Guillen
+-- Create date: 01/28/2016
+-- Description:	udpate etl parameter table extract ver start and end with completion date
+-- =============================================
+
+CREATE PROCEDURE [rw_extract].[update_etl_parameter_table_old]
+	-- Add the parameters for the stored procedure here
+	
+	
+
+AS
+BEGIN
+
+	DECLARE @v_ext_date_as_text  VARCHAR(12)
+
+    SELECT @v_ext_date_as_text = CAST(YEAR(GETDATE()) AS VARCHAR)+RIGHT('0' + RTRIM(MONTH(getdate())), 2)+RIGHT('0' + RTRIM(DAY(getdate())), 2)+'999'
+
+
+    UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = @v_ext_date_as_text
+	   WHERE PARAMETER_NAME = 'ASR_EXTRACT_VERSION_START_DATE'
+	UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = @v_ext_date_as_text
+	   WHERE PARAMETER_NAME = 'ASR_EXTRACT_VERSION_END_DATE'
+
+    UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = getdate()
+	   WHERE PARAMETER_NAME = 'ASR_LAST_REFREST_START_DATE'
+	UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = getdate()
+	   WHERE PARAMETER_NAME = 'ASR_LAST_REFRESH_END_DATE'
+
+	UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = getdate()
+	   WHERE PARAMETER_NAME = 'ASR_ODS_LAST_LOAD_HIST_START_DATE'
+	UPDATE [rw_extract].[ETL_PARAMETER] SET PARAMETER_VALUE = getdate()
+	   WHERE PARAMETER_NAME = 'ASR_ODS_LAST_LOAD_HIST_END_DATE'
+
+
+
+END
+
+
+
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[41] 4[10] 2[24] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "REALNOV (PRRW.dbo)"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 272
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'rw_extract', @level1type=N'VIEW',@level1name=N'V_REALNOV'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'rw_extract', @level1type=N'VIEW',@level1name=N'V_REALNOV'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "REALNOV (PRRW.dbo)"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 272
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'rw_extract', @level1type=N'VIEW',@level1name=N'V_REALNOV_old'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'rw_extract', @level1type=N'VIEW',@level1name=N'V_REALNOV_old'
+GO
+USE [master]
+GO
+ALTER DATABASE [assessor_extract] SET  READ_WRITE 
+GO
