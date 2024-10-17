@@ -8905,9 +8905,16 @@ To load s_account_location
 To avoid changing a large number of views this small transform is done in the stating area.
 The alternative was to get gis to change their API which would have taken more time.
 
+Select count(*) from [asr_staging].[s_tblacct] -- 204111
+Where [ACCTSTATUSCODE] = 'A' -- 164797
+
+Select count(Account_Number) from [asr_staging].[s_account_location] -- 160871
+Select count(distinct Account_Number) from [asr_staging].[s_account_location] -- 160871
+
 EXEC [asr_staging].[insert_s_account_location]
 select * from [asr_staging].[s_account_location]
 where latitude_y is null
+
 
 REVISIONS:
 Date        Author           Description
@@ -8915,24 +8922,51 @@ Date        Author           Description
 2024-08-10  Kate Totten      INC0086311 - ODS2 GIS Failure
 2024-09-09  Kate Totten		 INCXXXXXX - Null lattitude 
 ******************************************************************************/
--- TRUNCATE [asr_staging].[s_account_location] -- occurs in ssis package
+-- TRUNCATE TABLE [asr_staging].[s_account_location] -- occurs in ssis package
 
 CREATE OR ALTER PROCEDURE [asr_staging].[insert_s_account_location]
 AS 
 BEGIN
 	SET NOCOUNT ON;
-	
-	INSERT INTO [asr_staging].[s_account_location] (Account_Number, State_Parcel_Number, longitude_x,  latitude_y, [Location])
-	SELECT ACCOUNTNO, grp.State_Parcel_Number, TRY_CONVERT(NUMERIC(30,8),Substring(MinYX, 15, 11)) as 'latitude_y', TRY_CONVERT(NUMERIC(30,8),SUBSTRING(MinYX, 1, 11))  as 'longitude_x', MinYX as [location] --, MinXY
-	FROM [assessor_staging].[asr_staging].[s_tblacctpropertyaddress] pra
-		JOIN (SELECT Account_Number , State_Parcel_Number, MIN(CONCAT(CONCAT(y,','),x)) MinYX 
-			 FROM [assessor_staging].[asr_staging].[s_gis_api_locations] gisloc
-			 GROUP BY Account_Number, State_Parcel_Number
-			)grp
-		ON pra.ACCOUNTNO = grp.Account_Number
-		WHERE [ORDERNO] = 1
 
-	SET NOCOUNT OFF;
+	WITH dedup AS (
+    SELECT 
+        ACCOUNTNO,
+        grp.State_Parcel_Number,
+        TRY_CONVERT(NUMERIC(30,8), Substring(MinXY, 1, 13)) AS longitude_x,
+        TRY_CONVERT(NUMERIC(30,8), SUBSTRING(MinXY, 15, 11)) AS latitude_y,
+        MinXY AS [location],
+        ROW_NUMBER() OVER(PARTITION BY ACCOUNTNO ORDER BY State_Parcel_Number) AS row_num
+		-- Accounts coming back with 2 SPNs
+    FROM [assessor_staging].[asr_staging].[s_tblacctpropertyaddress] pra
+    JOIN (
+        SELECT 
+            Account_Number,
+            State_Parcel_Number,
+            MIN(CONCAT(CONCAT(x, ','), y)) MinXY
+        FROM [assessor_staging].[asr_staging].[s_gis_api_locations] gisloc
+        GROUP BY Account_Number, State_Parcel_Number
+    ) grp
+    ON pra.ACCOUNTNO = grp.Account_Number
+    WHERE [ORDERNO] = 1
+)
+INSERT INTO [asr_staging].[s_account_location] (Account_Number, State_Parcel_Number, longitude_x, latitude_y, [Location])
+--Select count(*), ACCOUNTNO
+--from (
+SELECT 
+    ACCOUNTNO,
+    State_Parcel_Number,
+    longitude_x,
+    latitude_y,
+    [location]
+FROM dedup
+WHERE row_num = 1
+--) r
+--group by ACCOUNTNO
+--having count(*) >1
+--Leaving in check for further investigation
+
+		SET NOCOUNT OFF;
 END
 GO
 /****** Object:  StoredProcedure [asr_staging].[select_count_dqm_err_tables]    Script Date: 10/2/2024 5:28:07 PM ******/
