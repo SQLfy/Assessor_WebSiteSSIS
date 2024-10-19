@@ -9128,6 +9128,7 @@ as
 begin
 
 truncate table asr_staging.s_account_location;
+truncate table asr_staging.s_gis_api_locations;
 
 truncate table asr_staging.s_tblacct;
 truncate table asr_staging.s_tblacctlegal;
