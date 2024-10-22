@@ -1,2 +1,0 @@
-﻿CREATE USER [DCGOV\thall] FOR LOGIN [DCGOV\thall];
-
