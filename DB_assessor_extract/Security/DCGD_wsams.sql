@@ -1,2 +1,0 @@
-﻿CREATE USER [DCGD\wsams] FOR LOGIN [DCGD\wsams];
-
