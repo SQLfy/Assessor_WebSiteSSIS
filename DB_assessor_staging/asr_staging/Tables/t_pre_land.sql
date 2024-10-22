@@ -1,6 +1,0 @@
-﻿CREATE TABLE [asr_staging].[t_pre_land] (
-    [STATE_PARCEL_NO] VARCHAR (30) NULL,
-    [ASSESSMENT_YEAR] VARCHAR (4)  NULL,
-    [VACANT_FLAG]     VARCHAR (1)  NULL
-);
-
